@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Monochrome variant that inherits color from CSS (currentColor) -->
+  <g fill="none" stroke="currentColor" stroke-width="20">
+    <rect x="82" y="82" width="860" height="860" rx="180" fill="currentColor" stroke="none"/>
+    <rect x="168" y="208" width="688" height="576" rx="48" fill="#fff" stroke="currentColor"/>
+    <rect x="168" y="208" width="688" height="140" rx="48" fill="currentColor" stroke="currentColor"/>
+    <g fill="currentColor" stroke="none">
+      <rect x="276" y="132" width="72" height="120" rx="36"/>
+      <rect x="676" y="132" width="72" height="120" rx="36"/>
+      <circle cx="312" cy="208" r="36"/>
+      <circle cx="712" cy="208" r="36"/>
+    </g>
+    <!-- grid -->
+    <g stroke="currentColor" stroke-opacity="0.15">
+      <path d="M312 384V744"/>
+      <path d="M456 384V744"/>
+      <path d="M600 384V744"/>
+      <path d="M744 384V744"/>
+      <path d="M224 456H800"/>
+      <path d="M224 528H800"/>
+      <path d="M224 600H800"/>
+      <path d="M224 672H800"/>
+    </g>
+    <!-- clock -->
+    <circle cx="512" cy="568" r="116" fill="#fff" stroke="currentColor" stroke-width="20"/>
+    <g fill="currentColor" stroke="none">
+      <circle cx="512" cy="452" r="10"/>
+      <circle cx="512" cy="684" r="10"/>
+      <circle cx="396" cy="568" r="10"/>
+      <circle cx="628" cy="568" r="10"/>
+      <circle cx="512" cy="568" r="12"/>
+    </g>
+    <g stroke="currentColor" stroke-linecap="round">
+      <line x1="512" y1="568" x2="512" y2="500" stroke-width="22"/>
+      <line x1="512" y1="568" x2="580" y2="606" stroke-width="16"/>
+    </g>
+  </g>
+  <title>School Timetable App Logo (monochrome)</title>
+</svg>
