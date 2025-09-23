@@ -4,6 +4,8 @@ export const MatterSchema = z.object({
 	id: z.string(),
 	name: z.string().min(1),
 	color: z.string().optional(), // hex or css var (optional)
+	startDate: z.string().optional(), // ISO date string
+	endDate: z.string().optional(), // ISO date string
 });
 export type Matter = z.infer<typeof MatterSchema>;
 

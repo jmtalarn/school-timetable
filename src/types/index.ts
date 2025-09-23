@@ -2,6 +2,8 @@ export type Matter = {
     id: string;
     name: string;
     color?: string; // hex or css var (optional)
+    startDate?: string; // ISO date string
+    endDate?: string; // ISO date string
 };
 
 export type Kid = {
