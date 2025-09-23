@@ -13,9 +13,9 @@ export default defineConfig({
         'apple-touch-icon.png'
       ],
       manifest: {
-        name: 'My React PWA',
-        short_name: 'MyPWA',
-        description: 'A fast, installable React PWA built with Vite',
+        name: 'School Timetable',
+        short_name: 'SchoolTimetable',
+        description: 'Edit and Share the kids school timetable easily',
         theme_color: '#0ea5e9',
         background_color: '#ffffff',
         display: 'standalone',
