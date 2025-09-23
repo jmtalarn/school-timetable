@@ -102,11 +102,14 @@ function Block({ id, label, color, top, height, isDragging }: { id: string; labe
 	return (
 		<div
 			data-block-id={id}
-			style={{ position: 'absolute', left: 4, right: 4, userSelect: 'none', borderRadius: 6, border: '1px solid rgba(0,0,0,0.08)', boxShadow: '0 1px 2px rgba(0,0,0,0.06)', background: color || '#e2e8f0', top, height, opacity: isDragging ? 0.5 : 1 }}
+			style={{ position: 'absolute', left: 4, right: 4, userSelect: 'none', cursor: 'move', borderRadius: 6, border: '1px solid rgba(0,0,0,0.08)', boxShadow: '0 1px 2px rgba(0,0,0,0.06)', background: color || '#e2e8f0', top, height, opacity: isDragging ? 0.5 : 1 }}
 		>
-			<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, padding: '4px 8px', fontSize: 12 }}>
-				<span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontWeight: 600 }}>{label}</span>
-				<span style={{ fontSize: 11, color: '#4b5563' }}>⋮⋮</span>
+			<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, padding: '4px 8px', height: "100%", fontSize: 12 }}>
+				<span style={{ whiteSpace: 'break-spaces', fontWeight: 600 }}>{label}</span>
+				<div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'space-between', height: '85%' }}>
+					<span style={{ fontSize: 11, color: '#4b5563' }}>⋮⋮</span>
+					<span style={{ fontSize: 11, color: '#4b5563', cursor: 'pointer' }}>🗑️</span>
+				</div>
 			</div>
 			{/* Resize handles */}
 			<div style={{ position: 'absolute', top: -4, left: 0, right: 0, height: 4, cursor: 'ns-resize' }} data-resize="start" />
@@ -315,9 +318,9 @@ export default function TimetableScheduler() {
 		const blocks = blocksFor(day)
 		const dayStart = DefaultConfig.start
 		const containerHeight = scheduler.rows * ROW_HEIGHT
-
+		console.log()
 		return (
-			<div style={{ position: 'relative', minWidth: 160 }}>
+			<div style={{ position: 'relative', width: "100%" }}>
 				<DroppableDay id={`col-${day}`} setRef={el => (colRefs.current[day] = el)}>
 					<div
 						onClick={e => onEmptyCellClick(day, e)}
@@ -327,7 +330,7 @@ export default function TimetableScheduler() {
 						{rowLabels.map((label, i) => (
 							<div key={i} style={{ position: 'absolute', left: 0, right: 0, top: i * ROW_HEIGHT, borderTop: `1px solid ${i % 12 === 0 ? '#e5e7eb' : '#f3f4f6'}` }}>
 								{label && (
-									<span style={{ position: 'absolute', left: -48, top: -9, fontSize: 11, color: '#6b7280' }}>{label}</span>
+									<span style={{ position: 'absolute', left: 0, top: -9, fontSize: 11, color: '#6b7280', zIndex: 6 }}>{label}</span>
 								)}
 							</div>
 						))}
@@ -362,7 +365,7 @@ export default function TimetableScheduler() {
 
 	// --- Render ---
 	return (
-		<div style={{ maxWidth: 1100, margin: '0 auto', padding: 16 }}>
+		<div style={{ maxWidth: "100%", margin: '0', padding: 16 }}>
 			<h2 style={{ marginBottom: 12, fontSize: 24, fontWeight: 700 }}>Timetable</h2>
 
 			<div style={{ marginBottom: 12 }}>
@@ -391,7 +394,7 @@ export default function TimetableScheduler() {
 							<div
 								style={{
 									position: 'relative',
-									width: 150,
+									// width: 150,
 									height: activeSnap.height,
 									// If resizing from bottom: shift up by the original block height
 									// AND also cancel the snapped pointer delta so the top edge stays fixed.
