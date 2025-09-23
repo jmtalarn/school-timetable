@@ -6,7 +6,9 @@ import './App.css'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import MattersPage from './pages/MattersPage'
 import KidsPage from './pages/KidsPage'
+import TimetablePage from './pages/TimetablePage'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import TimetableScheduler from './pages/TimetableScheduler'
 
 function Home() {
   const { canInstall, promptInstall } = useA2HS()
@@ -56,13 +58,15 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <nav style={{ marginBottom: 16 }}>
-    <Link to="/">Home</Link> | <Link to="/about">About</Link> | <Link to="/matters">Matters</Link> | <Link to="/kids">Kids</Link>
+          <Link to="/">Home</Link> | <Link to="/about">About</Link> | <Link to="/matters">Matters</Link> | <Link to="/kids">Kids</Link> | <Link to="/timetable">Timetable</Link>| <Link to="/timetable-scheduler">Timetable Scheduler</Link>
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-    <Route path="/matters" element={<MattersPage />} />
-    <Route path="/kids" element={<KidsPage />} />
+          <Route path="/matters" element={<MattersPage />} />
+          <Route path="/kids" element={<KidsPage />} />
+          <Route path="/timetable" element={<TimetablePage />} />
+          <Route path="/timetable-scheduler" element={<TimetableScheduler />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
