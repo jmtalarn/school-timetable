@@ -1,15 +1,9 @@
-import { z } from 'zod'
 import { v4 as uuid } from 'uuid'
 import { readDB, writeDB } from './db'
-import type { Weekday, Timetable } from '../types'
+import type { Matter, Timetable, Weekday } from '../types'
 
-export const MatterSchema = z.object({
-	id: z.string(),
-	name: z.string().min(1),
-	color: z.string().optional(), // hex or css var (optional)
-})
 
-export type Matter = z.infer<typeof MatterSchema>
+
 
 export function listMatters(): Matter[] {
 	return readDB().matters
