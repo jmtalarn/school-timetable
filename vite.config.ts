@@ -12,6 +12,7 @@ export default defineConfig({
         'robots.txt',
         'apple-touch-icon.png'
       ],
+
       manifest: {
         name: 'School Timetable',
         short_name: 'SchoolTimetable',
@@ -19,6 +20,7 @@ export default defineConfig({
         theme_color: '#0ea5e9',
         background_color: '#ffffff',
         display: 'standalone',
+        orientation: "landscape",
         start_url: '/',
         scope: '/',
         icons: [
