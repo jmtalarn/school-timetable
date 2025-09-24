@@ -1,0 +1,28 @@
+.container {
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.addForm {
+	margin-bottom: 24px;
+}
+
+.item {
+	margin-bottom: 8px;
+}
+
+.editForm {
+	display: inline;
+}
+
+.name {
+	margin-right: 8px;
+}
+
+.mr8 {
+	margin-right: 8px;
+}
+
+.deleteButton {
+	margin-left: 4px;
+}

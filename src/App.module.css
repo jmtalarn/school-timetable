@@ -1,0 +1,240 @@
+:root {
+	/* Light palette */
+	--bg: #f6f7fb;
+	--panel: rgba(255, 255, 255, 0.85);
+	--card: #ffffff;
+	--border: #e5e7eb;
+	--text: #0f172a; /* slate-900 */
+	--muted: #64748b; /* slate-600 */
+
+	/* Accent: emerald */
+	--accent: #10b981; /* emerald-500 */
+	--accent-2: #34d399; /* emerald-400 */
+}
+
+/* ===== App Shell ===== */
+.app {
+	min-height: 100dvh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	background: radial-gradient(
+			900px 600px at 80% -200px,
+			rgba(16, 185, 129, 0.08) 0%,
+			transparent 60%
+		),
+		var(--bg);
+	color: var(--text);
+}
+
+/* ===== Header / Top Bar ===== */
+.header {
+	position: sticky;
+	top: 0;
+	z-index: 20;
+	backdrop-filter: saturate(140%) blur(8px);
+	background: var(--panel);
+	border-bottom: 1px solid var(--border);
+	overflow-x: clip; /* avoid tiny horizontal bleed from blur */
+}
+
+.headerInner {
+	max-width: none;
+	width: 100%;
+	margin: 0;
+	padding: 10px 16px;
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	gap: 12px;
+	align-items: center;
+}
+
+.brand {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	color: inherit;
+	text-decoration: none;
+}
+
+.logo {
+	width: 28px;
+	height: 28px;
+	display: block;
+}
+
+.title {
+	font-size: 16px;
+	font-weight: 700;
+	letter-spacing: 0.2px;
+}
+
+/* ===== Nav ===== */
+.nav {
+	min-width: 0; /* allow shrinking inside grid */
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	justify-content: flex-start; /* start on small screens for scroll UX */
+	overflow-x: auto; /* horizontal scroll when needed */
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none; /* Firefox hide */
+}
+.nav::-webkit-scrollbar {
+	display: none;
+} /* WebKit hide */
+
+.link {
+	padding: 8px 10px;
+	border-radius: 10px;
+	color: var(--muted);
+	text-decoration: none;
+	//border: 1px solid transparent;
+	transition: color 120ms ease, background-color 120ms ease,
+		border-color 120ms ease, transform 80ms ease, box-shadow 120ms ease;
+	white-space: nowrap; /* keep as chips */
+	flex: 0 0 auto; /* prevent growing and pushing layout */
+}
+.link:hover {
+	color: var(--text);
+	background: rgba(16, 185, 129, 0.08);
+	border-color: var(--border);
+	transform: translateY(-1px);
+	//box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12);
+}
+.linkActive {
+	color: var(--text);
+	background: rgba(16, 185, 129, 0.14);
+	border-color: rgba(16, 185, 129, 0.35);
+}
+
+.actions {
+	display: flex;
+	gap: 8px;
+	justify-content: flex-end;
+}
+
+/* ===== Routed Content Area ===== */
+.mainShell {
+	flex: 1 1 auto; /* fill space between header & footer */
+	min-height: 0; /* allow inner scrolling */
+	display: flex; /* stack pages normally */
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: flex-start; /* top-aligned */
+}
+
+.main {
+	max-width: none;
+	width: 100%;
+	margin: 0;
+	padding: 16px;
+}
+
+/* ===== Cards / Sections ===== */
+.card {
+	background: var(--card);
+	border: 1px solid var(--border);
+	border-radius: 16px;
+	padding: 16px;
+	box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04),
+		0 6px 20px rgba(15, 23, 42, 0.06);
+}
+
+.hero {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 16px;
+}
+
+.heroTitle {
+	font-size: 22px;
+	font-weight: 800;
+	letter-spacing: 0.2px;
+}
+
+.heroSub {
+	color: var(--muted);
+	margin-top: 4px;
+}
+
+/* ===== Buttons ===== */
+.btn {
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	padding: 8px 12px;
+	background: #ffffff;
+	color: var(--text);
+	cursor: pointer;
+	font: inherit;
+	transition: transform 80ms ease, background-color 120ms ease,
+		border-color 120ms ease, box-shadow 120ms ease;
+}
+.btn:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+.btnPrimary {
+	background: linear-gradient(180deg, var(--accent), var(--accent-2));
+	color: #ffffff;
+	border-color: rgba(16, 185, 129, 0.55);
+	box-shadow: 0 6px 18px rgba(16, 185, 129, 0.25);
+}
+.btnPrimary:hover {
+	box-shadow: 0 10px 24px rgba(16, 185, 129, 0.32);
+}
+
+.btnGhost {
+	background: transparent;
+}
+
+.btnSm {
+	padding: 6px 10px;
+	font-size: 14px;
+	border-radius: 10px;
+}
+
+/* ===== Footer / Bottom Bar ===== */
+.footer {
+	border-top: 1px solid var(--border);
+	padding: 8px 12px; /* minimal height */
+	color: var(--muted);
+	text-align: center;
+	background: #fff;
+}
+
+/* ===== Accessibility ===== */
+.link:focus-visible,
+.btn:focus-visible,
+.brand:focus-visible {
+	outline: 2px solid var(--accent-2);
+	outline-offset: 2px;
+	border-radius: 12px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 400px) {
+	.nav {
+		gap: 6px;
+	}
+	.link {
+		padding: 6px 8px;
+	}
+}
+
+@media (min-width: 900px) {
+	.nav {
+		justify-content: center; /* re-center when there’s space */
+		overflow: visible; /* no scroll when not needed */
+	}
+}
+
+@media (min-width: 1024px) {
+	.headerInner,
+	.main {
+		padding-left: 24px;
+		padding-right: 24px;
+	}
+}

@@ -1,0 +1,259 @@
+.container {
+	max-width: 100%;
+	margin: 0;
+	padding: 16px;
+}
+
+.header {
+	margin-bottom: 12px;
+	font-size: 24px;
+	font-weight: 700;
+}
+
+.kidRow {
+	margin-bottom: 12px;
+}
+
+.select {
+	border-radius: 6px;
+	border: 1px solid #e5e7eb;
+	padding: 4px 8px;
+}
+
+.gridWrapper {
+	overflow: auto;
+	border-radius: 8px;
+	border: 1px solid #e5e7eb;
+	background: #f9fafb;
+	padding: 8px;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(7, minmax(0, 1fr));
+	column-gap: 12px;
+}
+
+.columnTitle {
+	margin-bottom: 4px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.droppable {
+	border-radius: 6px;
+}
+
+.isOver {
+	outline: 2px solid rgba(56, 189, 248, 0.6);
+}
+
+.columnInner {
+	position: relative;
+	cursor: crosshair;
+	border-radius: 6px;
+	background: #fff;
+	overflow: visible;
+}
+
+.hourLine {
+	position: absolute;
+	left: 0;
+	right: 0;
+	border-top: 1px solid #f3f4f6;
+}
+
+.hourLineMajor {
+	border-top-color: #e5e7eb;
+}
+
+.hourLabel {
+	position: absolute;
+	left: 0;
+	top: -9px;
+	font-size: 11px;
+	color: #6b7280;
+	z-index: 6;
+}
+
+.hoverBand {
+	position: absolute;
+	left: 0;
+	right: 0;
+	background: rgba(56, 189, 248, 0.12);
+	border-top: 1px solid rgba(56, 189, 248, 0.35);
+	border-bottom: 1px solid rgba(56, 189, 248, 0.35);
+	pointer-events: none;
+	z-index: 2;
+}
+
+.blockWrap {
+	position: absolute;
+	left: 0;
+	right: 0;
+	z-index: 5;
+}
+
+.block {
+	position: absolute;
+	left: 4px;
+	right: 4px;
+	user-select: none;
+	cursor: move;
+	border-radius: 6px;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.blockHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	padding: 4px 8px;
+	height: 100%;
+	font-size: 12px;
+}
+
+.blockLabel {
+	white-space: break-spaces;
+	font-weight: 600;
+}
+
+.blockRightCol {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 85%;
+}
+
+.grip {
+	font-size: 11px;
+	color: #4b5563;
+}
+
+.deleteBtn {
+	font-size: 11px;
+	color: #4b5563;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	padding: 0;
+	line-height: 1;
+}
+
+.resizeHandle {
+	position: absolute;
+	left: 0;
+	right: 0;
+	height: 8px;
+	cursor: ns-resize;
+	z-index: 10;
+}
+
+.resizeStart {
+	top: -4px;
+}
+
+.resizeEnd {
+	bottom: -4px;
+}
+
+.pickerOverlay {
+	position: fixed;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0, 0, 0, 0.3);
+	z-index: 50;
+}
+
+.pickerDialog {
+	width: 320px;
+	border-radius: 12px;
+	background: #fff;
+	padding: 16px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.pickerTitle {
+	margin-bottom: 8px;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.pickerList {
+	max-height: 240px;
+	overflow-y: auto;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.pickerItem {
+	margin-bottom: 8px;
+}
+
+.pickerBtn {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	gap: 12px;
+	border-radius: 10px;
+	border: 1px solid #e5e7eb;
+	padding: 8px 12px;
+	background: #fff;
+	text-align: left;
+	cursor: pointer;
+}
+
+.pickerDot {
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+	border-radius: 4px;
+}
+
+.pickerFooter {
+	margin-top: 12px;
+	text-align: right;
+}
+
+.button {
+	border-radius: 10px;
+	border: 1px solid #e5e7eb;
+	padding: 6px 12px;
+	background: #fff;
+	cursor: pointer;
+}
+
+.overlayBox {
+	position: relative;
+}
+
+.timeBadge {
+	position: absolute;
+	font-size: 11px;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.75);
+	padding: 2px 6px;
+	border-radius: 4px;
+}
+
+.timeBadgeTop {
+	top: -22px;
+	left: 0;
+}
+
+.timeBadgeBottom {
+	bottom: -22px;
+	right: 0;
+}
+
+.hint {
+	font-size: 14px;
+	color: #4b5563;
+}

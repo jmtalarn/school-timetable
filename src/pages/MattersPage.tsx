@@ -1,5 +1,6 @@
 import { useMatters, useCreateMatter, useUpdateMatter, useDeleteMatter } from '../hooks/reactQueryHooks'
 import { useEffect, useState } from 'react'
+import styles from './MattersPage.module.css'
 
 export default function MattersPage() {
 	const { data: matters, isLoading } = useMatters()
@@ -14,8 +15,14 @@ export default function MattersPage() {
 	const [newEndDate, setNewEndDate] = useState('2026-06-30')
 
 	useEffect(() => {
-		const defaultStartDate = (matters && matters.length > 0) ? (matters[matters.length - 1].startDate || '2025-09-01') : '2025-09-01'
-		const defaultEndDate = (matters && matters.length > 0) ? (matters[matters.length - 1].endDate || '2026-06-30') : '2026-06-30'
+		const defaultStartDate =
+			matters && matters.length > 0
+				? matters[matters.length - 1].startDate || '2025-09-01'
+				: '2025-09-01'
+		const defaultEndDate =
+			matters && matters.length > 0
+				? matters[matters.length - 1].endDate || '2026-06-30'
+				: '2026-06-30'
 		setNewStartDate(defaultStartDate)
 		setNewEndDate(defaultEndDate)
 	}, [matters])
@@ -29,19 +36,25 @@ export default function MattersPage() {
 	if (isLoading) return <div>Loading...</div>
 
 	return (
-		<div style={{ maxWidth: 500, margin: '0 auto' }}>
+		<div className={styles.container}>
 			<h2>Matters</h2>
+
 			<form
+				className={styles.addForm}
 				onSubmit={e => {
 					e.preventDefault()
 					if (!newName) return
-					createMatter.mutate({ name: newName, color: newColor, startDate: newStartDate, endDate: newEndDate })
+					createMatter.mutate({
+						name: newName,
+						color: newColor,
+						startDate: newStartDate,
+						endDate: newEndDate,
+					})
 					setNewName('')
 					setNewColor('')
 					setNewStartDate(newStartDate)
 					setNewEndDate(newEndDate)
 				}}
-				style={{ marginBottom: 24 }}
 			>
 				<input
 					value={newName}
@@ -69,17 +82,26 @@ export default function MattersPage() {
 				/>
 				<button type="submit">Add Matter</button>
 			</form>
+
 			<ul>
 				{matters?.map(m => (
-					<li key={m.id} style={{ marginBottom: 8 }}>
+					<li key={m.id} className={styles.item}>
 						{editId === m.id ? (
 							<form
+								className={styles.editForm}
 								onSubmit={e => {
 									e.preventDefault()
-									updateMatter.mutate({ id: m.id, patch: { name: editName, color: editColor, startDate: editStartDate, endDate: editEndDate } })
+									updateMatter.mutate({
+										id: m.id,
+										patch: {
+											name: editName,
+											color: editColor,
+											startDate: editStartDate,
+											endDate: editEndDate,
+										},
+									})
 									setEditId(null)
 								}}
-								style={{ display: 'inline' }}
 							>
 								<input
 									value={editName}
@@ -104,22 +126,41 @@ export default function MattersPage() {
 									placeholder="End date"
 								/>
 								<button type="submit">Save</button>
-								<button type="button" onClick={() => setEditId(null)}>Cancel</button>
+								<button type="button" onClick={() => setEditId(null)}>
+									Cancel
+								</button>
 							</form>
 						) : (
 							<>
-								<span style={{ marginRight: 8 }}>{m.name}</span>
-								{m.color && <span style={{ color: m.color, marginRight: 8 }}>●</span>}
-								{m.startDate && <span style={{ marginRight: 8 }}>Start: {m.startDate}</span>}
-								{m.endDate && <span style={{ marginRight: 8 }}>End: {m.endDate}</span>}
-								<button onClick={() => {
-									setEditId(m.id)
-									setEditName(m.name)
-									setEditColor(m.color || '')
-									setEditStartDate(m.startDate || '')
-									setEditEndDate(m.endDate || '')
-								}}>Edit</button>
-								<button onClick={() => deleteMatter.mutate(m.id)} style={{ marginLeft: 4 }}>Delete</button>
+								<span className={styles.name}>{m.name}</span>
+								{m.color && (
+									<span className={styles.mr8} style={{ color: m.color }}>
+										●
+									</span>
+								)}
+								{m.startDate && (
+									<span className={styles.mr8}>Start: {m.startDate}</span>
+								)}
+								{m.endDate && (
+									<span className={styles.mr8}>End: {m.endDate}</span>
+								)}
+								<button
+									onClick={() => {
+										setEditId(m.id)
+										setEditName(m.name)
+										setEditColor(m.color || '')
+										setEditStartDate(m.startDate || '')
+										setEditEndDate(m.endDate || '')
+									}}
+								>
+									Edit
+								</button>
+								<button
+									className={styles.deleteButton}
+									onClick={() => deleteMatter.mutate(m.id)}
+								>
+									Delete
+								</button>
 							</>
 						)}
 					</li>
