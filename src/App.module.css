@@ -8,8 +8,8 @@
 	--muted: #64748b; /* slate-600 */
 
 	/* Accent: emerald */
-	--accent: #10b981; /* emerald-500 */
-	--accent-2: #34d399; /* emerald-400 */
+	--accent: #10b981; /* emerald-500 */ //16,185,129
+	--accent-2: #34d399; /* emerald-400 */ //52,211,153
 }
 
 /* ===== App Shell ===== */

@@ -1,5 +1,6 @@
 import { useKids, useCreateKid, useUpdateKid, useDeleteKid } from '../hooks/reactQueryHooks'
 import { useState } from 'react'
+import Avatar from 'boring-avatars'
 import styles from './KidsPage.module.css'
 
 export default function KidsPage() {
@@ -33,6 +34,7 @@ export default function KidsPage() {
 					placeholder="Kid name"
 					required
 				/>
+				<Avatar name={newName} size={64} variant="beam" colors={["#2f2e30", "#e84b2c", "#e6d839", "#7cd164", "#2eb8ac"]} />
 				<button type="submit">Add Kid</button>
 			</form>
 
@@ -53,12 +55,14 @@ export default function KidsPage() {
 									onChange={e => setEditName(e.target.value)}
 									required
 								/>
+								<Avatar name={editName} size={64} variant="beam" colors={["#2f2e30", "#e84b2c", "#e6d839", "#7cd164", "#2eb8ac"]} />
 								<button type="submit">Save</button>
 								<button type="button" onClick={() => setEditId(null)}>Cancel</button>
 							</form>
 						) : (
 							<>
 								<span className={styles.name}>{k.name}</span>
+								<Avatar name={k.name} size={64} variant="beam" colors={["#2f2e30", "#e84b2c", "#e6d839", "#7cd164", "#2eb8ac"]} />
 								<button
 									onClick={() => {
 										setEditId(k.id)
