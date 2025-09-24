@@ -1,68 +1,359 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+	font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+	color-scheme: light dark;
+	color: rgba(255, 255, 255, 0.87);
+	background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+	font-weight: 500;
+	color: #646cff;
+	text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+	color: #535bf2;
+}
+
+html,
+body,
+#root {
+	width: 100%;
+	height: 100%;
+}
+#root {
+	display: block; /* let your .app control layout */
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+	margin: 0;
+	min-width: 320px;
+	min-height: 100vh;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+	font-size: 3.2em;
+	line-height: 1.1;
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+	:root {
+		color: #213547;
+		background-color: #ffffff;
+	}
+	a:hover {
+		color: #747bff;
+	}
+}
+
+/* ===========================
+   Global Input & Form Styles
+   =========================== */
+
+/* Theme fallbacks (use your module vars if present) */
+:root {
+	--ui-text: var(--text, #0f172a);
+	--ui-muted: var(--muted, #64748b);
+	--ui-border: var(--border, #e5e7eb);
+	--ui-card: var(--card, #ffffff);
+	--ui-accent: var(--accent, #10b981);
+	--ui-accent-2: var(--accent-2, #34d399);
+	--ui-radius: 12px;
+	--ui-focus-ring: 3px;
+}
+
+/* Normalize & inherit font */
+input,
+select,
+textarea,
+button {
+	font: inherit;
+	color: var(--ui-text);
+	box-sizing: border-box;
+}
+
+/* ===== Base fields (text-like) ===== */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not(
+		[type="color"]
+	):not([type="file"]),
+select,
+textarea {
+	appearance: none;
+	-webkit-appearance: none; /* kill Safari bevel/inner shadow */
+	background-clip: padding-box; /* prevent inner border look on iOS */
+	box-shadow: none;
+
+	width: 100%;
+	min-height: 40px;
+	line-height: 1.2;
+	background: var(--ui-card);
+	border: 1px solid var(--ui-border);
+	border-radius: var(--ui-radius);
+	padding: 10px 12px;
+	color: var(--ui-text);
+
+	transition: box-shadow 120ms ease, border-color 120ms ease,
+		background-color 120ms ease;
+}
+
+/* Hover */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not(
+		[type="color"]
+	):not([type="file"]):hover,
+select:hover,
+textarea:hover {
+	border-color: #d1d5db; /* slate-300 */
+}
+
+/* Focus ring */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not(
+		[type="color"]
+	):not([type="file"]):focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+	outline: none;
+	border-color: color-mix(in srgb, var(--ui-accent) 60%, var(--ui-border));
+	box-shadow: 0 0 0 1px
+			color-mix(in srgb, var(--ui-accent) 60%, var(--ui-border)),
+		0 0 0 var(--ui-focus-ring)
+			color-mix(in srgb, var(--ui-accent) 12%, transparent);
+}
+
+/* Placeholder */
+input::placeholder,
+textarea::placeholder {
+	color: color-mix(in srgb, var(--ui-muted) 78%, transparent);
+}
+
+/* Disabled / Readonly */
+input:disabled,
+select:disabled,
+textarea:disabled {
+	background: #f3f4f6; /* slate-100 */
+	color: #9ca3af; /* slate-400 */
+	cursor: not-allowed;
+}
+input[readonly],
+textarea[readonly] {
+	background: #f9fafb; /* slate-50 */
+}
+
+/* Invalid helpers (either class or :invalid) */
+.is-invalid,
+input:invalid,
+select:invalid,
+textarea:invalid {
+	border-color: #ef4444 !important; /* red-500 */
+	box-shadow: 0 0 0 1px #ef4444,
+		0 0 0 var(--ui-focus-ring) rgba(239, 68, 68, 0.15);
+}
+
+/* ===== Select: custom arrow ===== */
+select {
+	background-image: url("data:image/svg+xml;utf8,<svg width='14' height='14' viewBox='0 0 20 20' fill='%2364748b' xmlns='http://www.w3.org/2000/svg'><path d='M5.5 7l4.5 6 4.5-6H5.5z'/></svg>");
+	background-repeat: no-repeat;
+	background-position: right 12px center;
+	background-size: 14px 14px;
+	padding-right: 36px;
+}
+select:disabled {
+	background-image: none;
+}
+
+/* ===== Textarea sizing ===== */
+textarea {
+	min-height: 96px;
+	resize: vertical;
+}
+
+/* ===== Search reset (WebKit specials) ===== */
+input[type="search"] {
+	-webkit-appearance: none;
+	border-radius: var(--ui-radius);
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+	-webkit-appearance: none;
+	display: none;
+}
+
+/* ===== Number: sane spin buttons ===== */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+	margin: 0;
+}
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+/* ===== Color input ===== */
+input[type="color"] {
+	appearance: none;
+	-webkit-appearance: none;
+	padding: 0;
+	height: 40px;
+	width: 60px;
+	border-radius: var(--ui-radius);
+	border: 1px solid var(--ui-border);
+	background: var(--ui-card);
+}
+
+/* ===== File input ===== */
+input[type="file"] {
+	background: var(--ui-card);
+	border: 1px solid var(--ui-border);
+	border-radius: var(--ui-radius);
+	padding: 6px 8px;
+}
+input[type="file"]::file-selector-button {
+	margin-right: 10px;
+	border: 1px solid var(--ui-border);
+	background: #fff;
+	color: var(--ui-text);
+	border-radius: 10px;
+	padding: 6px 10px;
+	cursor: pointer;
+	transition: background-color 120ms ease, box-shadow 120ms ease,
+		transform 80ms ease;
+}
+input[type="file"]::file-selector-button:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+/* ===== Checkbox & Radio (native with accent) ===== */
+input[type="checkbox"],
+input[type="radio"] {
+	accent-color: var(--ui-accent);
+	width: 18px;
+	height: 18px;
+	vertical-align: -2px;
+}
+
+/* Optional switch utility (wrap checkbox with .switch) */
+.switch {
+	position: relative;
+	width: 44px;
+	height: 26px;
+	display: inline-block;
+}
+.switch input[type="checkbox"] {
+	appearance: none;
+	width: 100%;
+	height: 100%;
+	background: #e5e7eb;
+	border-radius: 999px;
+	border: 1px solid var(--ui-border);
+	outline: none;
+	cursor: pointer;
+	transition: background 140ms ease, box-shadow 140ms ease;
+}
+.switch input[type="checkbox"]::after {
+	content: "";
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	border-radius: 50%;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+	transition: transform 140ms ease;
+}
+.switch input[type="checkbox"]:checked {
+	background: color-mix(in srgb, var(--ui-accent) 85%, #fff);
+}
+.switch input[type="checkbox"]:checked::after {
+	transform: translateX(18px);
+}
+
+/* ===== Range slider ===== */
+input[type="range"] {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 100%;
+	background: transparent;
+	height: 28px;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+	height: 6px;
+	background: #e5e7eb;
+	border-radius: 999px;
+}
+input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	margin-top: -8px; /* center the thumb */
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	background: #fff;
+	border: 2px solid color-mix(in srgb, var(--ui-accent) 80%, #fff);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+input[type="range"]::-moz-range-track {
+	height: 6px;
+	background: #e5e7eb;
+	border-radius: 999px;
+}
+input[type="range"]::-moz-range-thumb {
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	background: #fff;
+	border: 2px solid color-mix(in srgb, var(--ui-accent) 80%, #fff);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== Buttons (global baseline to match inputs) ===== */
+button {
+	appearance: none;
+	border: 1px solid var(--ui-border);
+	background: #fff;
+	color: var(--ui-text);
+	border-radius: var(--ui-radius);
+	padding: 8px 12px;
+	cursor: pointer;
+	transition: transform 80ms ease, box-shadow 120ms ease,
+		border-color 120ms ease, background-color 120ms ease;
+}
+button:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+button:focus-visible {
+	outline: none;
+	border-color: color-mix(in srgb, var(--ui-accent) 60%, var(--ui-border));
+	box-shadow: 0 0 0 1px
+			color-mix(in srgb, var(--ui-accent) 60%, var(--ui-border)),
+		0 0 0 var(--ui-focus-ring)
+			color-mix(in srgb, var(--ui-accent) 12%, transparent);
+}
+button:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+	transform: none;
+	box-shadow: none;
+}
+
+/* ===== Autofill (replace yellow) ===== */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+	-webkit-text-fill-color: var(--ui-text);
+	box-shadow: 0 0 0 1000px var(--ui-card) inset;
+	transition: background-color 9999s ease-in-out 0s;
 }
