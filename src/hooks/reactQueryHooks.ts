@@ -1,10 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { uuid } from 'zod/v4'
+
 import { createKid, deleteKid, listKids, updateKid } from '../dataLayer/kids'
 import { createMatter, deleteMatter, listMatters, updateMatter } from '../dataLayer/matters'
 import { qk } from '../dataLayer/queryKeys'
 import type { Kid, Matter, TimeBlock, Weekday } from '../dataLayer/schemas'
 import { addBlock, deleteBlock, getTimetable, setDayBlocks, updateBlock } from '../dataLayer/timetables'
+
 
 // Matters
 export function useMatters() {
@@ -156,5 +158,45 @@ export function useDeleteBlock() {
 			return { kidId: p.kidId, day: p.day, id: p.id }
 		},
 		onSuccess: (_data, p) => qc.invalidateQueries({ queryKey: qk.timetableByKid(p.kidId) }),
+	})
+}
+
+export function useConfig() {
+	return useQuery({
+		queryKey: qk.config(),
+		queryFn: () => getConfig(),
+		staleTime: Infinity,
+	})
+}
+
+export function useUpdateConfig() {
+	const qc = useQueryClient()
+	return useMutation({
+		mutationFn: async (patch: Partial<AppConfig>) => {
+			const current = getConfig()
+			const next: AppConfig = { ...current, ...patch }
+			if (next.startHour >= next.endHour) {
+				throw new Error('Start hour must be before end hour')
+			}
+			return setConfig(next)
+		},
+		onSuccess: (saved) => {
+			qc.setQueryData(qk.config(), saved)
+		},
+	})
+}
+
+export function useToggleWeekday() {
+	const qc = useQueryClient()
+	return useMutation({
+		mutationFn: async (day: Weekday) => {
+			const current = getConfig()
+			const hidden = new Set(current.hiddenWeekdays)
+			hidden.has(day) ? hidden.delete(day) : hidden.add(day)
+			return setConfig({ ...current, hiddenWeekdays: [...hidden] })
+		},
+		onSuccess: (saved) => {
+			qc.setQueryData(qk.config(), saved)
+		},
 	})
 }

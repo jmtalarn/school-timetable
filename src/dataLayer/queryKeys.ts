@@ -6,4 +6,5 @@ export const qk = {
 	kid: (id: string) => [...qk.kids(), id] as const,
 	timetables: () => [...qk.all, 'timetables'] as const,
 	timetableByKid: (kidId: string) => [...qk.timetables(), kidId] as const,
+	config: () => [...qk.all, 'config'] as const,
 }

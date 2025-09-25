@@ -1,26 +1,31 @@
-import React, { useMemo, useRef, useState } from 'react'
-import KidSelect from '../components/KidSelect'
 import {
 	DndContext,
 	DragOverlay,
-	useSensor,
-	useSensors,
 	PointerSensor,
 	useDroppable,
-	type DragStartEvent,
+	useSensor,
+	useSensors,
 	type DragEndEvent,
-	type DragOverEvent,
 	type DragMoveEvent,
+	type DragOverEvent,
+	type DragStartEvent,
 } from '@dnd-kit/core'
 import { CSS } from '@dnd-kit/utilities'
-import { useKids, useMatters, useTimetable, useDeleteBlock } from '../hooks/reactQueryHooks'
-import { useSchedulerLogic, DefaultConfig } from '../scheduler/logic'
+import React, { useMemo, useRef, useState } from 'react'
+import KidSelect from '../components/KidSelect'
+import { useConfig, useDeleteBlock, useKids, useMatters, useTimetable } from '../hooks/reactQueryHooks'
+import { DefaultConfig, useSchedulerLogic } from '../scheduler/logic'
 import styles from './TimetableScheduler.module.css'
+// ---- Small draggable wrapper that supports move + resize via handles ----
+import { useDraggable } from '@dnd-kit/core'
+import { AllWeekdays, type Weekday } from '../types'
 
-// ---- Local types ----
-type Weekday = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'
 
-const weekdays: Weekday[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+// // ---- Local types ----
+// type Weekday = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'
+
+// const weekdays: Weekday[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+
 const weekdayLabels: Record<Weekday, string> = {
 	mon: 'Monday',
 	tue: 'Tuesday',
@@ -133,11 +138,20 @@ function DroppableDay({ id, setRef, children }: { id: string; setRef: (el: HTMLD
 export default function TimetableScheduler() {
 	const { data: kids } = useKids()
 	const { data: matters } = useMatters()
+	const { data: appCfg } = useConfig();
 
+	const visibleWeekdays: Weekday[] = (appCfg?.hiddenWeekdays?.length
+		? AllWeekdays.filter(d => !appCfg.hiddenWeekdays.includes(d))
+		: AllWeekdays
+	);
 	const [selectedKidId, setSelectedKidId] = useState<string | null>(null)
 	const [hoverCell, setHoverCell] = useState<null | { day: Weekday; row: number }>(null)
 	const timetableQuery = useTimetable(selectedKidId || '')
-	const scheduler = useSchedulerLogic(DefaultConfig)
+	const scheduler = useSchedulerLogic({
+		...DefaultConfig,
+		start: appCfg?.startHour ?? DefaultConfig.start,
+		end: appCfg?.endHour ?? DefaultConfig.end,
+	})
 	const deleteBlock = useDeleteBlock()
 
 	// create popup state
@@ -392,7 +406,7 @@ export default function TimetableScheduler() {
 				<DndContext sensors={sensors} onDragStart={dragStart} onDragOver={dragOver} onDragMove={dragMove} onDragEnd={dragEnd}>
 					<div ref={gridRef} className={styles.gridWrapper}>
 						<div className={styles.grid}>
-							{weekdays.map(day => (
+							{visibleWeekdays.map(day => (
 								<div key={day}>
 									<div className={styles.columnTitle}>{weekdayLabels[day]}</div>
 									{renderColumn(day)}
@@ -442,8 +456,6 @@ export default function TimetableScheduler() {
 	)
 }
 
-// ---- Small draggable wrapper that supports move + resize via handles ----
-import { useDraggable } from '@dnd-kit/core'
 
 function DraggableBlock({
 	id, day, label, color, top, height, onDelete,

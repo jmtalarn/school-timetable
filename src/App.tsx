@@ -5,6 +5,7 @@ import { useA2HS } from './hooks/useA2HS'
 import MattersPage from './pages/MattersPage'
 import KidsPage from './pages/KidsPage'
 import TimetableScheduler from './pages/TimetableScheduler'
+import SettingsPage from './pages/SettingsPage'
 import logoSvg from '/school-timetable-logo.svg'
 import styles from './App.module.css'
 
@@ -91,6 +92,9 @@ function App() {
                 <NavLink to="/timetable-scheduler" className={({ isActive }) => `${styles.link} ${isActive ? styles.linkActive : ''}`}>
                   Scheduler
                 </NavLink>
+                <NavLink to="/settings" className={({ isActive }) => `${styles.link} ${isActive ? styles.linkActive : ''}`}>
+                  Settings
+                </NavLink>
               </nav>
 
               <div className={styles.actions} />
@@ -105,6 +109,7 @@ function App() {
               <Route path="/matters" element={<MattersPage />} />
               <Route path="/kids" element={<KidsPage />} />
               <Route path="/timetable-scheduler" element={<TimetableScheduler />} />
+              <Route path="/settings" element={<SettingsPage />} />
             </Routes>
           </main>
 
