@@ -96,6 +96,7 @@ export default function WeekView() {
 
 	return (
 		<div className={styles.container}>
+			<h2 className={styles.pageTitle}>Weekly</h2>
 			<header className={styles.toolbar}>
 				<div className={styles.kidSlot}>
 					<KidSelect value={selectedKidId} onChange={setSelectedKidId} kids={kids || []} />
@@ -108,7 +109,7 @@ export default function WeekView() {
 						aria-label="Previous week"
 						onClick={() => setViewAnchor(addDays(weekStart, -7))}
 					>
-						‹
+						◀
 					</button>
 					<div className={styles.when}>
 						<strong>{headerTitle}</strong>
@@ -119,7 +120,7 @@ export default function WeekView() {
 						aria-label="Next week"
 						onClick={() => setViewAnchor(addDays(weekStart, 7))}
 					>
-						›
+						▶
 					</button>
 					<button
 						type="button"
@@ -131,7 +132,6 @@ export default function WeekView() {
 					</button>
 				</div>
 
-				<div className={styles.toolsSpacer} />
 			</header>
 
 			{!selectedKidId || !timetableQuery.data ? (
@@ -193,11 +193,14 @@ export default function WeekView() {
 													}}
 													title={`${matter?.name || 'Block'} • ${b.start}–${b.end}`}
 												>
+													<div className={styles.blockTime}>
+														{b.start}
+													</div>
 													<div className={styles.blockLabel}>
 														{matter?.name || 'Unknown'}
 													</div>
 													<div className={styles.blockTime}>
-														{b.start}–{b.end}
+														{b.end}
 													</div>
 												</div>
 											)

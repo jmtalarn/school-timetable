@@ -71,9 +71,9 @@ function MatterPicker({
 
 // ---- Draggable block + resize handles ----
 function Block({
-	id, label, color, top, height, isDragging, onDelete,
+	id, label, color, top, height, start, end, isDragging, onDelete,
 }: {
-	id: string; label: string; color?: string; top: number; height: number; isDragging?: boolean; onDelete?: () => void
+	id: string; label: string; color?: string; start: string; end: string; top: number; height: number; isDragging?: boolean; onDelete?: () => void
 }) {
 	return (
 		<div
@@ -84,7 +84,7 @@ function Block({
 			<div className={styles.blockHeader}>
 				<span className={styles.blockLabel}>{label}</span>
 				<div className={styles.blockRightCol}>
-					<span className={styles.grip}>⋮⋮</span>
+					<span className={styles.grip}></span>
 					<button
 						type="button"
 						aria-label="Delete block"
@@ -314,8 +314,9 @@ export default function TimetableScheduler() {
 
 	const renderColumn = (day: Weekday) => {
 		const blocks = blocksFor(day)
-		const dayStart = DefaultConfig.start
+		const step = scheduler.cfg.stepMinutes
 		const containerHeight = scheduler.rows * ROW_HEIGHT
+		const rowsPerHour = 60 / step
 
 		return (
 			<div>
@@ -331,7 +332,7 @@ export default function TimetableScheduler() {
 						{rowLabels.map((label, i) => (
 							<div
 								key={i}
-								className={`${styles.hourLine} ${i % 12 === 0 ? styles.hourLineMajor : ''}`}
+								className={`${styles.hourLine} ${i % rowsPerHour === 0 ? styles.hourLineMajor : ''}`}
 								style={{ top: i * ROW_HEIGHT }}
 							>
 								{label && <span className={styles.hourLabel}>{label}</span>}
@@ -349,8 +350,8 @@ export default function TimetableScheduler() {
 						{/* Blocks */}
 						{blocks.map(b => {
 							const matter = matters?.find(m => m.id === b.matterId)
-							const top = (minutesBetween(dayStart, b.start) / DefaultConfig.stepMinutes) * ROW_HEIGHT
-							const height = (minutesBetween(b.start, b.end) / DefaultConfig.stepMinutes) * ROW_HEIGHT
+							const top = (minutesBetween(scheduler.cfg.start, b.start) / step) * ROW_HEIGHT
+							const height = (minutesBetween(b.start, b.end) / step) * ROW_HEIGHT
 
 							return (
 								<DraggableBlock
@@ -360,6 +361,8 @@ export default function TimetableScheduler() {
 									label={matter?.name || 'Unknown'}
 									color={matter?.color}
 									top={top}
+									start={b.start}
+									end={b.end}
 									height={height}
 									onDelete={() => {
 										if (window.confirm('Delete this block?')) {
@@ -447,9 +450,9 @@ export default function TimetableScheduler() {
 
 
 function DraggableBlock({
-	id, day, label, color, top, height, onDelete,
+	id, day, label, color, top, start, end, height, onDelete,
 }: {
-	id: string; day: Weekday; label: string; color?: string; top: number; height: number; onDelete?: () => void
+	id: string; day: Weekday; label: string; start: string; end: string; color?: string; top: number; height: number; onDelete?: () => void
 }) {
 	const move = useDraggable({ id, data: { type: 'move', day, id: id.replace('blk-', '') } })
 	const resizeStart = useDraggable({ id: `${id}-rsz-start`, data: { type: 'resize', day, id: id.replace('blk-', ''), anchor: 'start' as const } })
@@ -464,7 +467,7 @@ function DraggableBlock({
 			{...move.attributes}
 		>
 			<div className={`${styles.resizeHandle} ${styles.resizeStart}`} ref={resizeStart.setNodeRef} {...resizeStart.listeners} {...resizeStart.attributes} />
-			<Block id={id} label={label} color={color} top={0} height={height} onDelete={onDelete} />
+			<Block id={id} label={label} color={color} top={0} height={height} start={start} end={end} onDelete={onDelete} />
 			<div className={`${styles.resizeHandle} ${styles.resizeEnd}`} ref={resizeEnd.setNodeRef} {...resizeEnd.listeners} {...resizeEnd.attributes} />
 		</div>
 	)

@@ -12,16 +12,33 @@
 	font-weight: 800;
 	text-align: left;
 }
-
-/* ===== Date navigation ===== */
-.dateNav {
+.toolbar {
 	display: grid;
-	grid-template-columns: auto auto 1fr auto; /* prev | today | label | next */
+	grid-template-columns: 1fr 1fr;
 	align-items: center;
 	gap: 8px;
-	margin: 4px 0 12px;
+	margin-bottom: 10px;
+	/* display: flex;
+	align-items: center;
+	justify-content: space-between; */
 }
-
+/* ===== Date navigation ===== */
+.dateNav {
+	/*display: grid;
+	grid-template-columns: auto auto 1fr auto; */ /* prev | today | label | next */
+	/* align-items: center;
+	gap: 8px;
+	margin: 4px 0 12px; */
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	justify-self: center;
+	background: var(--card, #fff);
+	border: 1px solid var(--border, #e5e7eb);
+	border-radius: 12px;
+	padding: 6px 8px;
+}
+/* 
 .dateBtn {
 	appearance: none;
 	border: 1px solid var(--border, #e5e7eb);
@@ -43,6 +60,17 @@
 	cursor: default;
 	transform: none;
 	box-shadow: none;
+} */
+.navBtn {
+	border: 1px solid var(--border, #e5e7eb);
+	background: #fff;
+	color: var(--text, #0f172a);
+	border-radius: 10px;
+	padding: 4px 10px;
+	cursor: pointer;
+}
+.navBtn:hover {
+	transform: translateY(-1px);
 }
 .dateLabel {
 	text-align: center;
@@ -59,6 +87,7 @@
 /* ===== Kid selector row ===== */
 .kidRow {
 	margin-bottom: 12px;
+	flex-grow: 1;
 }
 
 /* ===== Column grid (single day) ===== */
@@ -154,15 +183,25 @@
 .blockTime {
 	font-weight: 600;
 	color: rgba(15, 23, 42, 0.9);
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
 }
 .blockLabel {
 	white-space: break-spaces;
 	font-weight: 600;
 	text-align: right;
+	font-size: 1.2rem;
+	flex-grow: 1;
+	text-align: center;
 }
 
 /* ===== Empty hint ===== */
 .hint {
 	font-size: 14px;
-	color: #4b5563;
+	color: var(--muted, #64748b);
+	padding: 8px;
+	text-align: left;
 }
