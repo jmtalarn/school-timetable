@@ -1,56 +1,17 @@
-import { useState } from 'react'
 import { BrowserRouter, Routes, Route, NavLink, Link } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { useA2HS } from './hooks/useA2HS'
 import MattersPage from './pages/MattersPage'
 import KidsPage from './pages/KidsPage'
 import TimetableScheduler from './pages/TimetableScheduler'
 import SettingsPage from './pages/SettingsPage'
+import Home from './pages/TodayView'
 import logoSvg from '/school-timetable-logo.svg'
 import styles from './App.module.css'
+import PromptInstall from './components/PromptInstall'
 
 /** Create the client once (avoids re-creating on rerenders/HMR) */
 const queryClient = new QueryClient()
 
-function Home() {
-  const { canInstall, promptInstall } = useA2HS()
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className={styles.main}>
-      <div className={styles.hero}>
-        <section className={styles.card}>
-          <h1 className={styles.heroTitle}>School Timetable</h1>
-          <p className={styles.heroSub}>
-            Manage matters, students, and weekly schedules. Drag &amp; drop. Offline-ready. Shareable links.
-          </p>
-          <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
-            <Link className={`${styles.btn} ${styles.btnPrimary}`} to="/timetable-scheduler">
-              Open Scheduler
-            </Link>
-            <button
-              className={`${styles.btn} ${styles.btnGhost}`}
-              onClick={() => setCount((c) => c + 1)}
-            >
-              Demo Counter: {count}
-            </button>
-          </div>
-        </section>
-
-        <section className={styles.card}>
-          <p>
-            This app works offline and can be installed on your device. Configure matters and kids, then plan each day using the scheduler.
-          </p>
-          {canInstall && (
-            <button onClick={promptInstall} className={`${styles.btn} ${styles.btnPrimary}`} style={{ marginTop: 12 }}>
-              Install App
-            </button>
-          )}
-        </section>
-      </div>
-    </div>
-  )
-}
 
 function About() {
   return (
@@ -115,6 +76,7 @@ function App() {
 
           {/* Footer pinned to bottom with minimal height */}
           <footer className={styles.footer}>
+            <PromptInstall />
             <small>© {new Date().getFullYear()} School Timetable — PWA</small>
           </footer>
         </div>
