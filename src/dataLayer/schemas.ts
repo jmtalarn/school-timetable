@@ -1,4 +1,5 @@
 import z from "zod";
+import { toMin } from "../utils/time";
 
 export const MatterSchema = z.object({
 	id: z.string(),
@@ -44,10 +45,6 @@ export const ExportBundleSchema = z.object({
 });
 export type ExportBundle = z.infer<typeof ExportBundleSchema>;
 
-const toMin = (t: string) => {
-	const [h, m] = t.split(':').map(Number)
-	return h * 60 + m
-}
 
 const HHMM = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'Use HH:mm')
 

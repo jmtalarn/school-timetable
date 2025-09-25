@@ -31,3 +31,16 @@ export const weekdayLabels: Record<Weekday, string> = {
 	sat: 'Saturday',
 	sun: 'Sunday',
 }
+
+
+// ----------------- date + time helpers -----------------
+export const W_TO_JS: Record<Weekday, number> = {
+	sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6,
+}
+export const JS_TO_W: Record<number, Weekday> = {
+	0: 'sun', 1: 'mon', 2: 'tue', 3: 'wed', 4: 'thu', 5: 'fri', 6: 'sat',
+}
+
+export function toWeekday(d: Date) {
+	return AllWeekdays[d.getDay()] as Weekday
+}

@@ -20,25 +20,13 @@ import styles from './TimetableScheduler.module.css'
 import { useDraggable } from '@dnd-kit/core'
 import { type Weekday } from '../types'
 import { reorderWeekdays, weekdayLabels } from '../utils/week'
-
-// // ---- Local types ----
-// type Weekday = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'
-
-// const weekdays: Weekday[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+import { toMin, clamp, snap, toTime, minutesBetween } from '../utils/time'
 
 
 
 const ROW_HEIGHT = 9 // px per 5 minutes
 
-// ---- time helpers ----
-function toMin(t: string) { const [h, m] = t.split(':').map(Number); return h * 60 + m }
-function toTime(mins: number) {
-	const h = Math.floor(mins / 60), m = mins % 60
-	return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`
-}
-function clamp(v: number, lo: number, hi: number) { return Math.max(lo, Math.min(hi, v)) }
-function snap(mins: number, step: number) { return Math.round(mins / step) * step }
-function minutesBetween(a: string, b: string) { return toMin(b) - toMin(a) }
+
 
 // ---- Matter picker (headless + minimal UI) ----
 function MatterPicker({
