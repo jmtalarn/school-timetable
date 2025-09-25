@@ -1,19 +1,12 @@
 // src/pages/SettingsPage.tsx
 import { useEffect, useMemo, useState } from 'react'
 import { useConfig, useUpdateConfig, useToggleWeekday } from '../hooks/reactQueryHooks'
-import { AllWeekdays, weekdays, type Weekday } from '../types'
+import { AllWeekdays, type Weekday } from '../types'
 import styles from './SettingsPage.module.css'
+import { weekdayLabels } from '../utils/week'
 
 
-const labels: Record<Weekday, string> = {
-	mon: 'Monday',
-	tue: 'Tuesday',
-	wed: 'Wednesday',
-	thu: 'Thursday',
-	fri: 'Friday',
-	sat: 'Saturday',
-	sun: 'Sunday',
-}
+
 
 export default function SettingsPage() {
 	const { data: cfg, isLoading } = useConfig()
@@ -105,7 +98,7 @@ export default function SettingsPage() {
 							onChange={(e) => setStartOfWeek(e.target.value as Weekday)}
 							aria-label="Week starts on"
 						>	{AllWeekdays.map(d => (
-							<option key={d} value={d}>{labels[d]}</option>
+							<option key={d} value={d}>{weekdayLabels[d]}</option>
 						))}
 						</select>
 					</label>
@@ -125,14 +118,14 @@ export default function SettingsPage() {
 				<section className={styles.section}>
 					<div className={styles.sectionTitle}>Visible weekdays</div>
 					<div className={styles.weekdayGrid}>
-						{weekdays.map((d) => (
-							<label className={styles.weekdayChip} key={d} title={labels[d]}>
+						{AllWeekdays.map((d) => (
+							<label className={styles.weekdayChip} key={d} title={weekdayLabels[d]}>
 								<input
 									type="checkbox"
 									checked={isVisible(d)}
 									onChange={() => toggleWeekday.mutate(d)}
 								/>
-								<span>{labels[d]}</span>
+								<span>{weekdayLabels[d]}</span>
 							</label>
 						))}
 					</div>
