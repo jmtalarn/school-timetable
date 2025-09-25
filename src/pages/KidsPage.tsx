@@ -3,6 +3,8 @@ import { useState } from 'react'
 import Avatar from 'boring-avatars'
 import styles from './KidsPage.module.css'
 
+const avatarPalette = ["#2f2e30", "#e84b2c", "#e6d839", "#7cd164", "#2eb8ac"]
+
 export default function KidsPage() {
 	const { data: kids, isLoading } = useKids()
 	const createKid = useCreateKid()
@@ -17,8 +19,9 @@ export default function KidsPage() {
 
 	return (
 		<div className={styles.container}>
-			<h2>Kids</h2>
+			<h2 className={styles.title}>Kids</h2>
 
+			{/* Add kid form */}
 			<form
 				className={styles.addForm}
 				onSubmit={e => {
@@ -29,16 +32,20 @@ export default function KidsPage() {
 				}}
 			>
 				<input
+					className={styles.inputGrow}
 					value={newName}
 					onChange={e => setNewName(e.target.value)}
 					placeholder="Kid name"
 					required
 				/>
-				<Avatar name={newName} size={64} variant="beam" colors={["#2f2e30", "#e84b2c", "#e6d839", "#7cd164", "#2eb8ac"]} />
-				<button type="submit">Add Kid</button>
+				<div className={styles.avatarPreview}>
+					<Avatar name={newName || 'kid'} size={48} variant="beam" colors={avatarPalette} />
+				</div>
+				<button type="submit" className={styles.addBtn}>Add Kid</button>
 			</form>
 
-			<ul>
+			{/* List */}
+			<ul className={styles.list}>
 				{kids?.map(k => (
 					<li key={k.id} className={styles.item}>
 						{editId === k.id ? (
@@ -50,33 +57,46 @@ export default function KidsPage() {
 									setEditId(null)
 								}}
 							>
-								<input
-									value={editName}
-									onChange={e => setEditName(e.target.value)}
-									required
-								/>
-								<Avatar name={editName} size={64} variant="beam" colors={["#2f2e30", "#e84b2c", "#e6d839", "#7cd164", "#2eb8ac"]} />
-								<button type="submit">Save</button>
-								<button type="button" onClick={() => setEditId(null)}>Cancel</button>
+								<div className={styles.itemLeft}>
+									<div className={styles.avatar}>
+										<Avatar name={editName || k.name} size={48} variant="beam" colors={avatarPalette} />
+									</div>
+									<input
+										className={styles.inputGrow}
+										value={editName}
+										onChange={e => setEditName(e.target.value)}
+										required
+									/>
+								</div>
+								<div className={styles.itemActions}>
+									<button type="submit">Save</button>
+									<button type="button" onClick={() => setEditId(null)} className={styles.ghostBtn}>Cancel</button>
+								</div>
 							</form>
 						) : (
 							<>
-								<span className={styles.name}>{k.name}</span>
-								<Avatar name={k.name} size={64} variant="beam" colors={["#2f2e30", "#e84b2c", "#e6d839", "#7cd164", "#2eb8ac"]} />
-								<button
-									onClick={() => {
-										setEditId(k.id)
-										setEditName(k.name)
-									}}
-								>
-									Edit
-								</button>
-								<button
-									className={styles.deleteButton}
-									onClick={() => deleteKid.mutate(k.id)}
-								>
-									Delete
-								</button>
+								<div className={styles.itemLeft}>
+									<div className={styles.avatar}>
+										<Avatar name={k.name} size={48} variant="beam" colors={avatarPalette} />
+									</div>
+									<span className={styles.name}>{k.name}</span>
+								</div>
+								<div className={styles.itemActions}>
+									<button
+										onClick={() => {
+											setEditId(k.id)
+											setEditName(k.name)
+										}}
+									>
+										Edit
+									</button>
+									<button
+										className={styles.deleteButton}
+										onClick={() => deleteKid.mutate(k.id)}
+									>
+										Delete
+									</button>
+								</div>
 							</>
 						)}
 					</li>

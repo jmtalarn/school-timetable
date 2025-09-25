@@ -56,32 +56,44 @@ export default function MattersPage() {
 					setNewEndDate(newEndDate)
 				}}
 			>
-				<input
-					value={newName}
-					onChange={e => setNewName(e.target.value)}
-					placeholder="Matter name"
-					required
-				/>
-				<input
-					value={newColor}
-					type="color"
-					onChange={e => setNewColor(e.target.value)}
-					placeholder="Color (optional)"
-				/>
-				<input
-					type="date"
-					value={newStartDate}
-					onChange={e => setNewStartDate(e.target.value)}
-					placeholder="Start date"
-				/>
-				<input
-					type="date"
-					value={newEndDate}
-					onChange={e => setNewEndDate(e.target.value)}
-					placeholder="End date"
-				/>
-				<button type="submit">Add Matter</button>
+				{/* Row 1: name + color */}
+				<div className={styles.rowTop}>
+					<input
+						value={newName}
+						onChange={e => setNewName(e.target.value)}
+						placeholder="Matter name"
+						required
+					/>
+					<input
+						value={newColor}
+						type="color"
+						onChange={e => setNewColor(e.target.value)}
+						aria-label="Matter color"
+					/>
+				</div>
+
+				{/* Row 2: dates (equal width) */}
+				<div className={styles.rowDates}>
+					<input
+						type="date"
+						value={newStartDate}
+						onChange={e => setNewStartDate(e.target.value)}
+						placeholder="Start date"
+					/>
+					<input
+						type="date"
+						value={newEndDate}
+						onChange={e => setNewEndDate(e.target.value)}
+						placeholder="End date"
+					/>
+				</div>
+
+				{/* Row 3: actions (right-aligned) */}
+				<div className={styles.rowActions}>
+					<button type="submit">Add Matter</button>
+				</div>
 			</form>
+
 
 			<ul>
 				{matters?.map(m => (
@@ -103,47 +115,58 @@ export default function MattersPage() {
 									setEditId(null)
 								}}
 							>
-								<input
-									value={editName}
-									onChange={e => setEditName(e.target.value)}
-									required
-								/>
-								<input
-									value={editColor}
-									type="color"
-									onChange={e => setEditColor(e.target.value)}
-								/>
-								<input
-									type="date"
-									value={editStartDate}
-									onChange={e => setEditStartDate(e.target.value)}
-									placeholder="Start date"
-								/>
-								<input
-									type="date"
-									value={editEndDate}
-									onChange={e => setEditEndDate(e.target.value)}
-									placeholder="End date"
-								/>
-								<button type="submit">Save</button>
-								<button type="button" onClick={() => setEditId(null)}>
-									Cancel
-								</button>
+								{/* Row 1: name + color */}
+								<div className={styles.rowTop}>
+									<input
+										value={editName}
+										onChange={e => setEditName(e.target.value)}
+										required
+										placeholder="Matter name"
+									/>
+									<input
+										value={editColor}
+										type="color"
+										onChange={e => setEditColor(e.target.value)}
+										aria-label="Matter color"
+									/>
+								</div>
+
+								{/* Row 2: dates (same width) */}
+								<div className={styles.rowDates}>
+									<input
+										type="date"
+										value={editStartDate}
+										onChange={e => setEditStartDate(e.target.value)}
+										placeholder="Start date"
+									/>
+									<input
+										type="date"
+										value={editEndDate}
+										onChange={e => setEditEndDate(e.target.value)}
+										placeholder="End date"
+									/>
+								</div>
+
+								{/* Row 3: actions (right-aligned) */}
+								<div className={styles.rowActions}>
+									<button type="submit">Save</button>
+									<button type="button" onClick={() => setEditId(null)}>
+										Cancel
+									</button>
+								</div>
 							</form>
 						) : (
 							<>
 								<span className={styles.name}>{m.name}</span>
 								{m.color && (
-									<span className={styles.mr8} style={{ color: m.color }}>
+									<span className={styles.dot} style={{ color: m.color }}>
 										●
 									</span>
 								)}
-								{m.startDate && (
-									<span className={styles.mr8}>Start: {m.startDate}</span>
-								)}
-								{m.endDate && (
-									<span className={styles.mr8}>End: {m.endDate}</span>
-								)}
+								<div className={styles.dates}>
+									{m.startDate && <span>Start date: {m.startDate}</span>}
+									{m.endDate && <span>End date: {m.endDate}</span>}
+								</div>
 								<button
 									onClick={() => {
 										setEditId(m.id)
