@@ -195,7 +195,7 @@
 }
 
 .pickerList {
-	max-height: 240px;
+	max-height: 520px;
 	overflow-y: auto;
 	list-style: none;
 	padding: 0;
