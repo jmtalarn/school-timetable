@@ -90,27 +90,31 @@ export default function TodayView() {
 	return (
 		<div className={styles.container}>
 			<h2 className={styles.pageTitle}>Today</h2>
+			<header className={styles.toolbar}>
+				{/* Kid picker */}
+				<div className={styles.kidRow}>
+					<KidSelect value={selectedKidId} onChange={setSelectedKidId} kids={kids || []} />
+				</div>
+				{/* Date selector */}
+				<div className={styles.dateNav} role="group" aria-label="Pick date">
+					<button type="button" className={styles.navBtn} onClick={goPrevDay} aria-label="Previous day">◀</button>
+					<div className={styles.dateLabel}>{dateLabel}</div>
+					<button type="button" className={styles.navBtn} onClick={goNextDay} aria-label="Next day">▶</button>
+					<button
+						type="button"
+						className={`${styles.navBtn} ${styles.todayBtn}`}
+						onClick={goToday}
+						disabled={isTodaySelected}
+						title="Jump to today"
+					>
+						Today
+					</button>
+				</div>
+			</header>
 
-			{/* Date selector */}
-			<div className={styles.dateNav} role="group" aria-label="Pick date">
-				<button type="button" className={styles.dateBtn} onClick={goPrevDay} aria-label="Previous day">◀</button>
-				<button
-					type="button"
-					className={`${styles.dateBtn} ${styles.todayBtn}`}
-					onClick={goToday}
-					disabled={isTodaySelected}
-					title="Jump to today"
-				>
-					Today
-				</button>
-				<div className={styles.dateLabel}>{dateLabel}</div>
-				<button type="button" className={styles.dateBtn} onClick={goNextDay} aria-label="Next day">▶</button>
-			</div>
 
-			{/* Kid picker */}
-			<div className={styles.kidRow}>
-				<KidSelect value={selectedKidId} onChange={setSelectedKidId} kids={kids || []} />
-			</div>
+
+
 
 			{/* Day column */}
 			{selectedKidId ? (
@@ -154,7 +158,7 @@ export default function TodayView() {
 											title={`${matter?.name ?? 'Unknown'} • ${b.start}–${b.end}`}
 										>
 											<div className={styles.blockHeader}>
-												<span className={styles.blockTime}>{b.start}–{b.end}</span>
+												<span className={styles.blockTime}><span>{b.start}</span><span>{b.end}</span></span>
 												<span className={styles.blockLabel}>{matter?.name || 'Unknown'}</span>
 											</div>
 										</div>
