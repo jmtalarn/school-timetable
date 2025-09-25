@@ -1,0 +1,66 @@
+.card {
+	background: var(--card, #fff);
+	border: 1px solid var(--border, #e5e7eb);
+	border-radius: 16px;
+	padding: 16px;
+	box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04),
+		0 6px 20px rgba(15, 23, 42, 0.06);
+	display: grid;
+	gap: 10px;
+}
+
+.title {
+	margin: 0;
+	font-size: 18px;
+	font-weight: 800;
+	letter-spacing: 0.2px;
+}
+
+.text {
+	margin: 0;
+	color: var(--muted, #64748b);
+	line-height: 1.5;
+}
+
+.btnRow {
+	display: flex;
+	gap: 8px;
+	justify-content: flex-start;
+	align-items: center;
+	margin-top: 4px;
+}
+
+.btn {
+	border: 1px solid var(--border, #e5e7eb);
+	border-radius: 12px;
+	padding: 8px 12px;
+	background: #ffffff;
+	color: var(--text, #0f172a);
+	cursor: pointer;
+	font: inherit;
+	transition: transform 80ms ease, background-color 120ms ease,
+		border-color 120ms ease, box-shadow 120ms ease;
+}
+.btn:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+.btnPrimary {
+	background: linear-gradient(
+		180deg,
+		var(--accent, #10b981),
+		var(--accent-2, #34d399)
+	);
+	color: #ffffff;
+	border-color: rgba(16, 185, 129, 0.55);
+	box-shadow: 0 6px 18px rgba(16, 185, 129, 0.25);
+}
+.btnPrimary:hover {
+	box-shadow: 0 10px 24px rgba(16, 185, 129, 0.32);
+}
+
+.helper {
+	margin-top: -2px;
+	color: var(--muted, #64748b);
+}

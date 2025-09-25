@@ -1,0 +1,168 @@
+.container {
+	width: 100%;
+	max-width: 820px;
+	margin: 0 auto;
+	padding: clamp(12px, 2vw, 24px);
+	color: var(--text, #0f172a);
+}
+
+.pageTitle {
+	margin: 4px 0 12px;
+	font-size: 22px;
+	font-weight: 800;
+	text-align: left;
+}
+
+/* ===== Date navigation ===== */
+.dateNav {
+	display: grid;
+	grid-template-columns: auto auto 1fr auto; /* prev | today | label | next */
+	align-items: center;
+	gap: 8px;
+	margin: 4px 0 12px;
+}
+
+.dateBtn {
+	appearance: none;
+	border: 1px solid var(--border, #e5e7eb);
+	background: #fff;
+	color: var(--text, #0f172a);
+	border-radius: 12px;
+	padding: 6px 10px;
+	line-height: 1;
+	cursor: pointer;
+	transition: transform 80ms ease, box-shadow 120ms ease,
+		background-color 120ms ease;
+}
+.dateBtn:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+}
+.dateBtn:disabled {
+	opacity: 0.5;
+	cursor: default;
+	transform: none;
+	box-shadow: none;
+}
+.dateLabel {
+	text-align: center;
+	font-weight: 700;
+	letter-spacing: 0.2px;
+}
+.todayBtn {
+	border-color: rgba(16, 185, 129, 0.45);
+	background: rgba(16, 185, 129, 0.08);
+}
+.todayBtn:hover:not(:disabled) {
+	box-shadow: 0 6px 16px rgba(16, 185, 129, 0.18);
+}
+/* ===== Kid selector row ===== */
+.kidRow {
+	margin-bottom: 12px;
+}
+
+/* ===== Column grid (single day) ===== */
+.gridWrapper {
+	overflow: visible;
+	border-radius: 8px;
+	border: 1px solid var(--border, #e5e7eb);
+	background: #f9fafb;
+	padding: 8px;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: minmax(220px, 1fr); /* single column that grows */
+	column-gap: 12px;
+}
+
+.columnTitle {
+	margin-bottom: 4px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.columnInner {
+	position: relative;
+	cursor: default;
+	border-radius: 6px;
+	background: #fff;
+	overflow: visible;
+}
+
+/* ===== Hour lines & labels ===== */
+.hourLine {
+	position: absolute;
+	left: 0;
+	right: 0;
+	border-top: 1px solid #f3f4f6;
+}
+.hourLineMajor {
+	border-top-color: #e5e7eb;
+}
+.hourLabel {
+	position: absolute;
+	left: 0;
+	top: -9px;
+	font-size: 11px;
+	color: #6b7280;
+	z-index: 3;
+	background: transparent;
+}
+
+/* ===== Now line & dot (only when viewing today) ===== */
+.nowLine {
+	position: absolute;
+	left: 0;
+	right: 0;
+	height: 2px;
+	background: rgba(16, 185, 129, 0.6); /* accent */
+	z-index: 4;
+}
+.nowDot {
+	position: absolute;
+	left: -8px; /* sits just outside hour labels on the left */
+	top: -5px; /* vertically centers over the 2px line */
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: var(--accent, #10b981);
+	box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+/* ===== Blocks ===== */
+.block {
+	position: absolute;
+	left: 4px;
+	right: 4px;
+	user-select: none;
+	border-radius: 6px;
+	border: 1px solid rgba(0, 0, 0, 0.06);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.blockHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	padding: 4px 8px;
+	height: 100%;
+	font-size: 12px;
+}
+.blockTime {
+	font-weight: 600;
+	color: rgba(15, 23, 42, 0.9);
+}
+.blockLabel {
+	white-space: break-spaces;
+	font-weight: 600;
+	text-align: right;
+}
+
+/* ===== Empty hint ===== */
+.hint {
+	font-size: 14px;
+	color: #4b5563;
+}

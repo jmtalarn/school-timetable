@@ -28,7 +28,7 @@
 }
 
 .gridWrapper {
-	overflow: auto;
+	overflow: visible;
 	border-radius: 8px;
 	border: 1px solid #e5e7eb;
 	background: #f9fafb;
