@@ -8,6 +8,7 @@
 
 .wrap {
 	display: grid;
+	grid-template-columns: auto 1fr;
 	gap: 8px;
 	width: 100%;
 	min-width: 0;

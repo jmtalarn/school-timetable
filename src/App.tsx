@@ -4,7 +4,8 @@ import MattersPage from './pages/MattersPage'
 import KidsPage from './pages/KidsPage'
 import TimetableScheduler from './pages/TimetableScheduler'
 import SettingsPage from './pages/SettingsPage'
-import Home from './pages/TodayView'
+import Today from './pages/TodayView'
+import Home from './pages/HomePage'
 import logoSvg from '/school-timetable-logo.svg'
 import styles from './App.module.css'
 import PromptInstall from './components/PromptInstall'
@@ -41,6 +42,9 @@ function App() {
                 <NavLink to="/" end className={({ isActive }) => `${styles.link} ${isActive ? styles.linkActive : ''}`}>
                   Home
                 </NavLink>
+                <NavLink to="/today" end className={({ isActive }) => `${styles.link} ${isActive ? styles.linkActive : ''}`}>
+                  Today
+                </NavLink>
                 <NavLink to="/about" className={({ isActive }) => `${styles.link} ${isActive ? styles.linkActive : ''}`}>
                   About
                 </NavLink>
@@ -66,6 +70,7 @@ function App() {
           <main className={styles.mainShell}>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/today" element={<Today />} />
               <Route path="/about" element={<About />} />
               <Route path="/matters" element={<MattersPage />} />
               <Route path="/kids" element={<KidsPage />} />
