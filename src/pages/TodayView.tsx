@@ -3,45 +3,14 @@ import styles from './TodayView.module.css'
 import KidSelect from '../components/KidSelect'
 import { useKids, useMatters, useTimetable, useConfig } from '../hooks/reactQueryHooks'
 import { DefaultConfig, useSchedulerLogic } from '../scheduler/logic'
-import { AllWeekdays, type Weekday } from '../types'
-import { weekdayLabels } from '../utils/week'
+import { toWeekday, weekdayLabels } from '../utils/week'
+import { isSameDate, isDateWithin } from '../utils/date'
+import { toMin } from '../utils/time'
 
 /** Layout constants */
 const ROW_HEIGHT = 9 // px per 5 minutes
 
-/** Time helpers */
-function toMin(hhmm: string) {
-	const [h, m] = hhmm.split(':').map(Number)
-	return h * 60 + m
-}
-// function clamp(v: number, lo: number, hi: number) {
-// 	return Math.max(lo, Math.min(hi, v))
-// }
 
-/** Date helpers */
-
-function toWeekday(d: Date) {
-	return AllWeekdays[d.getDay()] as Weekday
-}
-function isSameDate(a: Date, b: Date) {
-	return a.getFullYear() === b.getFullYear()
-		&& a.getMonth() === b.getMonth()
-		&& a.getDate() === b.getDate()
-}
-function parseDateOnly(yyyy_mm_dd: string | undefined) {
-	if (!yyyy_mm_dd) return null
-	// Safe local-date parse (no TZ surprises at midnight)
-	const [y, m, d] = yyyy_mm_dd.split('-').map(Number)
-	if (!y || !m || !d) return null
-	return new Date(y, m - 1, d)
-}
-function isDateWithin(date: Date, start?: string, end?: string) {
-	const s = parseDateOnly(start)
-	const e = parseDateOnly(end)
-	if (s && date < s) return false
-	if (e && date > e) return false
-	return true
-}
 
 
 

@@ -4,6 +4,7 @@
 import { useMemo } from 'react'
 import { useAddBlock, useUpdateBlock, useDeleteBlock, useSetDayBlocks } from '../hooks/reactQueryHooks'
 import type { TimeBlock, Weekday } from '../types'
+import { toMin, toTime, clamp, snap } from '../utils/time'
 
 // // ---- Types (adjust if your app exports these already) ----
 // export type Weekday = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'
@@ -36,20 +37,7 @@ export const DefaultConfig: SchedulerConfig = {
 	defaultDurationMin: 60,
 }
 
-// ---- Time utils ----
-const toMin = (t: string) => {
-	const [h, m] = t.split(':').map(Number)
-	return h * 60 + m
-}
-const toTime = (mins: number) => {
-	const h = Math.floor(mins / 60)
-	const m = mins % 60
-	const HH = String(h).padStart(2, '0')
-	const MM = String(m).padStart(2, '0')
-	return `${HH}:${MM}`
-}
-const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v))
-const snap = (mins: number, step: number) => Math.round(mins / step) * step
+
 
 // Returns number of grid rows
 export function computeRowCount(cfg: SchedulerConfig) {
