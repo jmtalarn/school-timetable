@@ -3,7 +3,8 @@ import styles from './TodayView.module.css'
 import KidSelect from '../components/KidSelect'
 import { useKids, useMatters, useTimetable, useConfig } from '../hooks/reactQueryHooks'
 import { DefaultConfig, useSchedulerLogic } from '../scheduler/logic'
-import { weekdays, type Weekday } from '../types'
+import { AllWeekdays, type Weekday } from '../types'
+import { weekdayLabels } from '../utils/week'
 
 /** Layout constants */
 const ROW_HEIGHT = 9 // px per 5 minutes
@@ -20,7 +21,7 @@ function toMin(hhmm: string) {
 /** Date helpers */
 
 function toWeekday(d: Date) {
-	return weekdays[(d.getDay() + 6) % 7] as Weekday
+	return AllWeekdays[d.getDay()] as Weekday
 }
 function isSameDate(a: Date, b: Date) {
 	return a.getFullYear() === b.getFullYear()
@@ -42,10 +43,7 @@ function isDateWithin(date: Date, start?: string, end?: string) {
 	return true
 }
 
-const weekdayLabels: Record<Weekday, string> = {
-	mon: 'Monday', tue: 'Tuesday', wed: 'Wednesday', thu: 'Thursday',
-	fri: 'Friday', sat: 'Saturday', sun: 'Sunday',
-}
+
 
 export default function TodayView() {
 	const { data: kids } = useKids()

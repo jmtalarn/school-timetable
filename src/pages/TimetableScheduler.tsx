@@ -18,23 +18,15 @@ import { DefaultConfig, useSchedulerLogic } from '../scheduler/logic'
 import styles from './TimetableScheduler.module.css'
 // ---- Small draggable wrapper that supports move + resize via handles ----
 import { useDraggable } from '@dnd-kit/core'
-import { AllWeekdays, type Weekday } from '../types'
-import { reorderWeekdays } from '../utils/week'
+import { type Weekday } from '../types'
+import { reorderWeekdays, weekdayLabels } from '../utils/week'
 
 // // ---- Local types ----
 // type Weekday = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'
 
 // const weekdays: Weekday[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
 
-const weekdayLabels: Record<Weekday, string> = {
-	mon: 'Monday',
-	tue: 'Tuesday',
-	wed: 'Wednesday',
-	thu: 'Thursday',
-	fri: 'Friday',
-	sat: 'Saturday',
-	sun: 'Sunday',
-}
+
 
 const ROW_HEIGHT = 9 // px per 5 minutes
 

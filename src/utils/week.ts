@@ -21,3 +21,13 @@ export function weekIndexFor(date: Date, start: Weekday): number {
 	const js = date.getDay(); // 0=Sun..6=Sat
 	return (js - AllWeekdays.indexOf(start) + 7) % 7;
 }
+
+export const weekdayLabels: Record<Weekday, string> = {
+	mon: 'Monday',
+	tue: 'Tuesday',
+	wed: 'Wednesday',
+	thu: 'Thursday',
+	fri: 'Friday',
+	sat: 'Saturday',
+	sun: 'Sunday',
+}
