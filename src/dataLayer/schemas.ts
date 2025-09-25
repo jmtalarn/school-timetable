@@ -43,3 +43,14 @@ export const ExportBundleSchema = z.object({
 	timetables: z.array(TimetableSchema),
 });
 export type ExportBundle = z.infer<typeof ExportBundleSchema>;
+
+export const ConfigSchema = z.object({
+	startHour: z.coerce.number().int().min(0).max(23),
+	endHour: z.coerce.number().int().min(1).max(24),
+	hiddenWeekdays: z.array(WeekdaySchema),
+}).refine(v => v.endHour > v.startHour, {
+	path: ['endHour'],
+	message: 'endHour must be greater than startHour',
+})
+
+export type ConfigSchemaT = z.infer<typeof ConfigSchema>

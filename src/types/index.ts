@@ -13,6 +13,8 @@ export type Kid = {
 
 export type Weekday = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun';
 
+export const weekdays: Weekday[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+
 export type TimeBlock = {
     id: string;
     matterId: string;
@@ -32,4 +34,19 @@ export type ExportBundle = {
     matters: Matter[];
     kids: Kid[];
     timetables: Timetable[];
+};
+
+export interface AppConfig {
+    startHour: number;      // 0–23
+    endHour: number;        // 1–24, must be > startHour
+    /** days that should NOT be shown */
+    hiddenWeekdays: Weekday[];
+}
+
+export const AllWeekdays: Weekday[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+export const DefaultAppConfig: AppConfig = {
+    startHour: 8,
+    endHour: 18,
+    hiddenWeekdays: ['sat', 'sun'],
 };

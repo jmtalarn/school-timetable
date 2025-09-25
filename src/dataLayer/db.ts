@@ -1,8 +1,8 @@
 // filepath: /school-timetable/school-timetable/src/dataLayer/db.ts
 // This file handles the localStorage database operations. It exports functions for reading and writing the database, including the default database structure and the readDB and writeDB functions.
 
-import { type Matter, type Kid, type Timetable } from '../types'
-import { MatterSchema, KidSchema, TimetableSchema } from './schemas'
+import { type Matter, type Kid, type Timetable, type AppConfig, DefaultAppConfig } from '../types'
+import { MatterSchema, KidSchema, TimetableSchema, ConfigSchema } from './schemas'
 
 export const STORAGE_KEY = 'school-timetable-db.v1'
 
@@ -10,12 +10,14 @@ type DBShape = {
 	matters: Matter[]
 	kids: Kid[]
 	timetables: Timetable[]
+	config: AppConfig
 }
 
 const defaultDB = (): DBShape => ({
 	matters: [],
 	kids: [],
 	timetables: [],
+	config: DefaultAppConfig,
 })
 
 function readDB(): DBShape {
@@ -30,7 +32,10 @@ function readDB(): DBShape {
 		const timetables = TimetableSchema.array().safeParse(parsed.timetables).success
 			? (parsed.timetables as Timetable[])
 			: []
-		return { matters, kids, timetables }
+		const config = ConfigSchema.safeParse(parsed.config).success
+			? (parsed.config as AppConfig)
+			: DefaultAppConfig;
+		return { matters, kids, timetables, config }
 	} catch {
 		return defaultDB()
 	}

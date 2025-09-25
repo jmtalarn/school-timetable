@@ -1,0 +1,73 @@
+.container {
+	width: 100%;
+	max-width: 860px;
+	margin: 0 auto;
+	padding: clamp(12px, 2vw, 24px);
+}
+
+.container > h2 {
+	margin: 4px 0 16px;
+	font-size: 22px;
+	font-weight: 800;
+	text-align: left;
+}
+
+.card {
+	background: var(--card, #fff);
+	border: 1px solid var(--border, #e5e7eb);
+	border-radius: 14px;
+	padding: 14px 16px;
+	box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04),
+		0 6px 16px rgba(15, 23, 42, 0.05);
+	margin-bottom: 16px;
+}
+
+.h3 {
+	margin: 0 0 10px;
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.timeForm {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(160px, 1fr)) auto;
+	gap: 10px;
+	align-items: end;
+}
+
+.field {
+	display: grid;
+	gap: 6px;
+}
+.field > span {
+	font-size: 13px;
+	color: var(--muted, #64748b);
+}
+
+.actions {
+	display: flex;
+	gap: 8px;
+	justify-content: flex-end;
+}
+
+.weekGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: 10px;
+}
+
+.day {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	padding: 8px 10px;
+	border: 1px solid var(--border, #e5e7eb);
+	border-radius: 10px;
+	background: #fff;
+}
+
+.hint {
+	margin-top: 8px;
+	font-size: 12px;
+	color: var(--muted, #64748b);
+}
