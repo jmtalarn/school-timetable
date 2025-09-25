@@ -1,7 +1,7 @@
 // src/pages/SettingsPage.tsx
 import { useEffect, useMemo, useState } from 'react'
 import { useConfig, useUpdateConfig, useToggleWeekday } from '../hooks/reactQueryHooks'
-import { weekdays, type Weekday } from '../types'
+import { AllWeekdays, weekdays, type Weekday } from '../types'
 import styles from './SettingsPage.module.css'
 
 
@@ -22,11 +22,13 @@ export default function SettingsPage() {
 
 	const [startHour, setStartHour] = useState('08:00')
 	const [endHour, setEndHour] = useState('18:00')
+	const [startOfWeek, setStartOfWeek] = useState<Weekday>('mon')
 
 	useEffect(() => {
 		if (cfg) {
 			setStartHour(cfg.startHour)
 			setEndHour(cfg.endHour)
+			setStartOfWeek(cfg.startOfWeek ?? 'mon')
 		}
 	}, [cfg])
 
@@ -40,6 +42,11 @@ export default function SettingsPage() {
 		return cfg.startHour !== startHour || cfg.endHour !== endHour
 	}, [cfg, startHour, endHour])
 
+	const startWeekChanged = useMemo(() => {
+		if (!cfg) return false
+		return cfg.startOfWeek !== startOfWeek
+	}, [cfg, startOfWeek])
+
 	if (isLoading || !cfg) {
 		return <div className={styles.loading}>Loading settings…</div>
 	}
@@ -52,7 +59,7 @@ export default function SettingsPage() {
 				className={styles.form}
 				onSubmit={(e) => {
 					e.preventDefault()
-					updateConfig.mutate({ startHour, endHour })
+					updateConfig.mutate({ startHour, endHour, startOfWeek })
 				}}
 			>
 				{/* Time range */}
@@ -80,8 +87,35 @@ export default function SettingsPage() {
 						These define the visible vertical window in the scheduler (e.g. 08:00 → 18:00).
 						The app enforces that start &lt; end.
 					</p>
+
 					<div className={styles.actions}>
 						<button type="submit" className="btn btnPrimary" disabled={!timesChanged || saving}>
+							{saving ? 'Saving…' : 'Save'}
+						</button>
+					</div>
+				</section>
+				<section className={styles.section}>
+					<div className={styles.sectionTitle}>Week starts on</div>
+
+					<label className={styles.fieldLabel}>
+						<span className={styles.fieldCaption}>Weekday</span>
+						<select
+							className={styles.select}
+							value={startOfWeek}
+							onChange={(e) => setStartOfWeek(e.target.value as Weekday)}
+							aria-label="Week starts on"
+						>	{AllWeekdays.map(d => (
+							<option key={d} value={d}>{labels[d]}</option>
+						))}
+						</select>
+					</label>
+
+					<p className={styles.hint}>
+						Changes the first column in the weekly scheduler.
+					</p>
+
+					<div className={styles.actions}>
+						<button type="submit" className="btn btnPrimary" disabled={!startWeekChanged || saving}>
 							{saving ? 'Saving…' : 'Save'}
 						</button>
 					</div>

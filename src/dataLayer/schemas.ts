@@ -55,9 +55,11 @@ export const ConfigSchema = z.object({
 	startHour: HHMM,
 	endHour: HHMM,
 	hiddenWeekdays: z.array(WeekdaySchema).default([]),
+	startOfWeek: WeekdaySchema.default('mon'),
 }).refine(v => toMin(v.startHour) < toMin(v.endHour), {
 	message: 'startHour must be before endHour',
 	path: ['endHour'],
 })
+
 
 export type ConfigSchemaT = z.infer<typeof ConfigSchema>

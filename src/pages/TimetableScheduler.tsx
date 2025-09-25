@@ -19,7 +19,7 @@ import styles from './TimetableScheduler.module.css'
 // ---- Small draggable wrapper that supports move + resize via handles ----
 import { useDraggable } from '@dnd-kit/core'
 import { AllWeekdays, type Weekday } from '../types'
-
+import { reorderWeekdays } from '../utils/week'
 
 // // ---- Local types ----
 // type Weekday = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'
@@ -140,10 +140,19 @@ export default function TimetableScheduler() {
 	const { data: matters } = useMatters()
 	const { data: appCfg } = useConfig();
 
-	const visibleWeekdays: Weekday[] = (appCfg?.hiddenWeekdays?.length
-		? AllWeekdays.filter(d => !appCfg.hiddenWeekdays.includes(d))
-		: AllWeekdays
-	);
+	// Build the ordered list of weekdays starting from config
+	const orderedWeekdays = useMemo(
+		() => reorderWeekdays(appCfg?.startOfWeek ?? 'mon'),
+		[appCfg?.startOfWeek]
+	)
+
+	// Then apply the “hidden days” filter
+	const visibleWeekdays = useMemo(() => {
+		console.log({ orderedWeekdays, appCfg })
+		const hidden = new Set(appCfg?.hiddenWeekdays ?? [])
+		return orderedWeekdays.filter(d => !hidden.has(d))
+	}, [orderedWeekdays, appCfg?.hiddenWeekdays])
+
 	const [selectedKidId, setSelectedKidId] = useState<string | null>(null)
 	const [hoverCell, setHoverCell] = useState<null | { day: Weekday; row: number }>(null)
 	const timetableQuery = useTimetable(selectedKidId || '')

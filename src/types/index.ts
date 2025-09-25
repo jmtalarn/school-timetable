@@ -42,12 +42,14 @@ export interface AppConfig {
     /** "HH:mm" (24h) e.g. "18:00" */
     endHour: string
     hiddenWeekdays: Weekday[];
+    startOfWeek: Weekday;
 }
 
-export const AllWeekdays: Weekday[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+export const AllWeekdays: Weekday[] = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 
 export const DefaultAppConfig: AppConfig = {
-    startHour: 8,
-    endHour: 18,
+    startHour: "08:00",
+    endHour: "18:00",
     hiddenWeekdays: ['sat', 'sun'],
+    startOfWeek: 'mon',
 };
