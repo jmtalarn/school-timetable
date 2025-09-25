@@ -1,0 +1,147 @@
+:root {
+	--ks-border: var(--border, #e5e7eb);
+	--ks-text: var(--text, #0f172a);
+	--ks-muted: var(--muted, #64748b);
+	--ks-accent: var(--accent, #10b981);
+	--ks-accent-2: var(--accent-2, #34d399);
+}
+
+.wrap {
+	display: grid;
+	gap: 8px;
+	width: 100%;
+	min-width: 0;
+}
+
+.headerRow {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.label {
+	font-size: 14px;
+	font-weight: 700;
+	color: var(--ks-text);
+}
+
+.empty {
+	font-size: 14px;
+	color: var(--ks-muted);
+	padding: 8px 0;
+}
+
+/* Responsive grid of avatar picks (no cards) */
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+	gap: 10px;
+}
+
+/* Button is invisible — no background/border/shadow in ANY state */
+.card {
+	appearance: none;
+	-webkit-appearance: none;
+	background: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	-webkit-tap-highlight-color: transparent;
+	outline: none;
+
+	padding: 6px 4px; /* hit area */
+	display: grid;
+	grid-template-rows: auto auto; /* avatar + name */
+	justify-items: center;
+	align-items: center;
+	gap: 8px;
+	position: relative;
+	cursor: pointer;
+	color: var(--ks-text);
+	transition: opacity 140ms ease, filter 140ms ease;
+}
+
+/* Make sure pseudo-states never introduce a square background */
+.card:hover,
+.card:active,
+.card:focus,
+.card:focus-visible {
+	background: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+}
+
+/* Dim non-selected items */
+.cardIdle {
+	opacity: 0.55;
+	filter: saturate(0.85);
+}
+
+/* Hover “pop” — slightly exaggerated */
+.cardIdle:hover .avatar {
+	transform: translateY(-3px) scale(1.04);
+	/* keep the effect around the circle only */
+	box-shadow: 0 0 0 1px var(--ks-border) inset,
+		0 10px 28px rgba(15, 23, 42, 0.12);
+}
+
+/* Selected = full opacity; NO square visuals */
+.cardSelected {
+	opacity: 1;
+	filter: none;
+}
+
+/* Circular avatar ring only; no parent tile */
+.avatar {
+	display: inline-grid;
+	place-items: center;
+	border-radius: 999px;
+	padding: 2px; /* ring spacing */
+	box-shadow: 0 0 0 1px var(--ks-border) inset; /* neutral ring */
+	transition: transform 100ms ease, box-shadow 140ms ease, filter 140ms ease;
+}
+
+/* Accent ring when selected */
+.cardSelected .avatar {
+	box-shadow: 0 0 0 2px color-mix(in oklab, var(--ks-accent) 70%, #ffffff)
+		inset;
+}
+
+/* Keyboard focus highlights the circular avatar, not a square button */
+.card:focus-visible .avatar {
+	box-shadow: 0 0 0 2px color-mix(in oklab, var(--ks-accent-2) 80%, #ffffff)
+			inset,
+		0 0 0 4px color-mix(in oklab, var(--ks-accent-2) 30%, transparent);
+}
+
+/* Name under the avatar */
+.name {
+	font-weight: 600;
+	font-size: 13px;
+	text-align: center;
+	max-width: 16ch;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* Green check badge */
+.check {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	font-size: 12px;
+	color: #fff;
+	background: var(--ks-accent);
+	border-radius: 999px;
+	line-height: 1;
+	padding: 2px 5px;
+	box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
+}
+
+/* On touch devices, suppress hover pop shadows while keeping visuals clean */
+@media (hover: none) {
+	.cardIdle:hover .avatar {
+		transform: none;
+		box-shadow: 0 0 0 1px var(--ks-border) inset;
+	}
+}

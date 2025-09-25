@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState } from 'react'
-
+import KidSelect from '../components/KidSelect'
 import {
 	DndContext,
 	DragOverlay,
@@ -383,15 +383,9 @@ export default function TimetableScheduler() {
 			<h2 className={styles.header}>Timetable</h2>
 
 			<div className={styles.kidRow}>
-				<label style={{ fontSize: 14, fontWeight: 500 }}>Kid:&nbsp;</label>
-				<select
-					value={selectedKidId || ''}
-					onChange={e => setSelectedKidId(e.target.value)}
-					className={styles.select}
-				>
-					<option value="" disabled>Select a kid</option>
-					{kids?.map(k => (<option key={k.id} value={k.id}>{k.name}</option>))}
-				</select>
+
+				<KidSelect value={selectedKidId} onChange={setSelectedKidId} kids={kids || []} />
+
 			</div>
 
 			{selectedKidId && timetableQuery.data ? (
