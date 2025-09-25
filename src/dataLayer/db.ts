@@ -32,9 +32,16 @@ function readDB(): DBShape {
 		const timetables = TimetableSchema.array().safeParse(parsed.timetables).success
 			? (parsed.timetables as Timetable[])
 			: []
-		const config = ConfigSchema.safeParse(parsed.config).success
-			? (parsed.config as AppConfig)
-			: DefaultAppConfig;
+		// ✅ validate config; fall back to defaults if missing/invalid
+		// normalize/migrate config
+		const cRaw = parsed.config ?? {}
+		const normalized: AppConfig = {
+			startHour: toHHMM(cRaw.startHour, '08:00'),
+			endHour: toHHMM(cRaw.endHour, '18:00'),
+			hiddenWeekdays: Array.isArray(cRaw.hiddenWeekdays) ? cRaw.hiddenWeekdays : [],
+		}
+		const config = ConfigSchema.safeParse(normalized).success ? normalized : DefaultAppConfig
+
 		return { matters, kids, timetables, config }
 	} catch {
 		return defaultDB()
@@ -47,5 +54,20 @@ function writeDB(updater: (prev: DBShape) => DBShape): DBShape {
 	localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
 	return next
 }
+
+function toHHMM(v: unknown, fallback: string): string {
+	if (typeof v === 'string') {
+		// accept only valid HH:mm
+		const ok = /^([01]\d|2[0-3]):[0-5]\d$/.test(v)
+		return ok ? v : fallback
+	}
+	if (typeof v === 'number' && Number.isFinite(v)) {
+		// interpret as hour, clamp to 0..23 and add ":00"
+		const h = Math.max(0, Math.min(23, Math.floor(v)))
+		return String(h).padStart(2, '0') + ':00'
+	}
+	return fallback
+}
+
 
 export { readDB, writeDB, defaultDB }

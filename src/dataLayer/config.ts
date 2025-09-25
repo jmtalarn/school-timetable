@@ -1,10 +1,11 @@
-import type { AppConfig } from '../types';
+import { DefaultAppConfig, type AppConfig } from '../types';
 import { ConfigSchema } from './schemas';
 import { readDB, writeDB } from './db';
 
 /** Convenience helpers for the config slice */
 export function getConfig(): AppConfig {
-	return readDB().config;
+	const curr = readDB()
+	return curr.config ?? DefaultAppConfig
 }
 
 export function setConfig(next: AppConfig): AppConfig {

@@ -1,73 +1,111 @@
 .container {
 	width: 100%;
-	max-width: 860px;
+	max-width: 820px;
 	margin: 0 auto;
 	padding: clamp(12px, 2vw, 24px);
 }
 
-.container > h2 {
+.title {
 	margin: 4px 0 16px;
 	font-size: 22px;
 	font-weight: 800;
 	text-align: left;
 }
 
-.card {
+.loading {
+	padding: 16px;
+}
+
+/* Card-like form */
+.form {
+	display: grid;
+	gap: 16px;
 	background: var(--card, #fff);
 	border: 1px solid var(--border, #e5e7eb);
 	border-radius: 14px;
-	padding: 14px 16px;
+	padding: 16px;
 	box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04),
 		0 6px 16px rgba(15, 23, 42, 0.05);
-	margin-bottom: 16px;
 }
 
-.h3 {
-	margin: 0 0 10px;
-	font-size: 16px;
-	font-weight: 700;
-}
-
-.timeForm {
+.section {
 	display: grid;
-	grid-template-columns: repeat(2, minmax(160px, 1fr)) auto;
 	gap: 10px;
-	align-items: end;
 }
 
-.field {
+.sectionTitle {
+	font-weight: 600;
+}
+
+/* Two equal columns for time inputs */
+.timeGrid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+}
+
+.fieldLabel {
 	display: grid;
 	gap: 6px;
 }
-.field > span {
-	font-size: 13px;
+
+.fieldCaption {
+	font-size: 12px;
 	color: var(--muted, #64748b);
 }
 
-.actions {
-	display: flex;
-	gap: 8px;
-	justify-content: flex-end;
+.hint {
+	margin: 4px 0 0;
+	font-size: 12px;
+	color: var(--muted, #64748b);
 }
 
-.weekGrid {
+/* Weekday chips grid */
+.weekdayGrid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	grid-template-columns: repeat(4, minmax(0, 1fr));
 	gap: 10px;
 }
 
-.day {
+.weekdayChip {
 	display: flex;
-	gap: 8px;
 	align-items: center;
+	gap: 8px;
 	padding: 8px 10px;
 	border: 1px solid var(--border, #e5e7eb);
 	border-radius: 10px;
 	background: #fff;
+	user-select: none;
+	cursor: pointer;
 }
 
-.hint {
-	margin-top: 8px;
-	font-size: 12px;
-	color: var(--muted, #64748b);
+.alert {
+	padding: 8px 10px;
+	border-radius: 10px;
+	background: rgba(239, 68, 68, 0.08);
+	border: 1px solid rgba(239, 68, 68, 0.35);
+	color: #b91c1c;
+	font-size: 14px;
+}
+
+.actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 700px) {
+	.weekdayGrid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 520px) {
+	.timeGrid {
+		grid-template-columns: 1fr; /* stack time inputs on very small screens */
+	}
+	.weekdayGrid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
 }

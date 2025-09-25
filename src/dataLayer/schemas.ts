@@ -44,13 +44,20 @@ export const ExportBundleSchema = z.object({
 });
 export type ExportBundle = z.infer<typeof ExportBundleSchema>;
 
+const toMin = (t: string) => {
+	const [h, m] = t.split(':').map(Number)
+	return h * 60 + m
+}
+
+const HHMM = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'Use HH:mm')
+
 export const ConfigSchema = z.object({
-	startHour: z.coerce.number().int().min(0).max(23),
-	endHour: z.coerce.number().int().min(1).max(24),
-	hiddenWeekdays: z.array(WeekdaySchema),
-}).refine(v => v.endHour > v.startHour, {
+	startHour: HHMM,
+	endHour: HHMM,
+	hiddenWeekdays: z.array(WeekdaySchema).default([]),
+}).refine(v => toMin(v.startHour) < toMin(v.endHour), {
+	message: 'startHour must be before endHour',
 	path: ['endHour'],
-	message: 'endHour must be greater than startHour',
 })
 
 export type ConfigSchemaT = z.infer<typeof ConfigSchema>
