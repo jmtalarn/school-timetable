@@ -37,9 +37,10 @@ export type ExportBundle = {
 };
 
 export interface AppConfig {
-    startHour: number;      // 0–23
-    endHour: number;        // 1–24, must be > startHour
-    /** days that should NOT be shown */
+    /** "HH:mm" (24h) e.g. "08:00" */
+    startHour: string
+    /** "HH:mm" (24h) e.g. "18:00" */
+    endHour: string
     hiddenWeekdays: Weekday[];
 }
 

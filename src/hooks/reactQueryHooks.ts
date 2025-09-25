@@ -6,6 +6,8 @@ import { createMatter, deleteMatter, listMatters, updateMatter } from '../dataLa
 import { qk } from '../dataLayer/queryKeys'
 import type { Kid, Matter, TimeBlock, Weekday } from '../dataLayer/schemas'
 import { addBlock, deleteBlock, getTimetable, setDayBlocks, updateBlock } from '../dataLayer/timetables'
+import { getConfig, setConfig } from '../dataLayer/config'
+import type { AppConfig } from '../types'
 
 
 // Matters
@@ -164,7 +166,7 @@ export function useDeleteBlock() {
 export function useConfig() {
 	return useQuery({
 		queryKey: qk.config(),
-		queryFn: () => getConfig(),
+		queryFn: getConfig,
 		staleTime: Infinity,
 	})
 }
@@ -192,7 +194,11 @@ export function useToggleWeekday() {
 		mutationFn: async (day: Weekday) => {
 			const current = getConfig()
 			const hidden = new Set(current.hiddenWeekdays)
-			hidden.has(day) ? hidden.delete(day) : hidden.add(day)
+			if (hidden.has(day)) {
+				hidden.delete(day)
+			} else {
+				hidden.add(day)
+			}
 			return setConfig({ ...current, hiddenWeekdays: [...hidden] })
 		},
 		onSuccess: (saved) => {

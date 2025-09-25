@@ -1,105 +1,118 @@
-import { useState } from 'react';
-import { AllWeekdays, DefaultAppConfig } from '../types';
-import type { Weekday } from '../types';
+// src/pages/SettingsPage.tsx
+import { useEffect, useMemo, useState } from 'react'
+import { useConfig, useUpdateConfig, useToggleWeekday } from '../hooks/reactQueryHooks'
+import { weekdays, type Weekday } from '../types'
+import styles from './SettingsPage.module.css'
 
-import styles from './SettingsPage.module.css';
-import { useConfig, useUpdateConfig, useToggleWeekday } from '../hooks/reactQueryHooks';
 
-const weekdayLabel: Record<Weekday, string> = {
-	mon: 'Monday', tue: 'Tuesday', wed: 'Wednesday', thu: 'Thursday',
-	fri: 'Friday', sat: 'Saturday', sun: 'Sunday'
-};
+const labels: Record<Weekday, string> = {
+	mon: 'Monday',
+	tue: 'Tuesday',
+	wed: 'Wednesday',
+	thu: 'Thursday',
+	fri: 'Friday',
+	sat: 'Saturday',
+	sun: 'Sunday',
+}
 
 export default function SettingsPage() {
-	const { data: cfg } = useConfig();
-	const update = useUpdateConfig();
-	const toggle = useToggleWeekday();
+	const { data: cfg, isLoading } = useConfig()
+	const updateConfig = useUpdateConfig()
+	const toggleWeekday = useToggleWeekday()
 
-	const [start, setStart] = useState(cfg?.startHour ?? DefaultAppConfig.startHour);
-	const [end, setEnd] = useState(cfg?.endHour ?? DefaultAppConfig.endHour);
+	const [startHour, setStartHour] = useState('08:00')
+	const [endHour, setEndHour] = useState('18:00')
 
-	// keep local fields synced when cache updates (e.g., first load)
-	// optional – safe to omit if you prefer uncontrolled inputs
-	if (cfg && (start !== cfg.startHour || end !== cfg.endHour)) {
-		// keep responsive: only update after initial load
-		// (simple heuristic)
-		setTimeout(() => {
-			setStart(cfg.startHour);
-			setEnd(cfg.endHour);
-		}, 0);
+	useEffect(() => {
+		if (cfg) {
+			setStartHour(cfg.startHour)
+			setEndHour(cfg.endHour)
+		}
+	}, [cfg])
+
+	const saving = updateConfig.isPending
+	const errorMsg = (updateConfig.error as Error | undefined)?.message
+
+	const isVisible = (day: Weekday) => (cfg ? !cfg.hiddenWeekdays.includes(day) : true)
+
+	const timesChanged = useMemo(() => {
+		if (!cfg) return false
+		return cfg.startHour !== startHour || cfg.endHour !== endHour
+	}, [cfg, startHour, endHour])
+
+	if (isLoading || !cfg) {
+		return <div className={styles.loading}>Loading settings…</div>
 	}
 
 	return (
 		<div className={styles.container}>
-			<h2>App Settings</h2>
+			<h2 className={styles.title}>Settings</h2>
 
-			<section className={styles.card}>
-				<h3 className={styles.h3}>Scheduler time window</h3>
-				<form
-					className={styles.timeForm}
-					onSubmit={(e) => {
-						e.preventDefault();
-						update.mutate({ startHour: start, endHour: end });
-					}}
-				>
-					<label className={styles.field}>
-						<span>Start</span>
-						<input
-							type="time"
-							value={start}
-							onChange={(e) => setStart(e.target.value)}
-							required
-						/>
-					</label>
-
-					<label className={styles.field}>
-						<span>End</span>
-						<input
-							type="time"
-							value={end}
-							onChange={(e) => setEnd(e.target.value)}
-							required
-						/>
-					</label>
-
+			<form
+				className={styles.form}
+				onSubmit={(e) => {
+					e.preventDefault()
+					updateConfig.mutate({ startHour, endHour })
+				}}
+			>
+				{/* Time range */}
+				<section className={styles.section}>
+					<div className={styles.sectionTitle}>Scheduler hours</div>
+					<div className={styles.timeGrid}>
+						<label className={styles.fieldLabel}>
+							<span className={styles.fieldCaption}>Start time</span>
+							<input
+								type="time"
+								value={startHour}
+								onChange={(e) => setStartHour(e.target.value)}
+							/>
+						</label>
+						<label className={styles.fieldLabel}>
+							<span className={styles.fieldCaption}>End time</span>
+							<input
+								type="time"
+								value={endHour}
+								onChange={(e) => setEndHour(e.target.value)}
+							/>
+						</label>
+					</div>
+					<p className={styles.hint}>
+						These define the visible vertical window in the scheduler (e.g. 08:00 → 18:00).
+						The app enforces that start &lt; end.
+					</p>
 					<div className={styles.actions}>
-						<button type="button"
-							className="btn"
-							onClick={() => {
-								setStart(DefaultAppConfig.startHour);
-								setEnd(DefaultAppConfig.endHour);
-							}}
-						>
-							Reset
-						</button>
-						<button type="submit" className="btn btnPrimary">
-							Save
+						<button type="submit" className="btn btnPrimary" disabled={!timesChanged || saving}>
+							{saving ? 'Saving…' : 'Save'}
 						</button>
 					</div>
-				</form>
-			</section>
+				</section>
 
-			<section className={styles.card}>
-				<h3 className={styles.h3}>Show / hide weekdays</h3>
-				<div className={styles.weekGrid}>
-					{AllWeekdays.map((d) => {
-						const hidden = cfg?.hiddenWeekdays?.includes(d) ?? false;
-						return (
-							<label key={d} className={styles.day}>
+				{/* Visible weekdays */}
+				<section className={styles.section}>
+					<div className={styles.sectionTitle}>Visible weekdays</div>
+					<div className={styles.weekdayGrid}>
+						{weekdays.map((d) => (
+							<label className={styles.weekdayChip} key={d} title={labels[d]}>
 								<input
 									type="checkbox"
-									checked={!hidden}
-									onChange={() => toggle.mutate(d)}
+									checked={isVisible(d)}
+									onChange={() => toggleWeekday.mutate(d)}
 								/>
-								<span>{weekdayLabel[d]}</span>
+								<span>{labels[d]}</span>
 							</label>
-						);
-					})}
-				</div>
-				<p className={styles.hint}>
-					Uncheck a day to hide it in the timetable.
-				</p>
-			</section>
+						))}
+					</div>
+					<p className={styles.hint}>Uncheck a day to hide it in the scheduler.</p>
+				</section>
+
+				{errorMsg && (
+					<div role="alert" className={styles.alert}>
+						{errorMsg}
+					</div>
+				)}
+
+
+			</form>
 		</div>
-	);
+	)
 }
