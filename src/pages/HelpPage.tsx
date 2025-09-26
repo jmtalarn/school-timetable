@@ -20,6 +20,7 @@ export default function HelpPage() {
 					<li><a href="#pwa">Install & Offline</a></li>
 					<li><a href="#faq">FAQ & Troubleshooting</a></li>
 					<li><a href="#privacy">Data & Privacy</a></li>
+					<li><a href="#contact">Contact</a></li>
 				</ol>
 			</nav>
 
