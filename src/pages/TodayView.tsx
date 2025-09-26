@@ -6,6 +6,7 @@ import { DefaultConfig, useSchedulerLogic } from '../scheduler/logic'
 import { toWeekday, weekdayLabels } from '../utils/week'
 import { isSameDate, isDateWithin } from '../utils/date'
 import { toMin } from '../utils/time'
+import ShareExportButton from '../components/ShareExportButton'
 
 /** Layout constants */
 const ROW_HEIGHT = 9 // px per 5 minutes
@@ -89,13 +90,11 @@ export default function TodayView() {
 
 	return (
 		<div className={styles.container}>
-			<h2 className={styles.pageTitle}>Today</h2>
-			<header className={styles.toolbar}>
-				{/* Kid picker */}
-				<div className={styles.kidRow}>
-					<KidSelect value={selectedKidId} onChange={setSelectedKidId} kids={kids || []} />
+			<header className={styles.header}>
+				<h2 className={styles.pageTitle}>Today</h2>
+				<div className={styles.shareWrapper}>
+					<ShareExportButton currentKidId={selectedKidId} />
 				</div>
-				{/* Date selector */}
 				<div className={styles.dateNav} role="group" aria-label="Pick date">
 					<button type="button" className={styles.navBtn} onClick={goPrevDay} aria-label="Previous day">◀</button>
 					<div className={styles.dateLabel}>{dateLabel}</div>
@@ -113,7 +112,10 @@ export default function TodayView() {
 			</header>
 
 
-
+			{/* Kid picker */}
+			<div className={styles.kidRow}>
+				<KidSelect value={selectedKidId} onChange={setSelectedKidId} kids={kids || []} />
+			</div>
 
 
 			{/* Day column */}

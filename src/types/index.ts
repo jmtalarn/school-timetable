@@ -13,7 +13,6 @@ export type Kid = {
 
 export type Weekday = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun';
 
-// export const weekdays: Weekday[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
 
 export type TimeBlock = {
     id: string;
@@ -29,12 +28,12 @@ export type Timetable = {
     };
 };
 
-export type ExportBundle = {
-    version: 1;
-    matters: Matter[];
-    kids: Kid[];
-    timetables: Timetable[];
-};
+// export type ExportBundle = {
+//     version: 1;
+//     matters: Matter[];
+//     kids: Kid[];
+//     timetables: Timetable[];
+// };
 
 export interface AppConfig {
     /** "HH:mm" (24h) e.g. "08:00" */

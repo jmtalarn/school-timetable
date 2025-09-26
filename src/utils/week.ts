@@ -17,10 +17,10 @@ export function reorderWeekdays(start: Weekday): Weekday[] {
  * Returns the 0..6 index of `date` within a week that starts on `start`.
  * Example: if start=1 (Mon), then Mon->0, Tue->1, ..., Sun->6
  */
-export function weekIndexFor(date: Date, start: Weekday): number {
-	const js = date.getDay(); // 0=Sun..6=Sat
-	return (js - AllWeekdays.indexOf(start) + 7) % 7;
-}
+// export function weekIndexFor(date: Date, start: Weekday): number {
+// 	const js = date.getDay(); // 0=Sun..6=Sat
+// 	return (js - AllWeekdays.indexOf(start) + 7) % 7;
+// }
 
 export const weekdayLabels: Record<Weekday, string> = {
 	mon: 'Monday',

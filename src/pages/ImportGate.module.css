@@ -1,0 +1,88 @@
+.page {
+	width: 100%;
+	max-width: 820px;
+	margin: 0 auto;
+	padding: clamp(12px, 2vw, 24px);
+}
+
+.card {
+	background: var(--card, #fff);
+	border: 1px solid var(--border, #e5e7eb);
+	border-radius: 16px;
+	padding: 16px;
+	box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04),
+		0 6px 16px rgba(15, 23, 42, 0.05);
+}
+
+.title {
+	margin: 4px 0 12px;
+	font-size: 22px;
+	font-weight: 800;
+	text-align: left;
+}
+
+.section {
+	margin: 12px 0 16px;
+}
+
+.sectionTitle {
+	font-size: 14px;
+	font-weight: 700;
+	margin-bottom: 8px;
+}
+
+.kidList {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	gap: 8px;
+}
+
+.kidItem {
+	border: 1px solid var(--border, #e5e7eb);
+	border-radius: 10px;
+	background: #fff;
+}
+
+.kidRow {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 10px;
+	cursor: pointer;
+}
+
+.kidName {
+	font-weight: 600;
+}
+
+.configRow {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 10px;
+	border: 1px solid var(--border, #e5e7eb);
+	border-radius: 10px;
+	background: #fff;
+}
+
+.configTitle {
+	font-weight: 600;
+}
+
+.rowEnd {
+	display: flex;
+	gap: 8px;
+	justify-content: flex-end;
+	margin-top: 8px;
+}
+
+.muted {
+	color: var(--muted, #64748b);
+	font-size: 12px;
+}
+
+.error {
+	color: #b91c1c;
+}

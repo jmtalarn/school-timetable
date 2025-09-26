@@ -37,15 +37,6 @@ export const TimetableSchema = z.object({
 });
 export type Timetable = z.infer<typeof TimetableSchema>;
 
-export const ExportBundleSchema = z.object({
-	version: z.literal(1),
-	matters: z.array(MatterSchema),
-	kids: z.array(KidSchema),
-	timetables: z.array(TimetableSchema),
-});
-export type ExportBundle = z.infer<typeof ExportBundleSchema>;
-
-
 const HHMM = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'Use HH:mm')
 
 export const ConfigSchema = z.object({
@@ -58,5 +49,13 @@ export const ConfigSchema = z.object({
 	path: ['endHour'],
 })
 
+// export type ConfigSchemaT = z.infer<typeof ConfigSchema>
 
-export type ConfigSchemaT = z.infer<typeof ConfigSchema>
+export const ExportBundleSchema = z.object({
+	version: z.literal(2),
+	kids: z.array(KidSchema),
+	matters: z.array(MatterSchema),
+	timetables: z.array(TimetableSchema),
+	config: ConfigSchema.optional(), // <- NEW
+})
+export type ExportBundle = z.infer<typeof ExportBundleSchema>;
