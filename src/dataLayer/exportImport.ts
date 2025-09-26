@@ -1,46 +1,46 @@
 // filepath: src/dataLayer/exportImport.ts
 import type { Kid, Matter, Timetable, AppConfig, Weekday } from '../types'
 import { readDB, writeDB } from './db'
-import { ConfigSchema, ExportBundleSchema, type ExportBundle } from './schemas'
+import { ExportBundleSchema, type ExportBundle } from './schemas'
 import { fromBase64, toBase64 } from './utils'
 
-// --- helpers ---
-function normalizeName(n: string) {
-	return n.trim().toLowerCase()
-}
-function compareHHMM(a: string, b: string) {
-	const [ah, am] = a.split(':').map(Number)
-	const [bh, bm] = b.split(':').map(Number)
-	return (ah * 60 + am) - (bh * 60 + bm)
-}
-function isBeforeISO(a?: string, b?: string) {
-	if (!a) return false
-	if (!b) return true
-	// ISO YYYY-MM-DD compares lexicographically
-	return a < b
-}
-function isAfterISO(a?: string, b?: string) {
-	if (!a) return false
-	if (!b) return true
-	return a > b
-}
-function uid(prefix = 'id'): string {
-	if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) {
-		return `${prefix}-${(crypto as any).randomUUID()}`
-	}
-	return `${prefix}-${Math.random().toString(36).slice(2, 10)}`
-}
+// // --- helpers ---
+// function normalizeName(n: string) {
+// 	return n.trim().toLowerCase()
+// }
+// function compareHHMM(a: string, b: string) {
+// 	const [ah, am] = a.split(':').map(Number)
+// 	const [bh, bm] = b.split(':').map(Number)
+// 	return (ah * 60 + am) - (bh * 60 + bm)
+// }
+// function isBeforeISO(a?: string, b?: string) {
+// 	if (!a) return false
+// 	if (!b) return true
+// 	// ISO YYYY-MM-DD compares lexicographically
+// 	return a < b
+// }
+// function isAfterISO(a?: string, b?: string) {
+// 	if (!a) return false
+// 	if (!b) return true
+// 	return a > b
+// }
+// function uid(prefix = 'id'): string {
+// 	if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) {
+// 		return `${prefix}-${(crypto as any).randomUUID()}`
+// 	}
+// 	return `${prefix}-${Math.random().toString(36).slice(2, 10)}`
+// }
 
 // compute set of matterIds used by a list of timetables
-function collectUsedMatterIds(timetables: Timetable[]): Set<string> {
-	const s = new Set<string>()
-	for (const tt of timetables) {
-		for (const dayBlocks of Object.values(tt.days)) {
-			for (const b of dayBlocks) s.add(b.matterId)
-		}
-	}
-	return s
-}
+// function collectUsedMatterIds(timetables: Timetable[]): Set<string> {
+// 	const s = new Set<string>()
+// 	for (const tt of timetables) {
+// 		for (const dayBlocks of Object.values(tt.days)) {
+// 			for (const b of dayBlocks) s.add(b.matterId)
+// 		}
+// 	}
+// 	return s
+// }
 
 // --- EXPORTS ---
 
@@ -393,16 +393,22 @@ export function importBundleWithOptions(
 	const remapTimetable = (tb: Timetable, targetKidId: string): Timetable => {
 		return {
 			kidId: targetKidId,
-			days: Object.fromEntries(
-				Object.entries(tb.days).map(([day, blocks]) => [
-					day as Weekday,
-					blocks.map(b => ({
-						...b,
-						// Map matterId to the resolved existing/new one
-						matterId: resolvedMatterId.get(b.matterId) ?? b.matterId,
-					})),
-				])
-			),
+			days: Object.entries(tb.days).reduce((acc, [day, blocks]) => {
+				if (day in acc) {
+					acc[day as Weekday] = blocks; // Assign the blocks to the respective day
+				}
+				return acc;
+			}, {} as Timetable['days']),
+			// days: Object.fromEntries(
+			// 	Object.entries(tb.days).map(([day, blocks]) => [
+			// 		day as Weekday,
+			// 		blocks.map(b => ({
+			// 			...b,
+			// 			// Map matterId to the resolved existing/new one
+			// 			matterId: resolvedMatterId.get(b.matterId) ?? b.matterId,
+			// 		})),
+			// 	])
+			// ),
 		}
 	}
 

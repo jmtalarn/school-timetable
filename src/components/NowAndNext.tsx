@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import Avatar from 'boring-avatars'
 import styles from './NowAndNext.module.css'
 
-import { useKids, useMatters, useTimetable, useConfig } from '../hooks/reactQueryHooks'
+import { useKids, useMatters, useTimetable } from '../hooks/reactQueryHooks'
 import type { Weekday } from '../types'
 import { toMin, toTime } from '../utils/time'
 
@@ -88,7 +88,7 @@ function KidNowNextCard({ kidId, kidName, todayISO, nowMins }: CardProps) {
 	return (
 		<div className={styles.card}>
 			<div className={styles.kidHeader}>
-				<Avatar name={kidName} size={40} variant="beam" />
+				<Avatar name={kidName} size={40} variant="beam" colors={['#2f2e30', '#e84b2c', '#e6d839', '#7cd164', '#2eb8ac']} />
 				<div className={styles.kidName}>{kidName}</div>
 			</div>
 
@@ -143,7 +143,7 @@ function KidNowNextCard({ kidId, kidName, todayISO, nowMins }: CardProps) {
 /** Public component: shows a responsive grid with one card per kid */
 export default function NowNext() {
 	const { data: kids = [] } = useKids()
-	const { data: cfg } = useConfig()
+	// const { data: cfg } = useConfig()
 
 	const now = new Date()
 	const nowMins = now.getHours() * 60 + now.getMinutes()

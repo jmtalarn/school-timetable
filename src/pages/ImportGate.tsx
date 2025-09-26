@@ -47,7 +47,7 @@ export default function ImportGate() {
 		if (!bundle) return
 		setStatus('loading')
 		try {
-			const report = importBundleWithOptions(bundle, {
+			importBundleWithOptions(bundle, {
 				kidIds: selectedKidIds,
 				applyConfig,
 			})

@@ -1,4 +1,3 @@
-import React from 'react'
 import { useA2HS } from '../hooks/useA2HS'
 import styles from './PromptInstall.module.css'
 

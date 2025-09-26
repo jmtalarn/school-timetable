@@ -163,7 +163,8 @@
 	height: 16px;
 }
 .deleteBtn:hover .deleteIcon {
-	color: salmon;
+	filter: brightness(0) saturate(100%) invert(27%) sepia(91%) saturate(747%)
+		hue-rotate(358deg) brightness(91%) contrast(85%);
 }
 .resizeHandle {
 	position: absolute;
