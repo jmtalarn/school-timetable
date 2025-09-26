@@ -25,7 +25,7 @@
 .btnRow {
 	display: flex;
 	gap: 8px;
-	justify-content: flex-start;
+	justify-content: center;
 	align-items: center;
 	margin-top: 4px;
 }
