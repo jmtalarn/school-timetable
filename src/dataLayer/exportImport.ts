@@ -1,5 +1,5 @@
 // filepath: src/dataLayer/exportImport.ts
-import type { Kid, Matter, Timetable, AppConfig, Weekday } from '../types'
+import { type Kid, type Matter, type Timetable, type AppConfig, type Weekday, type TimeBlock, AllWeekdays } from '../types'
 import { readDB, writeDB } from './db'
 import { ExportBundleSchema, type ExportBundle } from './schemas'
 import { fromBase64, toBase64 } from './utils'
@@ -391,28 +391,18 @@ export function importBundleWithOptions(
 
 	// Create a helper to remap a timetable using our resolved matter ids and target kid id
 	const remapTimetable = (tb: Timetable, targetKidId: string): Timetable => {
+		const remappedDays: Record<Weekday, TimeBlock[]> = AllWeekdays.reduce((acc, day) => {
+			acc[day] = tb.days[day].map(b => ({
+				...b,
+				matterId: resolvedMatterId.get(b.matterId) ?? b.matterId,
+			}))
+			return acc
+		}, {} as Record<Weekday, TimeBlock[]>)
+
 		return {
 			kidId: targetKidId,
-			days: Object.entries(tb.days).reduce((acc, [day, blocks]) => {
-				if (day in acc) {
-					acc[day as Weekday] = blocks.map(b => ({
-						...b,
-						// Map matterId to the resolved existing/new one
-						matterId: resolvedMatterId.get(b.matterId) ?? b.matterId,
-					})) // Assign the blocks to the respective day
-				}
-				return acc;
-			}, {} as Timetable['days']),
-			// days: Object.fromEntries(
-			// 	Object.entries(tb.days).map(([day, blocks]) => [
-			// 		day as Weekday,
-			// 		blocks.map(b => ({
-			// 			...b,
-			// 			// Map matterId to the resolved existing/new one
-			// 			matterId: resolvedMatterId.get(b.matterId) ?? b.matterId,
-			// 		})),
-			// 	])
-			// ),
+
+			days: remappedDays,
 		}
 	}
 
