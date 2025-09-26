@@ -7,6 +7,8 @@ import SettingsPage from './pages/SettingsPage'
 import Today from './pages/TodayView'
 import Week from './pages/WeekView'
 import Home from './pages/HomePage'
+import ImportGate from './pages/ImportGate'
+
 import logoSvg from '/school-timetable-logo.svg'
 import styles from './App.module.css'
 import PromptInstall from './components/PromptInstall'
@@ -81,6 +83,7 @@ function App() {
               <Route path="/kids" element={<KidsPage />} />
               <Route path="/timetable-scheduler" element={<TimetableScheduler />} />
               <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/import" element={<ImportGate />} />
             </Routes>
           </main>
 

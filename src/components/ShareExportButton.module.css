@@ -1,0 +1,174 @@
+/* src/components/ShareExportButton.module.css */
+
+.iconBtn {
+	border: 1px solid var(--border, #e5e7eb);
+	background: #fff;
+	border-radius: 10px;
+	padding: 6px 10px;
+	cursor: pointer;
+	transition: box-shadow 120ms ease, transform 80ms ease;
+}
+.iconBtn:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+/* ===== Modal ===== */
+.overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(15, 23, 42, 0.35);
+	z-index: 50;
+
+	/* padding gives breathing room on tiny screens */
+	padding: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	/* allow the overlay itself to scroll if the safe area is tiny */
+	overflow: auto;
+}
+
+.dialog {
+	width: min(560px, 100%);
+	/* keep the dialog within the viewport height */
+	max-height: calc(100dvh - 24px);
+	/* iOS fallback if dvh not supported */
+	max-height: calc(100vh - 24px);
+
+	background: #fff;
+	border: 1px solid var(--border, #e5e7eb);
+	border-radius: 12px;
+	box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
+
+	/* make header/body/actions layout reliable */
+	display: flex;
+	flex-direction: column;
+	overflow: hidden; /* prevent double scrollbars */
+}
+
+.header {
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	padding: 12px 16px;
+	border-bottom: 1px solid var(--border, #e5e7eb);
+
+	/* keep header visible while body scrolls */
+	position: sticky;
+	top: 0;
+	background: inherit;
+	z-index: 1;
+}
+
+.title {
+	margin: 0;
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.close {
+	border: 1px solid var(--border, #e5e7eb);
+	background: #fff;
+	border-radius: 8px;
+	padding: 4px 8px;
+	cursor: pointer;
+}
+
+.body {
+	/* the scrollable area */
+	flex: 1 1 auto;
+	min-height: 0; /* important for nested scrolling */
+	overflow: auto;
+	-webkit-overflow-scrolling: touch; /* smooth iOS scrolling */
+	padding: 12px 16px;
+}
+
+.muted {
+	margin: 0 0 8px;
+	font-size: 14px;
+	color: var(--muted, #64748b);
+}
+.mutedSmall {
+	margin: 8px 0 0;
+	font-size: 12px;
+	color: var(--muted, #64748b);
+}
+
+.kidList {
+	list-style: none;
+	padding: 0;
+	margin: 8px 0 0;
+	display: grid;
+	gap: 8px;
+}
+
+.kidRow {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	border: 1px solid var(--border, #e5e7eb);
+	border-radius: 10px;
+	padding: 8px 10px;
+	background: #fff;
+	cursor: pointer;
+}
+.kidRow input {
+	margin: 0;
+}
+.kidName {
+	font-weight: 600;
+}
+
+/* Actions pinned at the bottom of the scrollable body */
+.actions {
+	position: sticky;
+	bottom: 0;
+	padding-top: 10px;
+	margin-top: 12px;
+
+	/* subtle fade so the buttons stand out when scrolled */
+	background: linear-gradient(
+			to top,
+			rgba(255, 255, 255, 0.98),
+			rgba(255, 255, 255, 0.92)
+		),
+		#fff;
+
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	border-top: 1px solid var(--border, #e5e7eb);
+}
+
+/* Buttons */
+.btn {
+	border: 1px solid var(--border, #e5e7eb);
+	border-radius: 10px;
+	padding: 8px 12px;
+	background: #fff;
+	cursor: pointer;
+}
+.btnPrimary {
+	background: linear-gradient(
+		180deg,
+		var(--accent, #10b981),
+		var(--accent-2, #34d399)
+	);
+	color: #fff;
+	border-color: rgba(16, 185, 129, 0.55);
+	box-shadow: 0 6px 18px rgba(16, 185, 129, 0.25);
+}
+.btn[disabled] {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.shareIcon {
+	width: 32px;
+	height: 32px;
+	display: block;
+}

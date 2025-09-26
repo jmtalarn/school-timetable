@@ -11,16 +11,18 @@
 	font-size: 22px;
 	font-weight: 800;
 	text-align: left;
+	display: flex;
+	gap: 1rem;
 }
-.toolbar {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
+.header {
+	display: flex;
 	align-items: center;
-	gap: 8px;
+	justify-content: space-between;
 	margin-bottom: 10px;
-	/* display: flex;
-	align-items: center;
-	justify-content: space-between; */
+	gap: 12px;
+}
+.header .shareWrapper {
+	margin-right: auto;
 }
 /* ===== Date navigation ===== */
 .dateNav {

@@ -7,6 +7,7 @@ import { type Weekday } from '../types'
 import { JS_TO_W } from '../utils/week'
 import { startOfWeek, addDays, weekdayFromDate, fmtISO, fmtPretty } from '../utils/date'
 import { minutesBetween, toMin } from '../utils/time'
+import ShareExportButton from '../components/ShareExportButton'
 
 /** Visual row height (matches scheduler) */
 const ROW_HEIGHT = 9 // px per 5 minutes
@@ -96,12 +97,11 @@ export default function WeekView() {
 
 	return (
 		<div className={styles.container}>
-			<h2 className={styles.pageTitle}>Weekly</h2>
-			<header className={styles.toolbar}>
-				<div className={styles.kidSlot}>
-					<KidSelect value={selectedKidId} onChange={setSelectedKidId} kids={kids || []} />
+			<header className={styles.header}>
+				<h2 className={styles.pageTitle}>Weekly</h2>
+				<div className={styles.shareWrapper}>
+					<ShareExportButton currentKidId={selectedKidId} />
 				</div>
-
 				<div className={styles.dateNav}>
 					<button
 						type="button"
@@ -131,8 +131,12 @@ export default function WeekView() {
 						Today
 					</button>
 				</div>
-
 			</header>
+
+			<div className={styles.kidSlot}>
+				<KidSelect value={selectedKidId} onChange={setSelectedKidId} kids={kids || []} />
+			</div>
+
 
 			{!selectedKidId || !timetableQuery.data ? (
 				<p className={styles.hint}>Pick a kid to view the weekly timetable.</p>
