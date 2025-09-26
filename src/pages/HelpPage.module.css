@@ -1,0 +1,88 @@
+.container {
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto;
+	padding: clamp(12px, 2vw, 24px);
+}
+
+.title {
+	margin: 4px 0 16px;
+	font-size: 28px;
+	font-weight: 800;
+	letter-spacing: 0.2px;
+	text-align: left;
+}
+
+/* Cards & layout */
+.card {
+	background: var(--card, #fff);
+	border: 1px solid var(--border, #e5e7eb);
+	border-radius: 16px;
+	padding: 16px;
+	box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04),
+		0 6px 16px rgba(15, 23, 42, 0.05);
+}
+
+.cardGrid {
+	display: grid;
+	gap: 12px;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.section {
+	margin-top: 18px;
+}
+
+.toc {
+	margin: 0;
+	padding-left: 18px;
+	display: grid;
+	gap: 4px;
+}
+
+.list {
+	margin: 0;
+	padding-left: 18px;
+	display: grid;
+	gap: 6px;
+}
+
+.note {
+	margin-top: 10px;
+	font-size: 13px;
+	color: var(--muted, #64748b);
+}
+
+/* FAQ */
+.faq {
+	margin: 0;
+}
+.faq dt {
+	font-weight: 700;
+	margin-top: 10px;
+}
+.faq dd {
+	margin: 4px 0 0 0;
+	color: var(--muted, #64748b);
+}
+
+/* Headings */
+h2 {
+	margin: 0 0 10px;
+	font-size: 20px;
+	font-weight: 800;
+}
+h3 {
+	margin: 12px 0 6px;
+	font-size: 16px;
+	font-weight: 700;
+}
+
+/* Links in TOC and content */
+a {
+	color: var(--accent, #10b981);
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}

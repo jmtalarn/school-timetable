@@ -22,10 +22,14 @@
 
 .grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+	grid-template-columns: repeat(auto-fit, 150px);
 	gap: 12px;
 }
 
+.groupLinks {
+	margin-top: 24px;
+	margin-bottom: 32px;
+}
 .tile {
 	display: grid;
 	place-items: center;
