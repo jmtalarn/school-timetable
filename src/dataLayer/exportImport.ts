@@ -395,7 +395,11 @@ export function importBundleWithOptions(
 			kidId: targetKidId,
 			days: Object.entries(tb.days).reduce((acc, [day, blocks]) => {
 				if (day in acc) {
-					acc[day as Weekday] = blocks; // Assign the blocks to the respective day
+					acc[day as Weekday] = blocks.map(b => ({
+						...b,
+						// Map matterId to the resolved existing/new one
+						matterId: resolvedMatterId.get(b.matterId) ?? b.matterId,
+					})) // Assign the blocks to the respective day
 				}
 				return acc;
 			}, {} as Timetable['days']),
