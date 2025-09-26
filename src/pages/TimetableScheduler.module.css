@@ -158,7 +158,13 @@
 	padding: 0;
 	line-height: 1;
 }
-
+.deleteIcon {
+	width: 16px;
+	height: 16px;
+}
+.deleteBtn:hover .deleteIcon {
+	color: salmon;
+}
 .resizeHandle {
 	position: absolute;
 	left: 0;

@@ -7,8 +7,9 @@ import SettingsPage from './pages/SettingsPage'
 import Today from './pages/TodayView'
 import Week from './pages/WeekView'
 import Home from './pages/HomePage'
+import HelpPage from './pages/HelpPage'
 import ImportGate from './pages/ImportGate'
-
+import ScrollManager from './components/ScrollManager'
 import logoSvg from '/school-timetable-logo.svg'
 import styles from './App.module.css'
 import PromptInstall from './components/PromptInstall'
@@ -17,21 +18,14 @@ import PromptInstall from './components/PromptInstall'
 const queryClient = new QueryClient()
 
 
-function About() {
-  return (
-    <div className={styles.main}>
-      <div className={styles.card}>
-        <h2>About</h2>
-        <p className={styles.heroSub}>Built with React, Vite, and TanStack Query.</p>
-      </div>
-    </div>
-  )
-}
+
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <ScrollManager />
+
         <div className={styles.app}>
           {/* Header / App bar */}
           <header className={styles.header}>
@@ -51,20 +45,21 @@ function App() {
                 <NavLink to="/week" end className={({ isActive }) => `${styles.link} ${isActive ? styles.linkActive : ''}`}>
                   Weekly
                 </NavLink>
-                <NavLink to="/about" className={({ isActive }) => `${styles.link} ${isActive ? styles.linkActive : ''}`}>
-                  About
+
+                <NavLink to="/kids" className={({ isActive }) => `${styles.link} ${isActive ? styles.linkActive : ''}`}>
+                  Kids
                 </NavLink>
                 <NavLink to="/matters" className={({ isActive }) => `${styles.link} ${isActive ? styles.linkActive : ''}`}>
                   Matters
-                </NavLink>
-                <NavLink to="/kids" className={({ isActive }) => `${styles.link} ${isActive ? styles.linkActive : ''}`}>
-                  Kids
                 </NavLink>
                 <NavLink to="/timetable-scheduler" className={({ isActive }) => `${styles.link} ${isActive ? styles.linkActive : ''}`}>
                   Scheduler
                 </NavLink>
                 <NavLink to="/settings" className={({ isActive }) => `${styles.link} ${isActive ? styles.linkActive : ''}`}>
                   Settings
+                </NavLink>
+                <NavLink to="/help" className={({ isActive }) => `${styles.link} ${isActive ? styles.linkActive : ''}`}>
+                  Help
                 </NavLink>
               </nav>
 
@@ -78,19 +73,19 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/today" element={<Today />} />
               <Route path="/week" element={<Week />} />
-              <Route path="/about" element={<About />} />
               <Route path="/matters" element={<MattersPage />} />
               <Route path="/kids" element={<KidsPage />} />
               <Route path="/timetable-scheduler" element={<TimetableScheduler />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="/import" element={<ImportGate />} />
+              <Route path="/help" element={<HelpPage />} />
             </Routes>
           </main>
 
           {/* Footer pinned to bottom with minimal height */}
           <footer className={styles.footer}>
             <PromptInstall />
-            <small>© {new Date().getFullYear()} School Timetable — PWA</small>
+            <small>© <a href="https://www.jmtalarn.com">jmtalarn</a> {new Date().getFullYear()} School Timetable — PWA, jmtalarn</small>
           </footer>
         </div>
       </BrowserRouter>

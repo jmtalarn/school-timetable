@@ -21,7 +21,7 @@ import { useDraggable } from '@dnd-kit/core'
 import { type Weekday } from '../types'
 import { reorderWeekdays, weekdayLabels } from '../utils/week'
 import { toMin, clamp, snap, toTime, minutesBetween } from '../utils/time'
-
+import deleteIcon from '../assets/delete.svg'
 
 
 const ROW_HEIGHT = 9 // px per 5 minutes
@@ -93,7 +93,7 @@ function Block({
 						onClick={(e) => { e.stopPropagation(); if (onDelete) onDelete() }}
 						className={styles.deleteBtn}
 					>
-						🗑️
+						<img src={deleteIcon} alt="Delete" className={styles.deleteIcon} />
 					</button>
 				</div>
 			</div>
