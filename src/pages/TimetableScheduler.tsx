@@ -71,9 +71,9 @@ function MatterPicker({
 
 // ---- Draggable block + resize handles ----
 function Block({
-	id, label, color, top, height, start, end, isDragging, onDelete,
+	id, label, color, top, height, isDragging, onDelete,
 }: {
-	id: string; label: string; color?: string; start: string; end: string; top: number; height: number; isDragging?: boolean; onDelete?: () => void
+	id: string; label: string; color?: string; start?: string; end?: string; top: number; height: number; isDragging?: boolean; onDelete?: () => void
 }) {
 	return (
 		<div
@@ -300,7 +300,7 @@ export default function TimetableScheduler() {
 
 	// Create flow
 	const [pickerOpen, setPickerOpen] = useState(false)
-	const openPickerAt = (loc: { day: Weekday; row: number }) => { setCreateAt(loc); setPickerOpen(true) }
+	// const openPickerAt = (loc: { day: Weekday; row: number }) => { setCreateAt(loc); setPickerOpen(true) }
 
 	const confirmCreate = async (matterId: string) => {
 		if (!selectedKidId || !createAt) return

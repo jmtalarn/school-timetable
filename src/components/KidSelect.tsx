@@ -1,4 +1,4 @@
-import React, { useId, useMemo, useRef } from 'react'
+import React, { useId, useRef } from 'react'
 import Avatar from 'boring-avatars'
 import styles from './KidSelect.module.css'
 
@@ -27,10 +27,10 @@ export default function KidSelect({
 	const groupId = useId()
 	const btnRefs = useRef<Array<HTMLButtonElement | null>>([])
 
-	const selectedIndex = useMemo(
-		() => kids.findIndex(k => k.id === value),
-		[kids, value]
-	)
+	// const selectedIndex = useMemo(
+	// 	() => kids.findIndex(k => k.id === value),
+	// 	[kids, value]
+	// )
 
 	const onKeyDown = (e: React.KeyboardEvent, idx: number) => {
 		if (!kids.length) return
@@ -103,7 +103,7 @@ export default function KidSelect({
 								].join(' ')}
 								onClick={() => onChange(k.id)}
 								onKeyDown={e => onKeyDown(e, i)}
-								ref={el => (btnRefs.current[i] = el)}
+								ref={el => { (btnRefs.current[i] = el) }}
 							>
 								<span className={styles.avatar} aria-hidden="true">
 									<Avatar

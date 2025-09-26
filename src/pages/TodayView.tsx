@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import styles from './TodayView.module.css'
 import KidSelect from '../components/KidSelect'
 import { useKids, useMatters, useTimetable, useConfig } from '../hooks/reactQueryHooks'
