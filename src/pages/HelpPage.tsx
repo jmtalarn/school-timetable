@@ -232,6 +232,57 @@ export default function HelpPage() {
 					</p>
 				</div>
 			</section>
+
+			<section id="contact" className={styles.section}>
+				<h2>Contact</h2>
+				<div className={styles.card}>
+					<p className={styles.heroSub}>
+						Questions, ideas, or bug reports? Reach out anytime:
+					</p>
+
+					<ul className={styles.contactList}>
+						<li>
+							<a
+								href="mailto:jmtalarn+timetablepwa@gmail.com"
+								aria-label="Email"
+							>
+								📧 Email — jmtalarn+timetablepwa@gmail.com
+							</a>
+						</li>
+						<li>
+							<a
+								href="https://x.com/jmtalarn"
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="Twitter profile @jmtalarn"
+							>
+								𝕏 / Twitter — @jmtalarn
+							</a>
+						</li>
+						<li>
+							<a
+								href="https://bsky.app/profile/jmtalarn.com"
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="Bluesky profile @jmtalarn.com"
+							>
+								Bluesky — @jmtalarn.com
+							</a>
+						</li>
+						<li>
+							<a
+								href="https://www.linkedin.com/in/jmtalarn"
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="LinkedIn profile"
+							>
+								LinkedIn — /in/jmtalarn
+							</a>
+						</li>
+					</ul>
+				</div>
+			</section>
+
 		</div>
 	)
 }
