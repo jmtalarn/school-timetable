@@ -2,7 +2,6 @@ import { useMatters, useCreateMatter, useUpdateMatter, useDeleteMatter } from '.
 import { useEffect, useState } from 'react'
 import styles from './MattersPage.module.css'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { Form } from 'react-router-dom'
 
 export default function MattersPage() {
 	const { data: matters, isLoading } = useMatters()
