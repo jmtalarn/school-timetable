@@ -5,6 +5,7 @@ import styles from './NowAndNext.module.css'
 import { useKids, useMatters, useTimetable } from '../hooks/reactQueryHooks'
 import type { Weekday } from '../types'
 import { toMin, toTime } from '../utils/time'
+import { FormattedMessage } from 'react-intl'
 
 /** Map JS Date.getDay() -> your Weekday keys */
 const jsToWeekday: Weekday[] = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
@@ -94,7 +95,7 @@ function KidNowNextCard({ kidId, kidName, todayISO, nowMins }: CardProps) {
 
 			{/* NOW */}
 			<div className={styles.row}>
-				<div className={styles.colTitle}>Now</div>
+				<div className={styles.colTitle}><FormattedMessage defaultMessage="Now" /></div>
 				{current && currentMatter ? (
 					<div className={styles.nowBox}>
 						<div className={styles.pill} style={{ borderColor: currentMatter.color || '#e5e7eb' }}>
@@ -118,7 +119,7 @@ function KidNowNextCard({ kidId, kidName, todayISO, nowMins }: CardProps) {
 
 			{/* NEXT */}
 			<div className={styles.row}>
-				<div className={styles.colTitle}>Next</div>
+				<div className={styles.colTitle}><FormattedMessage defaultMessage="Next" /></div>
 				{next && nextMatter ? (
 					<div className={styles.nextBox}>
 						<div className={styles.pill} style={{ borderColor: nextMatter.color || '#e5e7eb' }}>
@@ -133,7 +134,7 @@ function KidNowNextCard({ kidId, kidName, todayISO, nowMins }: CardProps) {
 						</div>
 					</div>
 				) : (
-					<div className={styles.empty}>No more today</div>
+					<div className={styles.empty}><FormattedMessage defaultMessage="No more today" /></div>
 				)}
 			</div>
 		</div>

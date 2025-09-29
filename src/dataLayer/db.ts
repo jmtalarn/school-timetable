@@ -39,7 +39,8 @@ function readDB(): DBShape {
 			startHour: toHHMM(cRaw.startHour, '08:00'),
 			endHour: toHHMM(cRaw.endHour, '18:00'),
 			hiddenWeekdays: Array.isArray(cRaw.hiddenWeekdays) ? cRaw.hiddenWeekdays : [],
-			startOfWeek: cRaw.startOfWeek
+			startOfWeek: cRaw.startOfWeek,
+			language: cRaw.language
 		}
 		const config = ConfigSchema.safeParse(normalized).success ? normalized : DefaultAppConfig
 

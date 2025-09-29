@@ -3,6 +3,7 @@ import { parseBundleFromURL, importBundleWithOptions } from '../dataLayer/export
 import type { ExportBundle } from '../dataLayer/schemas'
 import styles from './ImportGate.module.css'
 import { useNavigate } from 'react-router-dom'
+import { FormattedMessage } from 'react-intl'
 
 export default function ImportGate() {
 	const [status, setStatus] = useState<'loading' | 'ready' | 'error' | 'done'>('loading')
@@ -61,16 +62,16 @@ export default function ImportGate() {
 	}
 
 	if (status === 'loading') {
-		return <div className={styles.page}><div className={styles.card}>Reading link…</div></div>
+		return <div className={styles.page}><div className={styles.card}><FormattedMessage defaultMessage="Reading link…" /></div></div>
 	}
 
 	if (status === 'error') {
 		return (
 			<div className={styles.page}>
 				<div className={styles.card}>
-					<h2 className={styles.title}>Import data</h2>
+					<h2 className={styles.title}><FormattedMessage defaultMessage="Import data" /></h2>
 					<p className={styles.error}>{error}</p>
-					<div className={styles.rowEnd}><button className="btn" onClick={() => navigate('/')}>Back</button></div>
+					<div className={styles.rowEnd}><button className="btn" onClick={() => navigate('/')}><FormattedMessage defaultMessage="Back" /></button></div>
 				</div>
 			</div>
 		)
@@ -79,10 +80,10 @@ export default function ImportGate() {
 	return (
 		<div className={styles.page}>
 			<div className={styles.card}>
-				<h2 className={styles.title}>Import data</h2>
+				<h2 className={styles.title}><FormattedMessage defaultMessage="Import data" /></h2>
 
 				<section className={styles.section}>
-					<h3 className={styles.sectionTitle}>Kids in this link</h3>
+					<h3 className={styles.sectionTitle}><FormattedMessage defaultMessage="Kids in this link" /></h3>
 					<ul className={styles.kidList}>
 						{bundle!.kids.map(k => {
 							const checked = selectedKidIds.includes(k.id)
@@ -101,7 +102,7 @@ export default function ImportGate() {
 						})}
 					</ul>
 					<p className={styles.muted}>
-						Timetables for selected kids will <strong>replace</strong> existing ones with the same name; new kids will be added.
+						<FormattedMessage defaultMessage="Timetables for selected kids will <strong>replace</strong> existing ones with the same name; new kids will be added." />
 					</p>
 				</section>
 
@@ -113,18 +114,19 @@ export default function ImportGate() {
 							onChange={(e) => setApplyConfig(e.target.checked)}
 						/>
 						<div>
-							<div className={styles.configTitle}>Apply imported scheduler hours</div>
+							<div className={styles.configTitle}><FormattedMessage defaultMessage="Apply imported scheduler hours" /></div>
 							<div className={styles.muted}>
-								{incomingHoursText ? `Incoming: ${incomingHoursText} (will only widen your current range)` : 'No hours provided in link'}
+								{incomingHoursText ?
+									<FormattedMessage defaultMessage={`Incoming: {incomingHoursText} (will only widen your current range)`} values={{ incomingHoursText }} /> : <FormattedMessage defaultMessage='No hours provided in link' />}
 							</div>
 						</div>
 					</label>
 				</section>
 
 				<div className={styles.rowEnd}>
-					<button className="btn" onClick={() => navigate('/')}>Cancel</button>
+					<button className="btn" onClick={() => navigate('/')}><FormattedMessage defaultMessage="Cancel" /></button>
 					<button className="btn btnPrimary" disabled={!canImport} onClick={doImport}>
-						Import
+						<FormattedMessage defaultMessage="Import" />
 					</button>
 				</div>
 			</div>

@@ -42,6 +42,7 @@ export interface AppConfig {
     endHour: string
     hiddenWeekdays: Weekday[];
     startOfWeek: Weekday;
+    language: string; // BCP 47 language tag, e.g. "en", "es", "ca" ...
 }
 
 export const AllWeekdays: Weekday[] = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
@@ -51,4 +52,5 @@ export const DefaultAppConfig: AppConfig = {
     endHour: "18:00",
     hiddenWeekdays: ['sat', 'sun'],
     startOfWeek: 'mon',
+    language: 'en'
 };

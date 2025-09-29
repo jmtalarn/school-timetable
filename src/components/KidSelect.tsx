@@ -1,6 +1,7 @@
 import React, { useId, useRef } from 'react'
 import Avatar from 'boring-avatars'
 import styles from './KidSelect.module.css'
+import { FormattedMessage } from 'react-intl'
 
 export type KidOption = { id: string; name: string }
 
@@ -79,7 +80,7 @@ export default function KidSelect({
 			</div>
 
 			{kids.length === 0 ? (
-				<div className={styles.empty}>No kids yet.</div>
+				<div className={styles.empty}><FormattedMessage defaultMessage="No kids yet." /></div>
 			) : (
 				<div
 					className={styles.grid}

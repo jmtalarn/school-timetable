@@ -69,50 +69,6 @@
 	letter-spacing: 0.2px;
 }
 
-/* ===== Nav ===== */
-.nav {
-	min-width: 0; /* allow shrinking inside grid */
-	display: flex;
-	gap: 8px;
-	align-items: center;
-	justify-content: flex-start; /* start on small screens for scroll UX */
-	overflow-x: auto; /* horizontal scroll when needed */
-	overflow-y: hidden;
-	-webkit-overflow-scrolling: touch;
-	scrollbar-width: none; /* Firefox hide */
-}
-.nav::-webkit-scrollbar {
-	display: none;
-} /* WebKit hide */
-
-.link {
-	padding: 8px 10px;
-	border-radius: 10px;
-	color: var(--muted);
-	text-decoration: none;
-	transition: color 120ms ease, background-color 120ms ease,
-		border-color 120ms ease, transform 80ms ease, box-shadow 120ms ease;
-	white-space: nowrap; /* keep as chips */
-	flex: 0 0 auto; /* prevent growing and pushing layout */
-}
-.link:hover {
-	color: var(--text);
-	background: rgba(16, 185, 129, 0.08);
-	border-color: var(--border);
-	transform: translateY(-1px);
-}
-.linkActive {
-	color: var(--text);
-	background: rgba(16, 185, 129, 0.14);
-	border-color: rgba(16, 185, 129, 0.35);
-}
-
-.actions {
-	display: flex;
-	gap: 8px;
-	justify-content: flex-end;
-}
-
 /* ===== Routed Content Area ===== */
 .mainShell {
 	flex: 1 1 auto; /* fill space between header & footer */

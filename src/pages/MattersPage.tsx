@@ -1,6 +1,8 @@
 import { useMatters, useCreateMatter, useUpdateMatter, useDeleteMatter } from '../hooks/reactQueryHooks'
 import { useEffect, useState } from 'react'
 import styles from './MattersPage.module.css'
+import { FormattedMessage, useIntl } from 'react-intl'
+import { Form } from 'react-router-dom'
 
 export default function MattersPage() {
 	const { data: matters, isLoading } = useMatters()
@@ -32,12 +34,12 @@ export default function MattersPage() {
 	const [editColor, setEditColor] = useState('')
 	const [editStartDate, setEditStartDate] = useState('')
 	const [editEndDate, setEditEndDate] = useState('')
-
+	const intl = useIntl();
 	if (isLoading) return <div>Loading...</div>
 
 	return (
 		<div className={styles.container}>
-			<h2>Matters</h2>
+			<h2><FormattedMessage defaultMessage="Matters" /></h2>
 
 			<form
 				className={styles.addForm}
@@ -61,7 +63,7 @@ export default function MattersPage() {
 					<input
 						value={newName}
 						onChange={e => setNewName(e.target.value)}
-						placeholder="Matter name"
+						placeholder={intl.formatMessage({ defaultMessage: "Matter name" })}
 						required
 					/>
 					<input
@@ -78,19 +80,21 @@ export default function MattersPage() {
 						type="date"
 						value={newStartDate}
 						onChange={e => setNewStartDate(e.target.value)}
-						placeholder="Start date"
+						placeholder={intl.formatMessage({ defaultMessage: "Start date" })}
 					/>
 					<input
 						type="date"
 						value={newEndDate}
 						onChange={e => setNewEndDate(e.target.value)}
-						placeholder="End date"
+						placeholder={intl.formatMessage({
+							defaultMessage: "End date"
+						})}
 					/>
 				</div>
 
 				{/* Row 3: actions (right-aligned) */}
 				<div className={styles.rowActions}>
-					<button type="submit">Add Matter</button>
+					<button type="submit"><FormattedMessage defaultMessage="Add Matter" /></button>
 				</div>
 			</form>
 
@@ -121,13 +125,17 @@ export default function MattersPage() {
 										value={editName}
 										onChange={e => setEditName(e.target.value)}
 										required
-										placeholder="Matter name"
+										placeholder={intl.formatMessage({
+											defaultMessage: "Matter name"
+										})}
 									/>
 									<input
 										value={editColor}
 										type="color"
 										onChange={e => setEditColor(e.target.value)}
-										aria-label="Matter color"
+										aria-label={intl.formatMessage({
+											defaultMessage: "Matter color"
+										})}
 									/>
 								</div>
 
@@ -137,13 +145,17 @@ export default function MattersPage() {
 										type="date"
 										value={editStartDate}
 										onChange={e => setEditStartDate(e.target.value)}
-										placeholder="Start date"
+										placeholder={intl.formatMessage({
+											defaultMessage: "Start date"
+										})}
 									/>
 									<input
 										type="date"
 										value={editEndDate}
 										onChange={e => setEditEndDate(e.target.value)}
-										placeholder="End date"
+										placeholder={intl.formatMessage({
+											defaultMessage: "End date"
+										})}
 									/>
 								</div>
 
@@ -151,7 +163,7 @@ export default function MattersPage() {
 								<div className={styles.rowActions}>
 									<button type="submit">Save</button>
 									<button type="button" onClick={() => setEditId(null)}>
-										Cancel
+										<FormattedMessage defaultMessage="Cancel" />
 									</button>
 								</div>
 							</form>
@@ -164,8 +176,8 @@ export default function MattersPage() {
 									</span>
 								)}
 								<div className={styles.dates}>
-									{m.startDate && <span>Start date: {m.startDate}</span>}
-									{m.endDate && <span>End date: {m.endDate}</span>}
+									{m.startDate && <span>{intl.formatMessage({ defaultMessage: `Start date: {startDate}` }, { startDate: m.startDate })}</span>}
+									{m.endDate && <span>{intl.formatMessage({ defaultMessage: `End date: {endDate}` }, { endDate: m.endDate })}</span>}
 								</div>
 								<button
 									onClick={() => {
@@ -176,13 +188,13 @@ export default function MattersPage() {
 										setEditEndDate(m.endDate || '')
 									}}
 								>
-									Edit
+									<FormattedMessage defaultMessage="Edit" />
 								</button>
 								<button
 									className={styles.deleteButton}
 									onClick={() => deleteMatter.mutate(m.id)}
 								>
-									Delete
+									<FormattedMessage defaultMessage="Delete" />
 								</button>
 							</>
 						)}

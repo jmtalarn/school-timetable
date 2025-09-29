@@ -1,0 +1,428 @@
+{
+  "/IsDRs": [
+    {
+      "type": 0,
+      "value": "Dia de la setmana"
+    }
+  ],
+  "/clOBU": [
+    {
+      "type": 0,
+      "value": "Setmanal"
+    }
+  ],
+  "/zFP1/": [
+    {
+      "type": 0,
+      "value": "Hora d'inici"
+    }
+  ],
+  "0dKC7W": [
+    {
+      "type": 0,
+      "value": "Compartint…"
+    }
+  ],
+  "3XCLrO": [
+    {
+      "type": 0,
+      "value": "Dia següent"
+    }
+  ],
+  "47FYwb": [
+    {
+      "type": 0,
+      "value": "Cancel·lar"
+    }
+  ],
+  "5jeq8P": [
+    {
+      "type": 0,
+      "value": "Desconegut"
+    }
+  ],
+  "64RmVd": [
+    {
+      "type": 0,
+      "value": "Planificador"
+    }
+  ],
+  "6kvuR8": [
+    {
+      "type": 0,
+      "value": "Afegir matèria"
+    }
+  ],
+  "7WNjYc": [
+    {
+      "type": 0,
+      "value": "Tria un infant per veure l'horari setmanal."
+    }
+  ],
+  "9+Ddtu": [
+    {
+      "type": 0,
+      "value": "Següent"
+    }
+  ],
+  "98J3lS": [
+    {
+      "type": 0,
+      "value": "Horari escolar"
+    }
+  ],
+  "9Mt7ON": [
+    {
+      "type": 0,
+      "value": "Matèries"
+    }
+  ],
+  "9XUYQt": [
+    {
+      "type": 0,
+      "value": "Importar"
+    }
+  ],
+  "D3idYv": [
+    {
+      "type": 0,
+      "value": "Configuració"
+    }
+  ],
+  "GAjQnO": [
+    {
+      "type": 0,
+      "value": "Setmana anterior"
+    }
+  ],
+  "GrrpMl": [
+    {
+      "type": 0,
+      "value": "Entrant: "
+    },
+    {
+      "type": 1,
+      "value": "incomingHoursText"
+    },
+    {
+      "type": 0,
+      "value": " (només eixamplarà el rang actual)"
+    }
+  ],
+  "Humfno": [
+    {
+      "type": 0,
+      "value": "Data de final"
+    }
+  ],
+  "K3r6DQ": [
+    {
+      "type": 0,
+      "value": "Suprimeix"
+    }
+  ],
+  "MKC+S9": [
+    {
+      "type": 0,
+      "value": "Instal·lar l'aplicació"
+    }
+  ],
+  "MZZXn3": [
+    {
+      "type": 0,
+      "value": "Tria un o més infants per incloure. Només s'inclouran les matèries que utilitzen i la configuració de l'aplicació."
+    }
+  ],
+  "Ntrsoa": [
+    {
+      "type": 0,
+      "value": "Els horaris dels infants seleccionats "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "reemplaçaran"
+        }
+      ],
+      "type": 8,
+      "value": "strong"
+    },
+    {
+      "type": 0,
+      "value": " els existents amb el mateix nom; els infants nous s'afegiran."
+    }
+  ],
+  "OKAfXf": [
+    {
+      "type": 0,
+      "value": "Compartir/Exportar"
+    }
+  ],
+  "OKhRC6": [
+    {
+      "type": 0,
+      "value": "Compartir"
+    }
+  ],
+  "RMO5xM": [
+    {
+      "type": 0,
+      "value": "Dia anterior"
+    }
+  ],
+  "S9KZMU": [
+    {
+      "type": 0,
+      "value": "Hores del planificador"
+    }
+  ],
+  "SENRqu": [
+    {
+      "type": 0,
+      "value": "Ajuda"
+    }
+  ],
+  "T4PemA": [
+    {
+      "type": 0,
+      "value": "Dies de la setmana visibles"
+    }
+  ],
+  "TkytCp": [
+    {
+      "type": 0,
+      "value": "Importar dades"
+    }
+  ],
+  "Tmtxcl": [
+    {
+      "type": 0,
+      "value": "Desmarca un dia per ocultar-lo al planificador."
+    }
+  ],
+  "UaTxmn": [
+    {
+      "type": 0,
+      "value": "Obrirem el menú de compartir del teu dispositiu (o copiarem un enllaç si no està disponible)."
+    }
+  ],
+  "WUV28A": [
+    {
+      "type": 0,
+      "value": "Desant…"
+    }
+  ],
+  "Wob0BX": [
+    {
+      "type": 0,
+      "value": "Canvia la primera columna del planificador setmanal."
+    }
+  ],
+  "YP/f8C": [
+    {
+      "type": 0,
+      "value": "Compartir / Exportar"
+    }
+  ],
+  "YYWPaG": [
+    {
+      "type": 0,
+      "value": "Afegir infant"
+    }
+  ],
+  "bdymGA": [
+    {
+      "type": 0,
+      "value": "Això defineix la finestra vertical visible al planificador (p. ex., de 08:00 a 18:00). L'aplicació obliga que l'hora d'inici sigui anterior a l'hora de finalització."
+    }
+  ],
+  "cyR7Kh": [
+    {
+      "type": 0,
+      "value": "Enrere"
+    }
+  ],
+  "dDDrP5": [
+    {
+      "type": 0,
+      "value": "Data de final: "
+    },
+    {
+      "type": 1,
+      "value": "endDate"
+    }
+  ],
+  "dKTGNH": [
+    {
+      "type": 0,
+      "value": "Ajuda i guia d'ús"
+    }
+  ],
+  "dLcvSS": [
+    {
+      "type": 0,
+      "value": "Selecciona un infant per veure l'horari d'aquest dia."
+    }
+  ],
+  "eTShla": [
+    {
+      "type": 0,
+      "value": "Nom de la matèria"
+    }
+  ],
+  "gQCbLw": [
+    {
+      "type": 0,
+      "value": "Data d'inici: "
+    },
+    {
+      "type": 1,
+      "value": "startDate"
+    }
+  ],
+  "iMjjOH": [
+    {
+      "type": 0,
+      "value": "Setmana següent"
+    }
+  ],
+  "io8qrA": [
+    {
+      "type": 0,
+      "value": "Configura-ho"
+    }
+  ],
+  "jo2k5w": [
+    {
+      "type": 0,
+      "value": "No s'han proporcionat hores a l'enllaç"
+    }
+  ],
+  "jvo0vs": [
+    {
+      "type": 0,
+      "value": "Desa"
+    }
+  ],
+  "kiL25m": [
+    {
+      "type": 0,
+      "value": "Encara no hi ha infants."
+    }
+  ],
+  "m9elnf": [
+    {
+      "type": 0,
+      "value": "Tria la data"
+    }
+  ],
+  "mfuPab": [
+    {
+      "type": 0,
+      "value": "Infants"
+    }
+  ],
+  "n5QvJy": [
+    {
+      "type": 0,
+      "value": "Data d'inici"
+    }
+  ],
+  "oLX9FC": [
+    {
+      "type": 0,
+      "value": "Nom de l'infant"
+    }
+  ],
+  "pQKms/": [
+    {
+      "type": 0,
+      "value": "Vés a avui"
+    }
+  ],
+  "qJGVbV": [
+    {
+      "type": 0,
+      "value": "Color de la matèria"
+    }
+  ],
+  "sd2ieZ": [
+    {
+      "type": 0,
+      "value": "Setmana"
+    }
+  ],
+  "tgvES0": [
+    {
+      "type": 0,
+      "value": "Ara"
+    }
+  ],
+  "tkq+Nt": [
+    {
+      "type": 0,
+      "value": "Consell: Si no veus el botó d'instal·lació, és possible que el navegador ja tingui l'aplicació instal·lada o que aquest dispositiu no admeti la instal·lació."
+    }
+  ],
+  "uBJFHJ": [
+    {
+      "type": 0,
+      "value": "Horaris"
+    }
+  ],
+  "uYAC8d": [
+    {
+      "type": 0,
+      "value": "Aplica les hores del planificador importades"
+    }
+  ],
+  "udb1jF": [
+    {
+      "type": 0,
+      "value": "Infants en aquest enllaç"
+    }
+  ],
+  "vzrgmV": [
+    {
+      "type": 0,
+      "value": "Llegint l'enllaç…"
+    }
+  ],
+  "wEQDC6": [
+    {
+      "type": 0,
+      "value": "Edita"
+    }
+  ],
+  "wM6yen": [
+    {
+      "type": 0,
+      "value": "Anar a la setmana actual"
+    }
+  ],
+  "y1Z3or": [
+    {
+      "type": 0,
+      "value": "Idioma"
+    }
+  ],
+  "y6VttL": [
+    {
+      "type": 0,
+      "value": "Res més per avui"
+    }
+  ],
+  "ytO0XE": [
+    {
+      "type": 0,
+      "value": "La setmana comença en"
+    }
+  ],
+  "zWgbGg": [
+    {
+      "type": 0,
+      "value": "Avui"
+    }
+  ]
+}

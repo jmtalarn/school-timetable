@@ -4,6 +4,7 @@ import { shareBundleForKids } from '../dataLayer/exportImport'
 import { useKids } from '../hooks/reactQueryHooks'
 import styles from './ShareExportButton.module.css'
 import ShareIcon from '../assets/share.svg'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 type ShareExportButtonProps = {
 	currentKidId?: string | null
@@ -15,7 +16,7 @@ export default function ShareExportButton({ currentKidId, onClose }: ShareExport
 	const [open, setOpen] = useState(false)
 	const [selected, setSelected] = useState<string[]>([])
 	const [sharing, setSharing] = useState(false)
-
+	const intl = useIntl();
 	// Pre-select current kid when opened
 	useEffect(() => {
 		if (!open) return
@@ -52,11 +53,11 @@ export default function ShareExportButton({ currentKidId, onClose }: ShareExport
 			<button
 				type="button"
 				className={styles.iconBtn}
-				title="Share/Export"
+				title={intl.formatMessage({ defaultMessage: "Share/Export" })}
 				aria-label="Share / Export"
 				onClick={() => setOpen(true)}
 			>
-				<img className={styles.shareIcon} src={ShareIcon} alt="Your SVG" />
+				<img className={styles.shareIcon} src={ShareIcon} alt="Share" />
 
 			</button>
 
@@ -64,13 +65,13 @@ export default function ShareExportButton({ currentKidId, onClose }: ShareExport
 				<div className={styles.overlay} role="dialog" aria-modal onClick={close}>
 					<div className={styles.dialog} onClick={(e) => e.stopPropagation()}>
 						<div className={styles.header}>
-							<h3 className={styles.title}>Share / Export</h3>
+							<h3 className={styles.title}><FormattedMessage defaultMessage="Share / Export" /></h3>
 							<button className={styles.close} onClick={close} aria-label="Close">✕</button>
 						</div>
 
 						<div className={styles.body}>
 							<p className={styles.muted}>
-								Choose one or more kids to include. Only their used matters and the app config are bundled.
+								<FormattedMessage defaultMessage="Choose one or more kids to include. Only their used matters and the app config are bundled." />
 							</p>
 
 							<ul className={styles.kidList}>
@@ -101,12 +102,12 @@ export default function ShareExportButton({ currentKidId, onClose }: ShareExport
 									disabled={!canShare || sharing}
 									aria-busy={sharing}
 								>
-									{sharing ? 'Sharing…' : 'Share'}
+									{sharing ? <FormattedMessage defaultMessage="Sharing…" /> : <FormattedMessage defaultMessage="Share" />}
 								</button>
 							</div>
 
 							<p className={styles.mutedSmall}>
-								We’ll open your device’s share sheet (or copy a link if sharing isn’t available).
+								<FormattedMessage defaultMessage="We’ll open your device’s share sheet (or copy a link if sharing isn’t available)." />
 							</p>
 						</div>
 					</div>

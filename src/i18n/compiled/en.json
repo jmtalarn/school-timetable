@@ -1,0 +1,428 @@
+{
+  "/IsDRs": [
+    {
+      "type": 0,
+      "value": "Weekday"
+    }
+  ],
+  "/clOBU": [
+    {
+      "type": 0,
+      "value": "Weekly"
+    }
+  ],
+  "/zFP1/": [
+    {
+      "type": 0,
+      "value": "Start time"
+    }
+  ],
+  "0dKC7W": [
+    {
+      "type": 0,
+      "value": "Sharing…"
+    }
+  ],
+  "3XCLrO": [
+    {
+      "type": 0,
+      "value": "Next day"
+    }
+  ],
+  "47FYwb": [
+    {
+      "type": 0,
+      "value": "Cancel"
+    }
+  ],
+  "5jeq8P": [
+    {
+      "type": 0,
+      "value": "Unknown"
+    }
+  ],
+  "64RmVd": [
+    {
+      "type": 0,
+      "value": "Scheduler"
+    }
+  ],
+  "6kvuR8": [
+    {
+      "type": 0,
+      "value": "Add Matter"
+    }
+  ],
+  "7WNjYc": [
+    {
+      "type": 0,
+      "value": "Pick a kid to view the weekly timetable."
+    }
+  ],
+  "9+Ddtu": [
+    {
+      "type": 0,
+      "value": "Next"
+    }
+  ],
+  "98J3lS": [
+    {
+      "type": 0,
+      "value": "School Timetable"
+    }
+  ],
+  "9Mt7ON": [
+    {
+      "type": 0,
+      "value": "Matters"
+    }
+  ],
+  "9XUYQt": [
+    {
+      "type": 0,
+      "value": "Import"
+    }
+  ],
+  "D3idYv": [
+    {
+      "type": 0,
+      "value": "Settings"
+    }
+  ],
+  "GAjQnO": [
+    {
+      "type": 0,
+      "value": "Previous week"
+    }
+  ],
+  "GrrpMl": [
+    {
+      "type": 0,
+      "value": "Incoming: "
+    },
+    {
+      "type": 1,
+      "value": "incomingHoursText"
+    },
+    {
+      "type": 0,
+      "value": " (will only widen your current range)"
+    }
+  ],
+  "Humfno": [
+    {
+      "type": 0,
+      "value": "End date"
+    }
+  ],
+  "K3r6DQ": [
+    {
+      "type": 0,
+      "value": "Delete"
+    }
+  ],
+  "MKC+S9": [
+    {
+      "type": 0,
+      "value": "Install App"
+    }
+  ],
+  "MZZXn3": [
+    {
+      "type": 0,
+      "value": "Choose one or more kids to include. Only their used matters and the app config are bundled."
+    }
+  ],
+  "Ntrsoa": [
+    {
+      "type": 0,
+      "value": "Timetables for selected kids will "
+    },
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "replace"
+        }
+      ],
+      "type": 8,
+      "value": "strong"
+    },
+    {
+      "type": 0,
+      "value": " existing ones with the same name; new kids will be added."
+    }
+  ],
+  "OKAfXf": [
+    {
+      "type": 0,
+      "value": "Share/Export"
+    }
+  ],
+  "OKhRC6": [
+    {
+      "type": 0,
+      "value": "Share"
+    }
+  ],
+  "RMO5xM": [
+    {
+      "type": 0,
+      "value": "Previous day"
+    }
+  ],
+  "S9KZMU": [
+    {
+      "type": 0,
+      "value": "Scheduler hours"
+    }
+  ],
+  "SENRqu": [
+    {
+      "type": 0,
+      "value": "Help"
+    }
+  ],
+  "T4PemA": [
+    {
+      "type": 0,
+      "value": "Visible weekdays"
+    }
+  ],
+  "TkytCp": [
+    {
+      "type": 0,
+      "value": "Import data"
+    }
+  ],
+  "Tmtxcl": [
+    {
+      "type": 0,
+      "value": "Uncheck a day to hide it in the scheduler."
+    }
+  ],
+  "UaTxmn": [
+    {
+      "type": 0,
+      "value": "We’ll open your device’s share sheet (or copy a link if sharing isn’t available)."
+    }
+  ],
+  "WUV28A": [
+    {
+      "type": 0,
+      "value": "Saving…"
+    }
+  ],
+  "Wob0BX": [
+    {
+      "type": 0,
+      "value": "Changes the first column in the weekly scheduler."
+    }
+  ],
+  "YP/f8C": [
+    {
+      "type": 0,
+      "value": "Share / Export"
+    }
+  ],
+  "YYWPaG": [
+    {
+      "type": 0,
+      "value": "Add Kid"
+    }
+  ],
+  "bdymGA": [
+    {
+      "type": 0,
+      "value": "These define the visible vertical window in the scheduler (e.g. from 08:00 to 18:00). The app enforces that start time must be before end time."
+    }
+  ],
+  "cyR7Kh": [
+    {
+      "type": 0,
+      "value": "Back"
+    }
+  ],
+  "dDDrP5": [
+    {
+      "type": 0,
+      "value": "End date: "
+    },
+    {
+      "type": 1,
+      "value": "endDate"
+    }
+  ],
+  "dKTGNH": [
+    {
+      "type": 0,
+      "value": "Help & User Guide"
+    }
+  ],
+  "dLcvSS": [
+    {
+      "type": 0,
+      "value": "Select a kid to see the schedule for this day."
+    }
+  ],
+  "eTShla": [
+    {
+      "type": 0,
+      "value": "Matter name"
+    }
+  ],
+  "gQCbLw": [
+    {
+      "type": 0,
+      "value": "Start date: "
+    },
+    {
+      "type": 1,
+      "value": "startDate"
+    }
+  ],
+  "iMjjOH": [
+    {
+      "type": 0,
+      "value": "Next week"
+    }
+  ],
+  "io8qrA": [
+    {
+      "type": 0,
+      "value": "Configure it"
+    }
+  ],
+  "jo2k5w": [
+    {
+      "type": 0,
+      "value": "No hours provided in link"
+    }
+  ],
+  "jvo0vs": [
+    {
+      "type": 0,
+      "value": "Save"
+    }
+  ],
+  "kiL25m": [
+    {
+      "type": 0,
+      "value": "No kids yet."
+    }
+  ],
+  "m9elnf": [
+    {
+      "type": 0,
+      "value": "Pick date"
+    }
+  ],
+  "mfuPab": [
+    {
+      "type": 0,
+      "value": "Kids"
+    }
+  ],
+  "n5QvJy": [
+    {
+      "type": 0,
+      "value": "Start date"
+    }
+  ],
+  "oLX9FC": [
+    {
+      "type": 0,
+      "value": "Kid name"
+    }
+  ],
+  "pQKms/": [
+    {
+      "type": 0,
+      "value": "Jump to today"
+    }
+  ],
+  "qJGVbV": [
+    {
+      "type": 0,
+      "value": "Matter color"
+    }
+  ],
+  "sd2ieZ": [
+    {
+      "type": 0,
+      "value": "Week"
+    }
+  ],
+  "tgvES0": [
+    {
+      "type": 0,
+      "value": "Now"
+    }
+  ],
+  "tkq+Nt": [
+    {
+      "type": 0,
+      "value": "Tip: If you don’t see the install button, your browser may already have the app installed or doesn’t support installation on this device."
+    }
+  ],
+  "uBJFHJ": [
+    {
+      "type": 0,
+      "value": "Timetables"
+    }
+  ],
+  "uYAC8d": [
+    {
+      "type": 0,
+      "value": "Apply imported scheduler hours"
+    }
+  ],
+  "udb1jF": [
+    {
+      "type": 0,
+      "value": "Kids in this link"
+    }
+  ],
+  "vzrgmV": [
+    {
+      "type": 0,
+      "value": "Reading link…"
+    }
+  ],
+  "wEQDC6": [
+    {
+      "type": 0,
+      "value": "Edit"
+    }
+  ],
+  "wM6yen": [
+    {
+      "type": 0,
+      "value": "Jump to current week"
+    }
+  ],
+  "y1Z3or": [
+    {
+      "type": 0,
+      "value": "Language"
+    }
+  ],
+  "y6VttL": [
+    {
+      "type": 0,
+      "value": "No more today"
+    }
+  ],
+  "ytO0XE": [
+    {
+      "type": 0,
+      "value": "Week starts on"
+    }
+  ],
+  "zWgbGg": [
+    {
+      "type": 0,
+      "value": "Today"
+    }
+  ]
+}

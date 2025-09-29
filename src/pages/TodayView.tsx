@@ -3,10 +3,11 @@ import styles from './TodayView.module.css'
 import KidSelect from '../components/KidSelect'
 import { useKids, useMatters, useTimetable, useConfig } from '../hooks/reactQueryHooks'
 import { DefaultConfig, useSchedulerLogic } from '../scheduler/logic'
-import { toWeekday, weekdayLabels } from '../utils/week'
+import { toWeekday, useWeekdayLabels } from '../utils/week'
 import { isSameDate, isDateWithin } from '../utils/date'
 import { toMin } from '../utils/time'
 import ShareExportButton from '../components/ShareExportButton'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 /** Layout constants */
 const ROW_HEIGHT = 9 // px per 5 minutes
@@ -19,7 +20,8 @@ export default function TodayView() {
 	const { data: kids } = useKids()
 	const { data: matters } = useMatters()
 	const { data: cfg } = useConfig()
-
+	const intl = useIntl();
+	const weekdayLabels = useWeekdayLabels();
 	// page state
 	const [selectedKidId, setSelectedKidId] = useState<string | null>(null)
 	const [selectedDate, setSelectedDate] = useState<Date>(() => new Date())
@@ -91,88 +93,98 @@ export default function TodayView() {
 	return (
 		<div className={styles.container}>
 			<header className={styles.header}>
-				<h2 className={styles.pageTitle}>Today</h2>
+				<h2 className={styles.pageTitle}><FormattedMessage defaultMessage="Today" /></h2>
 				<div className={styles.shareWrapper}>
 					<ShareExportButton currentKidId={selectedKidId} />
 				</div>
-				<div className={styles.dateNav} role="group" aria-label="Pick date">
-					<button type="button" className={styles.navBtn} onClick={goPrevDay} aria-label="Previous day">◀</button>
+				<div className={styles.dateNav} role="group" aria-label={intl.formatMessage({ defaultMessage: "Pick date" })}>
+					<button type="button" className={styles.navBtn} onClick={goPrevDay} aria-label={intl.formatMessage({ defaultMessage: "Previous day" })}>◀</button>
 					<div className={styles.dateLabel}>{dateLabel}</div>
-					<button type="button" className={styles.navBtn} onClick={goNextDay} aria-label="Next day">▶</button>
+					<button type="button" className={styles.navBtn} onClick={goNextDay} aria-label={intl.formatMessage({
+						defaultMessage: "Next day"
+					})}>▶</button>
 					<button
 						type="button"
 						className={`${styles.navBtn} ${styles.todayBtn}`}
 						onClick={goToday}
 						disabled={isTodaySelected}
-						title="Jump to today"
+						title={intl.formatMessage({
+							defaultMessage: "Jump to today"
+						})}
 					>
-						Today
+						<FormattedMessage defaultMessage="Today" />
 					</button>
 				</div>
-			</header>
+			</header >
 
 
 			{/* Kid picker */}
-			<div className={styles.kidRow}>
+			< div className={styles.kidRow} >
 				<KidSelect value={selectedKidId} onChange={setSelectedKidId} kids={kids || []} />
-			</div>
+			</div >
 
 
 			{/* Day column */}
-			{selectedKidId ? (
-				<div className={styles.gridWrapper}>
-					<div className={styles.grid}>
-						<div>
-							<div className={styles.columnTitle}>{weekdayLabels[selectedDay]}</div>
-							<div className={styles.columnInner} style={{ height: containerHeight }}>
-								{/* hour lines */}
-								{rowLabels.map((label, i) => (
-									<div
-										key={i}
-										className={`${styles.hourLine} ${i % 12 === 0 ? styles.hourLineMajor : ''}`}
-										style={{ top: i * ROW_HEIGHT }}
-									>
-										{label && <span className={styles.hourLabel}>{label}</span>}
-									</div>
-								))}
-
-								{/* now line with left dot (only on actual today) */}
-								{nowLineTop !== null && (
-									<div className={styles.nowLine} style={{ top: nowLineTop }}>
-										<span className={styles.nowDot} />
-									</div>
-								)}
-
-								{/* blocks */}
-								{blocks.map(b => {
-									const matter = matters?.find(m => m.id === b.matterId)
-									const top = ((toMin(b.start) - toMin(startHH)) / scheduler.cfg.stepMinutes) * ROW_HEIGHT
-									const height = ((toMin(b.end) - toMin(b.start)) / scheduler.cfg.stepMinutes) * ROW_HEIGHT
-									return (
+			{
+				selectedKidId ? (
+					<div className={styles.gridWrapper}>
+						<div className={styles.grid}>
+							<div>
+								<div className={styles.columnTitle}>{weekdayLabels[selectedDay]}</div>
+								<div className={styles.columnInner} style={{ height: containerHeight }}>
+									{/* hour lines */}
+									{rowLabels.map((label, i) => (
 										<div
-											key={b.id}
-											className={styles.block}
-											style={{
-												top,
-												height,
-												background: matter?.color || '#e2e8f0',
-											}}
-											title={`${matter?.name ?? 'Unknown'} • ${b.start}–${b.end}`}
+											key={i}
+											className={`${styles.hourLine} ${i % 12 === 0 ? styles.hourLineMajor : ''}`}
+											style={{ top: i * ROW_HEIGHT }}
 										>
-											<div className={styles.blockHeader}>
-												<span className={styles.blockTime}><span>{b.start}</span><span>{b.end}</span></span>
-												<span className={styles.blockLabel}>{matter?.name || 'Unknown'}</span>
-											</div>
+											{label && <span className={styles.hourLabel}>{label}</span>}
 										</div>
-									)
-								})}
+									))}
+
+									{/* now line with left dot (only on actual today) */}
+									{nowLineTop !== null && (
+										<div className={styles.nowLine} style={{ top: nowLineTop }}>
+											<span className={styles.nowDot} />
+										</div>
+									)}
+
+									{/* blocks */}
+									{blocks.map(b => {
+										const matter = matters?.find(m => m.id === b.matterId)
+										const top = ((toMin(b.start) - toMin(startHH)) / scheduler.cfg.stepMinutes) * ROW_HEIGHT
+										const height = ((toMin(b.end) - toMin(b.start)) / scheduler.cfg.stepMinutes) * ROW_HEIGHT
+										return (
+											<div
+												key={b.id}
+												className={styles.block}
+												style={{
+													top,
+													height,
+													background: matter?.color || '#e2e8f0',
+												}}
+												title={`${matter?.name ?? 'Unknown'} • ${b.start}–${b.end}`}
+											>
+												<div className={styles.blockHeader}>
+													<span className={styles.blockTime}><span>{b.start}</span><span>{b.end}</span></span>
+													<span className={styles.blockLabel}>{matter?.name || intl.formatMessage({ defaultMessage: "Unknown" })}</span>
+												</div>
+											</div>
+										)
+									})}
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			) : (
-				<p className={styles.hint}>Select a kid to see the schedule for this day.</p>
-			)}
-		</div>
+				) : (
+					<p className={styles.hint}>
+						<FormattedMessage defaultMessage="Select a kid to see the schedule for this day." />
+					</p>
+				)
+			}
+		</div >
 	)
 }
+
+

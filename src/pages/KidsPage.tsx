@@ -2,6 +2,7 @@ import { useKids, useCreateKid, useUpdateKid, useDeleteKid } from '../hooks/reac
 import { useState } from 'react'
 import Avatar from 'boring-avatars'
 import styles from './KidsPage.module.css'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 const avatarPalette = ["#2f2e30", "#e84b2c", "#e6d839", "#7cd164", "#2eb8ac"]
 
@@ -14,12 +15,13 @@ export default function KidsPage() {
 	const [newName, setNewName] = useState('')
 	const [editId, setEditId] = useState<string | null>(null)
 	const [editName, setEditName] = useState('')
+	const intl = useIntl();
 
 	if (isLoading) return <div>Loading...</div>
 
 	return (
 		<div className={styles.container}>
-			<h2 className={styles.title}>Kids</h2>
+			<h2 className={styles.title}><FormattedMessage defaultMessage="Kids" /></h2>
 
 			{/* Add kid form */}
 			<form
@@ -35,13 +37,13 @@ export default function KidsPage() {
 					className={styles.inputGrow}
 					value={newName}
 					onChange={e => setNewName(e.target.value)}
-					placeholder="Kid name"
+					placeholder={intl.formatMessage({ defaultMessage: "Kid name" })}
 					required
 				/>
 				<div className={styles.avatarPreview}>
 					<Avatar name={newName || 'kid'} size={48} variant="beam" colors={avatarPalette} />
 				</div>
-				<button type="submit" className={styles.addBtn}>Add Kid</button>
+				<button type="submit" className={styles.addBtn}><FormattedMessage defaultMessage="Add Kid" /></button>
 			</form>
 
 			{/* List */}
@@ -69,8 +71,8 @@ export default function KidsPage() {
 									/>
 								</div>
 								<div className={styles.itemActions}>
-									<button type="submit">Save</button>
-									<button type="button" onClick={() => setEditId(null)} className={styles.ghostBtn}>Cancel</button>
+									<button type="submit"><FormattedMessage defaultMessage="Save" /></button>
+									<button type="button" onClick={() => setEditId(null)} className={styles.ghostBtn}><FormattedMessage defaultMessage="Cancel" /></button>
 								</div>
 							</form>
 						) : (
@@ -88,13 +90,13 @@ export default function KidsPage() {
 											setEditName(k.name)
 										}}
 									>
-										Edit
+										<FormattedMessage defaultMessage="Edit" />
 									</button>
 									<button
 										className={styles.deleteButton}
 										onClick={() => deleteKid.mutate(k.id)}
 									>
-										Delete
+										<FormattedMessage defaultMessage="Delete" />
 									</button>
 								</div>
 							</>

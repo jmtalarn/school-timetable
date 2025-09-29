@@ -8,6 +8,7 @@ import { JS_TO_W } from '../utils/week'
 import { startOfWeek, addDays, weekdayFromDate, fmtISO, fmtPretty } from '../utils/date'
 import { minutesBetween, toMin } from '../utils/time'
 import ShareExportButton from '../components/ShareExportButton'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 /** Visual row height (matches scheduler) */
 const ROW_HEIGHT = 9 // px per 5 minutes
@@ -20,7 +21,7 @@ export default function WeekView() {
 	const { data: kids } = useKids()
 	const { data: matters } = useMatters()
 	const { data: cfg } = useConfig()
-
+	const intl = useIntl();
 	const [selectedKidId, setSelectedKidId] = useState<string | null>(null)
 	const [viewAnchor, setViewAnchor] = useState<Date>(() => {
 		const t = new Date()
@@ -98,7 +99,7 @@ export default function WeekView() {
 	return (
 		<div className={styles.container}>
 			<header className={styles.header}>
-				<h2 className={styles.pageTitle}>Weekly</h2>
+				<h2 className={styles.pageTitle}><FormattedMessage defaultMessage="Weekly" /></h2>
 				<div className={styles.shareWrapper}>
 					<ShareExportButton currentKidId={selectedKidId} />
 				</div>
@@ -106,7 +107,7 @@ export default function WeekView() {
 					<button
 						type="button"
 						className={styles.navBtn}
-						aria-label="Previous week"
+						aria-label={intl.formatMessage({ defaultMessage: "Previous week" })}
 						onClick={() => setViewAnchor(addDays(weekStart, -7))}
 					>
 						◀
@@ -117,7 +118,7 @@ export default function WeekView() {
 					<button
 						type="button"
 						className={styles.navBtn}
-						aria-label="Next week"
+						aria-label={intl.formatMessage({ defaultMessage: "Next week" })}
 						onClick={() => setViewAnchor(addDays(weekStart, 7))}
 					>
 						▶
@@ -126,7 +127,7 @@ export default function WeekView() {
 						type="button"
 						className={`${styles.navBtn} ${styles.todayBtn}`}
 						onClick={() => setViewAnchor(new Date())}
-						title="Jump to current week"
+						title={intl.formatMessage({ defaultMessage: "Jump to current week" })}
 					>
 						Today
 					</button>
@@ -139,7 +140,9 @@ export default function WeekView() {
 
 
 			{!selectedKidId || !timetableQuery.data ? (
-				<p className={styles.hint}>Pick a kid to view the weekly timetable.</p>
+				<p className={styles.hint}>
+					<FormattedMessage defaultMessage="Pick a kid to view the weekly timetable." />
+				</p>
 			) : (
 				<div className={styles.gridWrapper}>
 					<div className={styles.grid}>
@@ -195,13 +198,13 @@ export default function WeekView() {
 														height,
 														background: matter?.color || '#e2e8f0',
 													}}
-													title={`${matter?.name || 'Block'} • ${b.start}–${b.end}`}
+													title={`${matter?.name || intl.formatMessage({ defaultMessage: "Unknown" })} • ${b.start}–${b.end}`}
 												>
 													<div className={styles.blockTime}>
 														{b.start}
 													</div>
 													<div className={styles.blockLabel}>
-														{matter?.name || 'Unknown'}
+														{matter?.name || intl.formatMessage({ defaultMessage: "Unknown" })}
 													</div>
 													<div className={styles.blockTime}>
 														{b.end}

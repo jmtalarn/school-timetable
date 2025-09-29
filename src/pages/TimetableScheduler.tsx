@@ -19,9 +19,10 @@ import styles from './TimetableScheduler.module.css'
 // ---- Small draggable wrapper that supports move + resize via handles ----
 import { useDraggable } from '@dnd-kit/core'
 import { type Weekday } from '../types'
-import { reorderWeekdays, weekdayLabels } from '../utils/week'
+import { reorderWeekdays, useWeekdayLabels } from '../utils/week'
 import { toMin, clamp, snap, toTime, minutesBetween } from '../utils/time'
 import deleteIcon from '../assets/delete.svg'
+import { FormattedMessage } from 'react-intl'
 
 
 const ROW_HEIGHT = 9 // px per 5 minutes
@@ -119,7 +120,7 @@ export default function TimetableScheduler() {
 	const { data: kids } = useKids()
 	const { data: matters } = useMatters()
 	const { data: appCfg } = useConfig();
-
+	const weekdayLabels = useWeekdayLabels();
 	// Build the ordered list of weekdays starting from config
 	const orderedWeekdays = useMemo(
 		() => reorderWeekdays(appCfg?.startOfWeek ?? 'mon'),
@@ -386,7 +387,7 @@ export default function TimetableScheduler() {
 	// --- Render ---
 	return (
 		<div className={styles.container}>
-			<h2 className={styles.header}>Timetable</h2>
+			<h2 className={styles.header}><FormattedMessage defaultMessage="Timetable" /></h2>
 
 			<div className={styles.kidRow}>
 

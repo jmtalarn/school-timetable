@@ -1,4 +1,5 @@
 import { AllWeekdays, type Weekday } from '../types'
+import { useIntl } from 'react-intl'
 
 /**
  * Rotate AllWeekdays so the week starts at `start` (0=Sun..6=Sat).
@@ -13,23 +14,18 @@ export function reorderWeekdays(start: Weekday): Weekday[] {
 	];
 }
 
-/**
- * Returns the 0..6 index of `date` within a week that starts on `start`.
- * Example: if start=1 (Mon), then Mon->0, Tue->1, ..., Sun->6
- */
-// export function weekIndexFor(date: Date, start: Weekday): number {
-// 	const js = date.getDay(); // 0=Sun..6=Sat
-// 	return (js - AllWeekdays.indexOf(start) + 7) % 7;
-// }
+export const useWeekdayLabels = () => {
+	const intl = useIntl();
+	const d = new Date();
+	const weekdayLabels: Record<Weekday, string> = {} as any;
 
-export const weekdayLabels: Record<Weekday, string> = {
-	mon: 'Monday',
-	tue: 'Tuesday',
-	wed: 'Wednesday',
-	thu: 'Thursday',
-	fri: 'Friday',
-	sat: 'Saturday',
-	sun: 'Sunday',
+	for (const weekday of AllWeekdays) {
+		const dayIdx = (AllWeekdays.indexOf(weekday) + 1) % 7; // AllWeekdays is Mon..Sun, JS Date is Sun..Sat
+		d.setUTCDate(d.getUTCDate() - d.getUTCDay() + dayIdx);
+		weekdayLabels[weekday] = d.toLocaleString(intl.locale, { weekday: 'long', timeZone: 'UTC' });
+	}
+
+	return weekdayLabels;
 }
 
 
