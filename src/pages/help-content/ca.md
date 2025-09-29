@@ -3,7 +3,7 @@
 1.  [Com començar ràpidament](#com-començar-ràpidament)
 2.  [Conceptes bàsics](#conceptes-bàsics)
 3.  [Planificador](#planificador)
-4.  [Infants](#infants)
+4.  [Nens](#nens)
 5.  [Matèries](#matèries)
 6.  [Avui i Ara/Següent](#avui-i-arasegüent)
 7.  [Configuració](#configuració)
@@ -16,14 +16,14 @@
 ## Com començar ràpidament
 
 1.  Ves a [Matèries](/matters) i crea els teus temes/activitats. Dona’ls un nom, un color i (opcionalment) un rang de dates durant el qual estiguin actius.
-2.  Ves a [Infants](/kids), afegeix cada infant (l’app genera un avatar automàticament).
+2.  Ves a [Nens](/kids), afegeix cada infant (l’app genera un avatar automàticament).
 3.  Obre el [Planificador](/timetable-scheduler), tria un infant i fes clic a les cel·les buides per afegir-hi matèries. Arrossega per moure; arrossega les barres fines de dalt o baix per redimensionar.
 4.  Ajusta la teva setmana a [Configuració](/settings) (hores d’inici/final, dies amagats, inici de setmana).
 5.  Usa [Avui](/today) per veure un resum del dia (o la vista Ara/Següent a l’inici).
 
 ## Conceptes bàsics
 
-### Infants
+### Nens
 
 Persones per a qui planifiques. Cada infant té un nom i un avatar. Els horaris són per infant.
 
@@ -48,9 +48,9 @@ El planificador mostra una graella setmanal. Les columnes són els dies de la se
 
 Consell: si no veus les franges del matí/vespre que esperaves, amplia l’interval visible a [Configuració](/settings).
 
-## Infants
+## Nens
 
--   **Afegir / editar / eliminar** infants a [Infants](/kids).
+-   **Afegir / editar / eliminar** nens a [Nens](/kids).
 -   Els avatars es generen automàticament; el selector mostra avatars i noms — fes clic a un per seleccionar-lo.
 -   Els horaris són per infant. Canvia d’infant amb el selector d’avatars a la part superior del Planificador.
 
@@ -77,17 +77,17 @@ L’app valida les hores perquè l’hora de final sigui sempre després de l’
 
 ## Compartir / Exportar i Importar
 
-Fes servir el botó **Compartir** (icona de compartir) per exportar els horaris dels infants seleccionats més les matèries utilitzades i la configuració global en un enllaç. En navegadors compatibles s’obre el full de compartició natiu; si no, es mostra un enllaç per copiar.
+Fes servir el botó **Compartir** (icona de compartir) per exportar els horaris dels nens seleccionats més les matèries utilitzades i la configuració global en un enllaç. En navegadors compatibles s’obre el full de compartició natiu; si no, es mostra un enllaç per copiar.
 
 ### Què s’exporta
 
--   Infants seleccionats
+-   Nens seleccionats
 -   Només les _matèries utilitzades_ als seus horaris
 -   Configuració global (hores, dies amagats, inici de setmana)
 
 ### Comportament de la importació
 
--   **Infants:** s’afegeixen si són nous; si un infant ja existeix (per nom o ID segons implementació), es manté i el seu horari és _sobreescrit_ pel importat.
+-   **Nens:** s’afegeixen si són nous; si un infant ja existeix (per nom o ID segons implementació), es manté i el seu horari és _sobreescrit_ pel importat.
 -   **Matèries:** es comparen per nom; les noves s’afegeixen, les existents es reutilitzen. Les dates d’inici/final s’amplien només si l’interval entrant és més extens.
 -   **Configuració:** l’hora d’inici només baixa si la nova és anterior; l’hora final només puja si la nova és posterior; els dies amagats i l’inici de setmana es fusionen de manera coherent.
 
@@ -112,7 +112,7 @@ També pots enganxar un enllaç amb `#data=…` a la barra d’adreces; la porta
 
 ## Dades i Privadesa
 
-Totes les dades (infants, matèries, horaris, configuració) es guarden a l’emmagatzematge local del teu navegador. No s’envia res a un servidor tret que comparteixis explícitament un enllaç d’exportació amb algú.
+Totes les dades (nens, matèries, horaris, configuració) es guarden a l’emmagatzematge local del teu navegador. No s’envia res a un servidor tret que comparteixis explícitament un enllaç d’exportació amb algú.
 
 ## Contacte
 

@@ -14,7 +14,7 @@
   "/zFP1/": [
     {
       "type": 0,
-      "value": "Hora d'inici"
+      "value": "Hora d’inici"
     }
   ],
   "0dKC7W": [
@@ -32,7 +32,7 @@
   "47FYwb": [
     {
       "type": 0,
-      "value": "Cancel·lar"
+      "value": "Cancel·la"
     }
   ],
   "5jeq8P": [
@@ -56,7 +56,7 @@
   "7WNjYc": [
     {
       "type": 0,
-      "value": "Tria un infant per veure l'horari setmanal."
+      "value": "Tria un nen/nena per veure l’horari setmanal."
     }
   ],
   "9+Ddtu": [
@@ -87,6 +87,12 @@
     {
       "type": 0,
       "value": "Configuració"
+    }
+  ],
+  "F3Q089": [
+    {
+      "type": 0,
+      "value": "Horari"
     }
   ],
   "GAjQnO": [
@@ -124,25 +130,25 @@
   "MKC+S9": [
     {
       "type": 0,
-      "value": "Instal·lar l'aplicació"
+      "value": "Instal·lar app"
     }
   ],
   "MZZXn3": [
     {
       "type": 0,
-      "value": "Tria un o més infants per incloure. Només s'inclouran les matèries que utilitzen i la configuració de l'aplicació."
+      "value": "Tria un o més nens per incloure. Només s’empaqueten les matèries que utilitzen i la configuració de l’app."
     }
   ],
   "Ntrsoa": [
     {
       "type": 0,
-      "value": "Els horaris dels infants seleccionats "
+      "value": "Els horaris dels nens seleccionats "
     },
     {
       "children": [
         {
           "type": 0,
-          "value": "reemplaçaran"
+          "value": "substituiran"
         }
       ],
       "type": 8,
@@ -150,7 +156,7 @@
     },
     {
       "type": 0,
-      "value": " els existents amb el mateix nom; els infants nous s'afegiran."
+      "value": " els existents amb el mateix nom; els nens nous s’afegiran."
     }
   ],
   "OKAfXf": [
@@ -186,7 +192,7 @@
   "T4PemA": [
     {
       "type": 0,
-      "value": "Dies de la setmana visibles"
+      "value": "Dies visibles"
     }
   ],
   "TkytCp": [
@@ -198,13 +204,13 @@
   "Tmtxcl": [
     {
       "type": 0,
-      "value": "Desmarca un dia per ocultar-lo al planificador."
+      "value": "Desmarca un dia per amagar-lo al planificador."
     }
   ],
   "UaTxmn": [
     {
       "type": 0,
-      "value": "Obrirem el menú de compartir del teu dispositiu (o copiarem un enllaç si no està disponible)."
+      "value": "Obrirem la fulla de compartició del dispositiu (o copiarem un enllaç si no està disponible)."
     }
   ],
   "WUV28A": [
@@ -228,13 +234,13 @@
   "YYWPaG": [
     {
       "type": 0,
-      "value": "Afegir infant"
+      "value": "Afegir nen"
     }
   ],
   "bdymGA": [
     {
       "type": 0,
-      "value": "Això defineix la finestra vertical visible al planificador (p. ex., de 08:00 a 18:00). L'aplicació obliga que l'hora d'inici sigui anterior a l'hora de finalització."
+      "value": "Això defineix la finestra vertical visible del planificador (p. ex., de 08:00 a 18:00). L’app exigeix que l’hora d’inici sigui anterior a la de final."
     }
   ],
   "cyR7Kh": [
@@ -256,13 +262,13 @@
   "dKTGNH": [
     {
       "type": 0,
-      "value": "Ajuda i guia d'ús"
+      "value": "Ajuda i guia d’usuari"
     }
   ],
   "dLcvSS": [
     {
       "type": 0,
-      "value": "Selecciona un infant per veure l'horari d'aquest dia."
+      "value": "Tria un nen/nena per veure l’horari d’aquest dia."
     }
   ],
   "eTShla": [
@@ -271,10 +277,16 @@
       "value": "Nom de la matèria"
     }
   ],
+  "ejEGdx": [
+    {
+      "type": 0,
+      "value": "Inici"
+    }
+  ],
   "gQCbLw": [
     {
       "type": 0,
-      "value": "Data d'inici: "
+      "value": "Data d’inici: "
     },
     {
       "type": 1,
@@ -293,10 +305,16 @@
       "value": "Configura-ho"
     }
   ],
+  "jEUlFa": [
+    {
+      "type": 0,
+      "value": "Aquesta app funciona fora de línia i es pot instal·lar al teu dispositiu. Configura matèries i nens, i planifica cada dia amb el planificador."
+    }
+  ],
   "jo2k5w": [
     {
       "type": 0,
-      "value": "No s'han proporcionat hores a l'enllaç"
+      "value": "No hi ha hores a l’enllaç"
     }
   ],
   "jvo0vs": [
@@ -308,7 +326,7 @@
   "kiL25m": [
     {
       "type": 0,
-      "value": "Encara no hi ha infants."
+      "value": "Encara no hi ha nens."
     }
   ],
   "m9elnf": [
@@ -320,25 +338,31 @@
   "mfuPab": [
     {
       "type": 0,
-      "value": "Infants"
+      "value": "Nens"
     }
   ],
   "n5QvJy": [
     {
       "type": 0,
-      "value": "Data d'inici"
+      "value": "Data d’inici"
+    }
+  ],
+  "nav.menu": [
+    {
+      "type": 0,
+      "value": "Menú"
     }
   ],
   "oLX9FC": [
     {
       "type": 0,
-      "value": "Nom de l'infant"
+      "value": "Nom del nen/nena"
     }
   ],
   "pQKms/": [
     {
       "type": 0,
-      "value": "Vés a avui"
+      "value": "Ves a avui"
     }
   ],
   "qJGVbV": [
@@ -362,13 +386,13 @@
   "tkq+Nt": [
     {
       "type": 0,
-      "value": "Consell: Si no veus el botó d'instal·lació, és possible que el navegador ja tingui l'aplicació instal·lada o que aquest dispositiu no admeti la instal·lació."
+      "value": "Consell: si no veus el botó d’instal·lar, potser el navegador ja té l’app instal·lada o aquest dispositiu no admet la instal·lació."
     }
   ],
   "uBJFHJ": [
     {
       "type": 0,
-      "value": "Horaris"
+      "value": "HorarIs"
     }
   ],
   "uYAC8d": [
@@ -380,13 +404,13 @@
   "udb1jF": [
     {
       "type": 0,
-      "value": "Infants en aquest enllaç"
+      "value": "Nens en aquest enllaç"
     }
   ],
   "vzrgmV": [
     {
       "type": 0,
-      "value": "Llegint l'enllaç…"
+      "value": "Llegint l’enllaç…"
     }
   ],
   "wEQDC6": [
@@ -398,7 +422,13 @@
   "wM6yen": [
     {
       "type": 0,
-      "value": "Anar a la setmana actual"
+      "value": "Ves a la setmana actual"
+    }
+  ],
+  "xXt7Sw": [
+    {
+      "type": 0,
+      "value": "Instal·la aquesta app"
     }
   ],
   "y1Z3or": [
@@ -410,7 +440,7 @@
   "y6VttL": [
     {
       "type": 0,
-      "value": "Res més per avui"
+      "value": "No queda res més avui"
     }
   ],
   "ytO0XE": [

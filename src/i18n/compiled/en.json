@@ -89,6 +89,12 @@
       "value": "Settings"
     }
   ],
+  "F3Q089": [
+    {
+      "type": 0,
+      "value": "Timetable"
+    }
+  ],
   "GAjQnO": [
     {
       "type": 0,
@@ -271,6 +277,12 @@
       "value": "Matter name"
     }
   ],
+  "ejEGdx": [
+    {
+      "type": 0,
+      "value": "Home"
+    }
+  ],
   "gQCbLw": [
     {
       "type": 0,
@@ -291,6 +303,12 @@
     {
       "type": 0,
       "value": "Configure it"
+    }
+  ],
+  "jEUlFa": [
+    {
+      "type": 0,
+      "value": "This app works offline and can be installed on your device. Configure matters and kids, then plan each day using the scheduler."
     }
   ],
   "jo2k5w": [
@@ -327,6 +345,12 @@
     {
       "type": 0,
       "value": "Start date"
+    }
+  ],
+  "nav.menu": [
+    {
+      "type": 0,
+      "value": "Menu"
     }
   ],
   "oLX9FC": [
@@ -399,6 +423,12 @@
     {
       "type": 0,
       "value": "Jump to current week"
+    }
+  ],
+  "xXt7Sw": [
+    {
+      "type": 0,
+      "value": "Install this app"
     }
   ],
   "y1Z3or": [

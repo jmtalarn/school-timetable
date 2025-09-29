@@ -50,7 +50,7 @@
   "6kvuR8": [
     {
       "type": 0,
-      "value": "Añadir materia"
+      "value": "Añadir asignatura"
     }
   ],
   "7WNjYc": [
@@ -74,7 +74,7 @@
   "9Mt7ON": [
     {
       "type": 0,
-      "value": "Materias"
+      "value": "Asignaturas"
     }
   ],
   "9XUYQt": [
@@ -87,6 +87,12 @@
     {
       "type": 0,
       "value": "Ajustes"
+    }
+  ],
+  "F3Q089": [
+    {
+      "type": 0,
+      "value": "Horario"
     }
   ],
   "GAjQnO": [
@@ -124,13 +130,13 @@
   "MKC+S9": [
     {
       "type": 0,
-      "value": "Instalar aplicación"
+      "value": "Instalar app"
     }
   ],
   "MZZXn3": [
     {
       "type": 0,
-      "value": "Elige uno o varios niños para incluir. Solo se incluirán sus materias utilizadas y la configuración de la app."
+      "value": "Elige uno o más niños para incluir. Solo se empaquetan sus asignaturas usadas y la configuración de la app."
     }
   ],
   "Ntrsoa": [
@@ -150,7 +156,7 @@
     },
     {
       "type": 0,
-      "value": " los existentes con el mismo nombre; los niños nuevos se añadirán."
+      "value": " a los existentes con el mismo nombre; los niños nuevos se añadirán."
     }
   ],
   "OKAfXf": [
@@ -186,7 +192,7 @@
   "T4PemA": [
     {
       "type": 0,
-      "value": "Días de la semana visibles"
+      "value": "Días visibles"
     }
   ],
   "TkytCp": [
@@ -234,7 +240,7 @@
   "bdymGA": [
     {
       "type": 0,
-      "value": "Esto define la ventana vertical visible en el planificador (p. ej., de 08:00 a 18:00). La app exige que la hora de inicio sea anterior a la hora de fin."
+      "value": "Esto define la ventana vertical visible en el planificador (p. ej., de 08:00 a 18:00). La app exige que la hora de inicio sea anterior a la de fin."
     }
   ],
   "cyR7Kh": [
@@ -262,13 +268,19 @@
   "dLcvSS": [
     {
       "type": 0,
-      "value": "Selecciona un niño para ver el horario de este día."
+      "value": "Elige un niño para ver el horario de este día."
     }
   ],
   "eTShla": [
     {
       "type": 0,
-      "value": "Nombre de la materia"
+      "value": "Nombre de la asignatura"
+    }
+  ],
+  "ejEGdx": [
+    {
+      "type": 0,
+      "value": "Inicio"
     }
   ],
   "gQCbLw": [
@@ -293,10 +305,16 @@
       "value": "Configúralo"
     }
   ],
+  "jEUlFa": [
+    {
+      "type": 0,
+      "value": "Esta app funciona sin conexión y puede instalarse en tu dispositivo. Configura asignaturas y niños, luego planifica cada día con el planificador."
+    }
+  ],
   "jo2k5w": [
     {
       "type": 0,
-      "value": "No se han proporcionado horas en el enlace"
+      "value": "No hay horas en el enlace"
     }
   ],
   "jvo0vs": [
@@ -329,10 +347,16 @@
       "value": "Fecha de inicio"
     }
   ],
+  "nav.menu": [
+    {
+      "type": 0,
+      "value": "Menú"
+    }
+  ],
   "oLX9FC": [
     {
       "type": 0,
-      "value": "Nombre del niño"
+      "value": "Nombre del niño/niña"
     }
   ],
   "pQKms/": [
@@ -344,7 +368,7 @@
   "qJGVbV": [
     {
       "type": 0,
-      "value": "Color de la materia"
+      "value": "Color de la asignatura"
     }
   ],
   "sd2ieZ": [
@@ -362,7 +386,7 @@
   "tkq+Nt": [
     {
       "type": 0,
-      "value": "Consejo: Si no ves el botón de instalación, es posible que tu navegador ya tenga la app instalada o que este dispositivo no admita la instalación."
+      "value": "Consejo: si no ves el botón de instalar, puede que tu navegador ya tenga la app instalada o que este dispositivo no admita la instalación."
     }
   ],
   "uBJFHJ": [
@@ -374,7 +398,7 @@
   "uYAC8d": [
     {
       "type": 0,
-      "value": "Aplicar las horas del planificador importadas"
+      "value": "Aplicar horas del planificador importadas"
     }
   ],
   "udb1jF": [
@@ -401,6 +425,12 @@
       "value": "Ir a la semana actual"
     }
   ],
+  "xXt7Sw": [
+    {
+      "type": 0,
+      "value": "Instala esta app"
+    }
+  ],
   "y1Z3or": [
     {
       "type": 0,
@@ -410,13 +440,13 @@
   "y6VttL": [
     {
       "type": 0,
-      "value": "Nada más por hoy"
+      "value": "No queda nada hoy"
     }
   ],
   "ytO0XE": [
     {
       "type": 0,
-      "value": "La semana empieza en"
+      "value": "La semana comienza en"
     }
   ],
   "zWgbGg": [
