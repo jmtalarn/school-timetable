@@ -1,16 +1,16 @@
 # Help & User Guide
 
-1.  [Quick start](#quickstart)
-2.  [Core concepts](#concepts)
+1.  [Quick start](#quick-start)
+2.  [Core concepts](#core-concepts)
 3.  [Scheduler](#scheduler)
 4.  [Kids](#kids)
 5.  [Matters](#matters)
-6.  [Today & Now/Next](#today)
+6.  [Today & Now/Next](#today--nownext)
 7.  [Settings](#settings)
-8.  [Share / Export & Import](#share)
-9.  [Install & Offline](#pwa)
-10. [FAQ & Troubleshooting](#faq)
-11. [Data & Privacy](#privacy)
+8.  [Share / Export & Import](#share--export--import)
+9.  [Install & Offline](#install--offline)
+10. [FAQ & Troubleshooting](#faq--troubleshooting)
+11. [Data & Privacy](#data--privacy)
 12. [Contact](#contact)
 
 ## Quick start

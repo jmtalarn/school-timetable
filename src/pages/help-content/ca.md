@@ -1,19 +1,17 @@
 # Ajuda i Guia d’Usuari
 
-1.  [Com començar ràpidament](#quickstart)
-2.  [Conceptes bàsics](#concepts)
-3.  [Planificador](#scheduler)
-4.  [Infants](#kids)
-5.  [Matèries](#matters)
-6.  [Avui i Ara/Següent](#today)
-7.  [Configuració](#settings)
-8.  [Compartir / Exportar i Importar](#share)
-9.  [Instal·lació i mode fora de línia](#pwa)
-10. [PMF i Resolució de problemes](#faq)
-11. [Dades i Privadesa](#privacy)
-12. [Contacte](#contact)
-
-<a id="quickstart"></a>
+1.  [Com començar ràpidament](#com-començar-ràpidament)
+2.  [Conceptes bàsics](#conceptes-bàsics)
+3.  [Planificador](#planificador)
+4.  [Infants](#infants)
+5.  [Matèries](#matèries)
+6.  [Avui i Ara/Següent](#avui-i-arasegüent)
+7.  [Configuració](#configuració)
+8.  [Compartir / Exportar i Importar](#compartir--exportar-i-importar)
+9.  [Instal·lació i mode fora de línia](#installació-i-mode-fora-de-línia)
+10. [PMF i Resolució de problemes](#pmf-i-resolució-de-problemes)
+11. [Dades i Privadesa](#dades-i-privadesa)
+12. [Contacte](#contacte)
 
 ## Com començar ràpidament
 
@@ -22,8 +20,6 @@
 3.  Obre el [Planificador](/timetable-scheduler), tria un infant i fes clic a les cel·les buides per afegir-hi matèries. Arrossega per moure; arrossega les barres fines de dalt o baix per redimensionar.
 4.  Ajusta la teva setmana a [Configuració](/settings) (hores d’inici/final, dies amagats, inici de setmana).
 5.  Usa [Avui](/today) per veure un resum del dia (o la vista Ara/Següent a l’inici).
-
-<a id="concepts"></a>
 
 ## Conceptes bàsics
 
@@ -39,8 +35,6 @@ Temes/activitats amb un color i opcionalment dates d’activitat (inici/final). 
 
 Ajustos globals: hores visibles, dies amagats i dia d’inici de la setmana. Això defineix la graella del planificador.
 
-<a id="scheduler"></a>
-
 ## Planificador
 
 El planificador mostra una graella setmanal. Les columnes són els dies de la setmana (respectant els dies amagats i l’inici de setmana escollit). Les files són franges horàries (increments de 5 minuts). L’interval vertical visible es controla des de Configuració.
@@ -54,23 +48,17 @@ El planificador mostra una graella setmanal. Les columnes són els dies de la se
 
 Consell: si no veus les franges del matí/vespre que esperaves, amplia l’interval visible a [Configuració](/settings).
 
-<a id="kids"></a>
-
 ## Infants
 
 -   **Afegir / editar / eliminar** infants a [Infants](/kids).
 -   Els avatars es generen automàticament; el selector mostra avatars i noms — fes clic a un per seleccionar-lo.
 -   Els horaris són per infant. Canvia d’infant amb el selector d’avatars a la part superior del Planificador.
 
-<a id="matters"></a>
-
 ## Matèries
 
 -   Crea/edita matèries a [Matèries](/matters).
 -   L’**interval de dates** (inici/final) és opcional i controla quan la matèria es considera activa.
 -   El color s’utilitza per donar estil als blocs; mantén una paleta consistent per llegibilitat.
-
-<a id="today"></a>
 
 ## Avui i Ara/Següent
 
@@ -79,8 +67,6 @@ La vista [Avui](/today) mostra un sol dia amb un marcador en temps real de “l�
 -   Canvia de dia amb ◀︎ / ▶︎ a la vista Avui; fes servir “Avui” per tornar a la data actual.
 -   Si no hi ha res passant “ara”, només veuràs la “següent” matèria (si n’hi ha).
 
-<a id="settings"></a>
-
 ## Configuració
 
 -   **Hores del planificador:** estableix l’hora d’inici i final visibles de la graella.
@@ -88,8 +74,6 @@ La vista [Avui](/today) mostra un sol dia amb un marcador en temps real de “l�
 -   **Inici de setmana:** tria quin dia comença la setmana; el planificador reordena les columnes en conseqüència.
 
 L’app valida les hores perquè l’hora de final sigui sempre després de l’hora d’inici.
-
-<a id="share"></a>
 
 ## Compartir / Exportar i Importar
 
@@ -109,14 +93,10 @@ Fes servir el botó **Compartir** (icona de compartir) per exportar els horaris 
 
 També pots enganxar un enllaç amb `#data=…` a la barra d’adreces; la porta d’importació de l’app et deixarà triar què vols importar.
 
-<a id="pwa"></a>
-
 ## Instal·lació i mode fora de línia
 
 -   Fes clic a **Instal·lar l’App** (quan s’ofereixi) per afegir-la al teu dispositiu.
 -   L’app funciona sense connexió; les teves dades romanen en aquest dispositiu (emmagatzematge local).
-
-<a id="faq"></a>
 
 ## PMF i Resolució de problemes
 
@@ -130,13 +110,9 @@ També pots enganxar un enllaç amb `#data=…` a la barra d’adreces; la porta
 
 **Com puc restablir-ho tot?** Fes servir els controls d’emmagatzematge del lloc del teu navegador per esborrar l’emmagatzematge local d’aquesta app (això esborra totes les dades).
 
-<a id="privacy"></a>
-
 ## Dades i Privadesa
 
 Totes les dades (infants, matèries, horaris, configuració) es guarden a l’emmagatzematge local del teu navegador. No s’envia res a un servidor tret que comparteixis explícitament un enllaç d’exportació amb algú.
-
-<a id="contact"></a>
 
 ## Contacte
 

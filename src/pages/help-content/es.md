@@ -1,19 +1,17 @@
 # Ayuda y guía de uso
 
 1.  [Inicio rápido](#quickstart)
-2.  [Conceptos clave](#concepts)
-3.  [Planificador](#scheduler)
-4.  [Niños](#kids)
-5.  [Asignaturas](#matters)
-6.  [Hoy y Ahora/Siguiente](#today)
-7.  [Ajustes](#settings)
-8.  [Compartir / Exportar e Importar](#share)
-9.  [Instalación y modo sin conexión](#pwa)
-10. [FAQ y resolución de problemas](#faq)
-11. [Datos y privacidad](#privacy)
-12. [Contacto](#contact)
-
-<a id="quickstart"></a>
+2.  [Conceptos clave](#conceptos-clave)
+3.  [Planificador](#planificador)
+4.  [Niños](#niños)
+5.  [Asignaturas](#asignaturas)
+6.  [Hoy y Ahora/Siguiente](#hoy-y-ahorasiguiente)
+7.  [Ajustes](#ajustes)
+8.  [Compartir / Exportar e Importar](#compartir--exportar-e-importar)
+9.  [Instalación y modo sin conexión](#instalación-y-modo-sin-conexión)
+10. [FAQ y resolución de problemas](#faq-y-resolución-de-problemas)
+11. [Datos y privacidad](#datos-y-privacidad)
+12. [Contacto](#contacto)
 
 ## Inicio rápido
 
@@ -22,8 +20,6 @@
 3.  Abre el [Planificador](/timetable-scheduler), elige un niño y haz clic en celdas vacías de la cuadrícula para añadir asignaturas. Arrastra para mover; arrastra las barras finas de arriba o abajo para redimensionar.
 4.  Ajusta tu semana en [Ajustes](/settings) (horas de inicio/fin, días visibles/ocultos, día de inicio de semana).
 5.  Usa [Hoy](/today) para ver el día de un vistazo (o el resumen Ahora/Siguiente en Inicio).
-
-<a id="concepts"></a>
 
 ## Conceptos clave
 
@@ -39,8 +35,6 @@ Materias/actividades con un color y fechas activas opcionales (inicio/fin). Los 
 
 Ajustes globales: horas visibles, días de la semana ocultos y día de inicio de la semana. Esto da forma a la cuadrícula del planificador.
 
-<a id="scheduler"></a>
-
 ## Planificador
 
 El planificador muestra una cuadrícula semanal. Las columnas son los días de la semana (respetando los días ocultos y el inicio de semana elegido). Las filas son franjas horarias (pasos de 5 minutos). El rango vertical visible se controla desde Ajustes.
@@ -54,23 +48,17 @@ El planificador muestra una cuadrícula semanal. Las columnas son los días de l
 
 Consejo: si no ves las franjas de mañana/tarde que esperas, amplía el rango visible en [Ajustes](/settings).
 
-<a id="kids"></a>
-
 ## Niños
 
 -   **Añadir / editar / eliminar** niños en [Niños](/kids).
 -   Los avatares se generan automáticamente; el selector muestra avatar y nombre—haz clic para seleccionar.
 -   Los horarios son por niño. Cambia de niño con el selector de avatares en la parte superior del Planificador.
 
-<a id="matters"></a>
-
 ## Asignaturas
 
 -   Crea/edita asignaturas en [Asignaturas](/matters).
 -   El **rango de fechas** (Inicio/Fin) opcional controla cuándo se considera activa la asignatura.
 -   El color se usa para estilizar los bloques; mantén una paleta coherente para facilitar la lectura.
-
-<a id="today"></a>
 
 ## Hoy y Ahora/Siguiente
 
@@ -79,8 +67,6 @@ La vista [Hoy](/today) muestra un único día con un marcador de “hora actual�
 -   Cambia entre días con ◀︎ / ▶︎ en la vista Hoy; usa “Hoy” para volver a la fecha actual.
 -   Si no hay nada ocurriendo “ahora”, verás solo la asignatura “siguiente” (si existe).
 
-<a id="settings"></a>
-
 ## Ajustes
 
 -   **Horas del planificador:** define la hora visible de inicio/fin de la cuadrícula.
@@ -88,8 +74,6 @@ La vista [Hoy](/today) muestra un único día con un marcador de “hora actual�
 -   **Inicio de semana:** elige con qué día comienza tu semana; el planificador reordena las columnas en consecuencia.
 
 La app valida las horas para que la de fin siempre sea posterior a la de inicio.
-
-<a id="share"></a>
 
 ## Compartir / Exportar e Importar
 
@@ -109,14 +93,10 @@ Usa el botón **Compartir** (icono de compartir) para exportar los horarios de l
 
 También puedes pegar un enlace con `#data=…` en la barra de direcciones; la pantalla de importación te permitirá elegir qué traer.
 
-<a id="pwa"></a>
-
 ## Instalación y modo sin conexión
 
 -   Pulsa **Instalar app** (cuando se ofrezca) para añadirla a tu dispositivo.
 -   La app funciona sin conexión; tus datos se guardan en este dispositivo (almacenamiento local).
-
-<a id="faq"></a>
 
 ## FAQ y resolución de problemas
 
@@ -130,13 +110,9 @@ También puedes pegar un enlace con `#data=…` en la barra de direcciones; la p
 
 **¿Cómo restablezco todo?** Usa los controles de almacenamiento del sitio de tu navegador para borrar el almacenamiento local de esta app (esto elimina todos los datos).
 
-<a id="privacy"></a>
-
 ## Datos y privacidad
 
 Todos los datos (niños, asignaturas, horarios, ajustes) se guardan en el almacenamiento local de tu navegador. Nada se envía a un servidor salvo que compartas explícitamente un enlace de exportación con alguien.
-
-<a id="contact"></a>
 
 ## Contacto
 
