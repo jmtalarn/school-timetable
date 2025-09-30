@@ -97,128 +97,130 @@ export default function WeekView() {
 	}, [weekStart])
 
 	return (
-		<div className={styles.container}>
-			<header className={styles.header}>
-				<h2 className={styles.pageTitle}><FormattedMessage defaultMessage="Weekly" /></h2>
-				<div className={styles.shareWrapper}>
-					<ShareExportButton currentKidId={selectedKidId} />
-				</div>
-				<div className={styles.dateNav}>
-					<button
-						type="button"
-						className={styles.navBtn}
-						aria-label={intl.formatMessage({ defaultMessage: "Previous week" })}
-						onClick={() => setViewAnchor(addDays(weekStart, -7))}
-					>
-						◀
-					</button>
-					<div className={styles.when}>
-						<strong>{headerTitle}</strong>
+		<>
+			<div className={styles.container}>
+				<header className={styles.header}>
+					<h2 className={styles.pageTitle}><FormattedMessage defaultMessage="Weekly" /></h2>
+					<div className={styles.shareWrapper}>
+						<ShareExportButton currentKidId={selectedKidId} />
 					</div>
-					<button
-						type="button"
-						className={styles.navBtn}
-						aria-label={intl.formatMessage({ defaultMessage: "Next week" })}
-						onClick={() => setViewAnchor(addDays(weekStart, 7))}
-					>
-						▶
-					</button>
-					<button
-						type="button"
-						className={`${styles.navBtn} ${styles.todayBtn}`}
-						onClick={() => setViewAnchor(new Date())}
-						title={intl.formatMessage({ defaultMessage: "Jump to current week" })}
-					>
-						Today
-					</button>
-				</div>
-			</header>
+					<div className={styles.dateNav}>
+						<button
+							type="button"
+							className={styles.navBtn}
+							aria-label={intl.formatMessage({ defaultMessage: "Previous week" })}
+							onClick={() => setViewAnchor(addDays(weekStart, -7))}
+						>
+							◀
+						</button>
+						<div className={styles.when}>
+							<strong>{headerTitle}</strong>
+						</div>
+						<button
+							type="button"
+							className={styles.navBtn}
+							aria-label={intl.formatMessage({ defaultMessage: "Next week" })}
+							onClick={() => setViewAnchor(addDays(weekStart, 7))}
+						>
+							▶
+						</button>
+						<button
+							type="button"
+							className={`${styles.navBtn} ${styles.todayBtn}`}
+							onClick={() => setViewAnchor(new Date())}
+							title={intl.formatMessage({ defaultMessage: "Jump to current week" })}
+						>
+							Today
+						</button>
+					</div>
+				</header>
 
-			<div className={styles.kidSlot}>
-				<KidSelect value={selectedKidId} onChange={setSelectedKidId} kids={kids || []} />
+				<div className={styles.kidSlot}>
+					<KidSelect value={selectedKidId} onChange={setSelectedKidId} kids={kids || []} />
+				</div>
 			</div>
-
-
-			{!selectedKidId || !timetableQuery.data ? (
-				<p className={styles.hint}>
-					<FormattedMessage defaultMessage="Pick a kid to view the weekly timetable." />
-				</p>
-			) : (
-				<div className={styles.gridWrapper}>
-					<div className={styles.grid}>
-						{visibleDays.map(({ date, w }) => {
-							const dayBlocks = (timetableQuery.data?.days?.[w] ?? []).filter(b => isMatterActiveOn(b.matterId, date))
-							return (
-								<div key={fmtISO(date)}>
-									<div className={styles.columnTitle}>
-										<div className={styles.dayName}>
-											{date.toLocaleDateString(undefined, { weekday: 'long' })}
-										</div>
-										<div className={styles.dayDate}>
-											{date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
-										</div>
-									</div>
-
-									<div className={styles.columnInner} style={{ height: containerHeight }}>
-										{/* Hour grid */}
-										{Array.from({ length: rows + 1 }).map((_, i) => {
-											const top = i * ROW_HEIGHT
-											const isMajor = i % (60 / stepMin) === 0 // each 60min
-											const hh = Math.floor((toMin(startHour) + i * stepMin) / 60)
-											const label = isMajor ? `${String(hh).padStart(2, '0')}:00` : ''
-											return (
-												<div
-													key={i}
-													className={`${styles.hourLine} ${isMajor ? styles.hourLineMajor : ''}`}
-													style={{ top }}
-												>
-													{label && <span className={styles.hourLabel}>{label}</span>}
-												</div>
-											)
-										})}
-
-										{/* Now line (only on today's column in this week) */}
-										{showNowIn && JS_TO_W[new Date(date).getDay()] === showNowIn.dayKey && (
-											<div className={styles.nowLine} style={{ top: showNowIn.top }}>
-												<span className={styles.nowDot} />
+			<div className={styles.gridContainer}>
+				{!selectedKidId || !timetableQuery.data ? (
+					<p className={styles.hint}>
+						<FormattedMessage defaultMessage="Pick a kid to view the weekly timetable." />
+					</p>
+				) : (
+					<div className={styles.gridWrapper}>
+						<div className={styles.grid}>
+							{visibleDays.map(({ date, w }) => {
+								const dayBlocks = (timetableQuery.data?.days?.[w] ?? []).filter(b => isMatterActiveOn(b.matterId, date))
+								return (
+									<div key={fmtISO(date)}>
+										<div className={styles.columnTitle}>
+											<div className={styles.dayName}>
+												{date.toLocaleDateString(undefined, { weekday: 'long' })}
 											</div>
-										)}
+											<div className={styles.dayDate}>
+												{date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+											</div>
+										</div>
 
-										{/* Blocks */}
-										{dayBlocks.map((b: any) => {
-											const matter = matters?.find(m => m.id === b.matterId)
-											const top = (minutesBetween(startHour, b.start) / stepMin) * ROW_HEIGHT
-											const height = (minutesBetween(b.start, b.end) / stepMin) * ROW_HEIGHT
-											return (
-												<div
-													key={b.id}
-													className={styles.block}
-													style={{
-														top,
-														height,
-														background: matter?.color || '#e2e8f0',
-													}}
-													title={`${matter?.name || intl.formatMessage({ defaultMessage: "Unknown" })} • ${b.start}–${b.end}`}
-												>
-													<div className={styles.blockTime}>
-														{b.start}
+										<div className={styles.columnInner} style={{ height: containerHeight }}>
+											{/* Hour grid */}
+											{Array.from({ length: rows + 1 }).map((_, i) => {
+												const top = i * ROW_HEIGHT
+												const isMajor = i % (60 / stepMin) === 0 // each 60min
+												const hh = Math.floor((toMin(startHour) + i * stepMin) / 60)
+												const label = isMajor ? `${String(hh).padStart(2, '0')}:00` : ''
+												return (
+													<div
+														key={i}
+														className={`${styles.hourLine} ${isMajor ? styles.hourLineMajor : ''}`}
+														style={{ top }}
+													>
+														{label && <span className={styles.hourLabel}>{label}</span>}
 													</div>
-													<div className={styles.blockLabel}>
-														{matter?.name || intl.formatMessage({ defaultMessage: "Unknown" })}
-													</div>
-													<div className={styles.blockTime}>
-														{b.end}
-													</div>
+												)
+											})}
+
+											{/* Now line (only on today's column in this week) */}
+											{showNowIn && JS_TO_W[new Date(date).getDay()] === showNowIn.dayKey && (
+												<div className={styles.nowLine} style={{ top: showNowIn.top }}>
+													<span className={styles.nowDot} />
 												</div>
-											)
-										})}
+											)}
+
+											{/* Blocks */}
+											{dayBlocks.map((b: any) => {
+												const matter = matters?.find(m => m.id === b.matterId)
+												const top = (minutesBetween(startHour, b.start) / stepMin) * ROW_HEIGHT
+												const height = (minutesBetween(b.start, b.end) / stepMin) * ROW_HEIGHT
+												return (
+													<div
+														key={b.id}
+														className={styles.block}
+														style={{
+															top,
+															height,
+															background: matter?.color || '#e2e8f0',
+														}}
+														title={`${matter?.name || intl.formatMessage({ defaultMessage: "Unknown" })} • ${b.start}–${b.end}`}
+													>
+														<div className={styles.blockTime}>
+															{b.start}
+														</div>
+														<div className={styles.blockLabel}>
+															{matter?.name || intl.formatMessage({ defaultMessage: "Unknown" })}
+														</div>
+														<div className={styles.blockTime}>
+															{b.end}
+														</div>
+													</div>
+												)
+											})}
+										</div>
 									</div>
-								</div>
-							)
-						})}
+								)
+							})}
+						</div>
 					</div>
-				</div>
-			)}
-		</div>
+				)}
+			</div>
+		</>
 	)
 }
