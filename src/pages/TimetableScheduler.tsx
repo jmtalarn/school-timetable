@@ -34,14 +34,6 @@ const lockResizeToVertical: Modifier = ({ transform, active }) => {
 	return transform
 }
 
-/** Align overlay X with the real block when starting from a narrow handle */
-const alignResizeOverlayXFactory = (ref: React.MutableRefObject<number>) =>
-	(({ transform, active }) => {
-		const type = active?.data?.current?.type
-		if (type === 'resize') return { ...transform, x: transform.x + (ref.current || 0) }
-		return transform
-	}) as Modifier
-
 // ---- Matter picker ----
 function MatterPicker({
 	open, matters, onPick, onClose,
@@ -164,14 +156,18 @@ export default function TimetableScheduler() {
 		| { type: 'resize'; day: Weekday; id: string; anchor: 'start' | 'end' }
 	>(null)
 	const [activeSnap, setActiveSnap] = useState<null | {
-		label: string; color?: string; height: number; startLabel?: string; endLabel?: string; width?: number;
+		label: string
+		color?: string
+		width?: number      // for move overlay width
+		// live resize preview:
+		previewTopPx?: number
+		previewHeightPx?: number
+		startLabel?: string
+		endLabel?: string
+		moveHeightPx?: number
 	}>(null)
 	const [activeResizeBase, setActiveResizeBase] = useState<null | { day: Weekday; startMin: number; endMin: number }>(null)
 	const [activeMoveBase, setActiveMoveBase] = useState<null | { day: Weekday; startMin: number; endMin: number }>(null)
-
-	// overlay X correction via modifier
-	const resizeXOffsetRef = useRef(0)
-	const alignResizeOverlayX = useMemo(() => alignResizeOverlayXFactory(resizeXOffsetRef), [])
 
 	const sensors = useSensors(
 		useSensor(PointerSensor, { activationConstraint: { delay: 140, tolerance: 6 } }),
@@ -240,46 +236,42 @@ export default function TimetableScheduler() {
 			const b = blocksFor(data.day).find((x: any) => x.id === data.id)
 			if (b) {
 				const matter = matters?.find(m => m.id === b.matterId)
+				const step = scheduler.cfg.stepMinutes
 				const startMin = toMin(b.start)
 				const endMin = toMin(b.end)
-				const h = (endMin - startMin) / scheduler.cfg.stepMinutes * ROW_HEIGHT
-
-				let overlayWidth: number | undefined = undefined
-				resizeXOffsetRef.current = 0
 
 				if (data.type === 'resize') {
-					const blockEl = document.querySelector(
-						`[data-block-id="blk-${data.id}"]`
-					) as HTMLElement | null
-
-					const blockRect = blockEl?.getBoundingClientRect()
-					const handleRect = active.rect.current.initial
-
-					if (blockRect && handleRect) {
-						overlayWidth = blockRect.width
-						// shift overlay so its LEFT matches the block's LEFT (handles are narrow)
-						resizeXOffsetRef.current = blockRect.left - handleRect.left
-					} else {
-						overlayWidth = active.rect.current.initial?.width ?? 0
-						resizeXOffsetRef.current = 0
-					}
 					setActiveResizeBase({ day: data.day as Weekday, startMin, endMin })
+
+					const dayStartMin = toMin(scheduler.cfg.start)
+					const previewTopPx = ((startMin - dayStartMin) / step) * ROW_HEIGHT
+					const previewHeightPx = ((endMin - startMin) / step) * ROW_HEIGHT
+
+					setActiveSnap({
+						label: matter?.name || 'Unknown',
+						color: matter?.color,
+						previewTopPx,
+						previewHeightPx,
+						startLabel: b.start,
+						endLabel: b.end,
+					})
 				} else {
-					overlayWidth =
+					setActiveMoveBase({ day: data.day as Weekday, startMin, endMin })
+					const width =
 						active.rect.current.initial?.width ??
 						active.rect.current.translated?.width
-					resizeXOffsetRef.current = 0
-					setActiveMoveBase({ day: data.day as Weekday, startMin, endMin })
-				}
 
-				setActiveSnap({
-					label: matter?.name || 'Unknown',
-					color: matter?.color,
-					height: h,
-					startLabel: b.start,
-					endLabel: b.end,
-					width: overlayWidth,
-				})
+					const moveHeightPx = ((endMin - startMin) / step) * ROW_HEIGHT // <-- NEW
+
+					setActiveSnap({
+						label: matter?.name || 'Unknown',
+						color: matter?.color,
+						width,
+						moveHeightPx,
+						startLabel: b.start,
+						endLabel: b.end,
+					})
+				}
 			}
 		}
 	}
@@ -313,8 +305,16 @@ export default function TimetableScheduler() {
 				endMin = clamp(snap(endMin + deltaMin, step), startMin + minDur, dayEnd)
 			}
 
-			const height = ((endMin - startMin) / step) * ROW_HEIGHT
-			setActiveSnap(prev => prev ? { ...prev, height, startLabel: toTime(startMin), endLabel: toTime(endMin) } : prev)
+			const previewTopPx = ((startMin - dayStart) / step) * ROW_HEIGHT
+			const previewHeightPx = ((endMin - startMin) / step) * ROW_HEIGHT
+
+			setActiveSnap(prev => prev ? {
+				...prev,
+				previewTopPx,
+				previewHeightPx,
+				startLabel: toTime(startMin),
+				endLabel: toTime(endMin),
+			} : prev)
 			return
 		}
 
@@ -329,14 +329,20 @@ export default function TimetableScheduler() {
 	async function dragEnd(e: DragEndEvent) {
 		const { active, delta, over } = e
 		const meta = active.data.current as any
-		setActiveId(null)
-		setActiveMeta(null)
-		setActiveSnap(null)
-		setActiveResizeBase(null)
-		setActiveMoveBase(null)
-		resizeXOffsetRef.current = 0
+		const step = scheduler.cfg.stepMinutes
 
-		if (!selectedKidId || !timetableQuery.data || !meta) return
+		const resetActive = () => {
+			setActiveId(null)
+			setActiveMeta(null)
+			setActiveSnap(null)
+			setActiveResizeBase(null)
+			setActiveMoveBase(null)
+		}
+
+		if (!selectedKidId || !timetableQuery.data || !meta) {
+			resetActive()
+			return
+		}
 
 		const byRows = Math.round(delta.y / ROW_HEIGHT)
 		const overId = over?.id as string | undefined
@@ -354,6 +360,7 @@ export default function TimetableScheduler() {
 				dayBlocksFrom: blocksFor(fromDay),
 				dayBlocksTo: blocksFor(toDay),
 			})
+			resetActive()
 			return
 		}
 
@@ -366,6 +373,7 @@ export default function TimetableScheduler() {
 				byRows,
 				dayBlocks: blocksFor(meta.day),
 			})
+			resetActive()
 			return
 		}
 	}
@@ -456,13 +464,28 @@ export default function TimetableScheduler() {
 						{/* Blocks */}
 						{blocks.map(b => {
 							const matter = matters?.find(m => m.id === b.matterId)
-							const top = (minutesBetween(scheduler.cfg.start, b.start) / step) * ROW_HEIGHT
-							const height = (minutesBetween(b.start, b.end) / step) * ROW_HEIGHT
+							const baseTop = (minutesBetween(scheduler.cfg.start, b.start) / step) * ROW_HEIGHT
+							const baseHeight = (minutesBetween(b.start, b.end) / step) * ROW_HEIGHT
+
+							// Live resize preview for THIS block?
+							const isResizingThis =
+								activeMeta?.type === 'resize' &&
+								activeMeta.id === b.id &&
+								!!activeSnap
+
+							const top = isResizingThis && activeSnap?.previewTopPx != null
+								? activeSnap.previewTopPx
+								: baseTop
+
+							const height = isResizingThis && activeSnap?.previewHeightPx != null
+								? activeSnap.previewHeightPx
+								: baseHeight
 
 							return (
 								<DraggableBlock
 									key={b.id}
 									id={`blk-${b.id}`}
+									rawId={b.id}
 									day={day}
 									label={matter?.name || 'Unknown'}
 									color={matter?.color}
@@ -470,6 +493,9 @@ export default function TimetableScheduler() {
 									start={b.start}
 									end={b.end}
 									height={height}
+									isResizing={isResizingThis}
+									startLabel={isResizingThis ? activeSnap?.startLabel : undefined}
+									endLabel={isResizingThis ? activeSnap?.endLabel : undefined}
 									showHint={showResizeHint}
 									onDelete={() => {
 										if (window.confirm('Delete this block?')) {
@@ -484,12 +510,6 @@ export default function TimetableScheduler() {
 			</div>
 		)
 	}
-
-	// Store the initial height at resize start (for pinning)
-	const initialResizeHeightPx =
-		activeResizeBase
-			? ((activeResizeBase.endMin - activeResizeBase.startMin) / scheduler.cfg.stepMinutes) * ROW_HEIGHT
-			: 0
 
 	return (
 		<div className={styles.container}>
@@ -506,7 +526,7 @@ export default function TimetableScheduler() {
 					onDragOver={dragOver}
 					onDragMove={dragMove}
 					onDragEnd={dragEnd}
-					modifiers={[lockResizeToVertical, alignResizeOverlayX]}
+					modifiers={[lockResizeToVertical]}
 				>
 					<div ref={gridRef} className={styles.gridWrapper}>
 						<div className={styles.grid}>
@@ -519,35 +539,37 @@ export default function TimetableScheduler() {
 						</div>
 					</div>
 
+					{/* Overlay only for MOVE (resize is live on the real block) */}
 					<DragOverlay>
-						{activeSnap ? (
+						{activeSnap && activeMeta?.type === 'move' ? (
 							<div
 								className={styles.overlayBox}
 								style={{
-									height: activeSnap.height,
 									width: activeSnap.width ?? 'auto',
+									height: activeSnap.moveHeightPx ?? undefined,   // <-- NEW
 									pointerEvents: 'none',
+									position: 'relative',                           // ensure badges position correctly
 								}}
 							>
-								<div
-									className={styles.overlayAlign}
-									style={{
-										transform: (() => {
-											if (activeMeta?.type === 'resize') {
-												const current = activeSnap.height
-												// Pin top when dragging bottom; pin bottom when dragging top
-												return activeMeta.anchor === 'end'
-													? `translate(0px, ${-current}px)`                          // keep TOP fixed
-													: `translate(0px, ${-(current - (initialResizeHeightPx || 0))}px)` // keep BOTTOM fixed
-											}
-											return 'translate(0px, 0px)'
-										})(),
-									}}
-								>
-									<Block id="overlay" label={activeSnap.label} color={activeSnap.color} top={0} height={activeSnap.height} isDragging />
-									{activeSnap.startLabel && <div className={`${styles.timeBadge} ${styles.timeBadgeTop}`}>{activeSnap.startLabel}</div>}
-									{activeSnap.endLabel && <div className={`${styles.timeBadge} ${styles.timeBadgeBottom}`}>{activeSnap.endLabel}</div>}
-								</div>
+								<Block
+									id="overlay"
+									label={activeSnap.label}
+									color={activeSnap.color}
+									top={0}
+									height={activeSnap.moveHeightPx ?? 48}
+									isDragging
+								/>
+								{/* Time badges on the LEFT while moving */}
+								{activeSnap.startLabel && (
+									<div className={`${styles.timeBadge} ${styles.timeBadgeLeftTop}`}>
+										{activeSnap.startLabel}
+									</div>
+								)}
+								{activeSnap.endLabel && (
+									<div className={`${styles.timeBadge} ${styles.timeBadgeLeftBottom}`}>
+										{activeSnap.endLabel}
+									</div>
+								)}
 							</div>
 						) : null}
 					</DragOverlay>
@@ -567,23 +589,24 @@ export default function TimetableScheduler() {
 }
 
 function DraggableBlock({
-	id, day, label, color, top, start, end, height, showHint, onDelete,
+	id, rawId, day, label, color, top, start, end, height, isResizing, startLabel, endLabel, showHint, onDelete,
 }: {
-	id: string; day: Weekday; label: string; start: string; end: string; color?: string; top: number; height: number; showHint?: boolean; onDelete?: () => void
+	id: string; rawId: string; day: Weekday; label: string; start: string; end: string; color?: string;
+	top: number; height: number; isResizing?: boolean; startLabel?: string; endLabel?: string; showHint?: boolean; onDelete?: () => void
 }) {
-	const move = useDraggable({ id, data: { type: 'move', day, id: id.replace('blk-', '') } })
-	const resizeStart = useDraggable({ id: `${id}-rsz-start`, data: { type: 'resize', day, id: id.replace('blk-', ''), anchor: 'start' as const } })
-	const resizeEnd = useDraggable({ id: `${id}-rsz-end`, data: { type: 'resize', day, id: id.replace('blk-', ''), anchor: 'end' as const } })
+	const move = useDraggable({ id, data: { type: 'move', day, id: rawId } })
+	const resizeStart = useDraggable({ id: `${id}-rsz-start`, data: { type: 'resize', day, id: rawId, anchor: 'start' as const } })
+	const resizeEnd = useDraggable({ id: `${id}-rsz-end`, data: { type: 'resize', day, id: rawId, anchor: 'end' as const } })
 
 	return (
 		<div
 			ref={move.setNodeRef}
-			className={styles.blockWrap}
+			className={`${styles.blockWrap} ${isResizing ? styles.isResizing : ''}`}
 			style={{ top, height, transform: CSS.Translate.toString(move.transform) }}
 			onMouseDown={(e) => e.stopPropagation()}
 			onTouchStart={(e) => e.stopPropagation()}
 		>
-			{/* INTERACTIVE handles (centered, inside the block) */}
+			{/* Top/bottom resize handles (centered) */}
 			<div
 				className={`${styles.resizeHandle} ${styles.resizeStart} ${showHint ? styles.showHintHandle : ''}`}
 				ref={resizeStart.setNodeRef}
@@ -599,14 +622,15 @@ function DraggableBlock({
 			/>
 
 			{/* Dedicated drag handle (only this drags the block) */}
-			<button
-				className={styles.dragHandle}
-				aria-label="Drag"
-				{...move.listeners}
-				{...move.attributes}
-			>
-				⋮⋮
-			</button>
+			<button className={styles.dragHandle} aria-label="Drag" {...move.listeners} {...move.attributes}>⋮⋮</button>
+
+			{/* Time badges on the LEFT while resizing */}
+			{isResizing && (
+				<>
+					{startLabel && <div className={`${styles.timeBadge} ${styles.timeBadgeLeftTop}`}>{startLabel}</div>}
+					{endLabel && <div className={`${styles.timeBadge} ${styles.timeBadgeLeftBottom}`}>{endLabel}</div>}
+				</>
+			)}
 		</div>
 	)
 }
