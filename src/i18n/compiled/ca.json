@@ -56,7 +56,7 @@
   "7WNjYc": [
     {
       "type": 0,
-      "value": "Selecciona un infant per veure l’horari setmanal."
+      "value": "Selecciona un nen per veure l’horari setmanal."
     }
   ],
   "9+Ddtu": [
@@ -136,13 +136,13 @@
   "MZZXn3": [
     {
       "type": 0,
-      "value": "Tria un o més infants per incloure. Només s’inclouran les assignatures que utilitzen i la configuració de l’aplicació."
+      "value": "Tria un o més nens per incloure. Només s’inclouran les assignatures que utilitzen i la configuració de l’aplicació."
     }
   ],
   "Ntrsoa": [
     {
       "type": 0,
-      "value": "Els horaris dels infants seleccionats "
+      "value": "Els horaris dels nens seleccionats "
     },
     {
       "children": [
@@ -156,7 +156,7 @@
     },
     {
       "type": 0,
-      "value": " els existents amb el mateix nom; s’afegiran els infants nous."
+      "value": " els existents amb el mateix nom; s’afegiran els nens nous."
     }
   ],
   "OKAfXf": [
@@ -234,7 +234,7 @@
   "YYWPaG": [
     {
       "type": 0,
-      "value": "Afegir infant"
+      "value": "Afegir nen"
     }
   ],
   "bdymGA": [
@@ -268,7 +268,7 @@
   "dLcvSS": [
     {
       "type": 0,
-      "value": "Selecciona un infant per veure l’horari d’aquest dia."
+      "value": "Selecciona un nen per veure l’horari d’aquest dia."
     }
   ],
   "eTShla": [
@@ -308,7 +308,7 @@
   "jEUlFa": [
     {
       "type": 0,
-      "value": "Aquesta app funciona sense connexió i es pot instal·lar al teu dispositiu. Configura les assignatures i els infants i després planifica cada dia amb el planificador."
+      "value": "Aquesta app funciona sense connexió i es pot instal·lar al teu dispositiu. Configura les assignatures i els nens i després planifica cada dia amb el planificador."
     }
   ],
   "jo2k5w": [
@@ -326,7 +326,7 @@
   "kiL25m": [
     {
       "type": 0,
-      "value": "Encara no hi ha infants."
+      "value": "Encara no hi ha nens."
     }
   ],
   "m9elnf": [
@@ -338,7 +338,7 @@
   "mfuPab": [
     {
       "type": 0,
-      "value": "Infants"
+      "value": "Nens"
     }
   ],
   "n5QvJy": [
@@ -356,7 +356,7 @@
   "oLX9FC": [
     {
       "type": 0,
-      "value": "Nom de l’infant"
+      "value": "Nom del nen"
     }
   ],
   "pQKms/": [
@@ -404,7 +404,7 @@
   "udb1jF": [
     {
       "type": 0,
-      "value": "Infants en aquest enllaç"
+      "value": "Nens en aquest enllaç"
     }
   ],
   "vzrgmV": [
