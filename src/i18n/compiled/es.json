@@ -2,13 +2,13 @@
   "/IsDRs": [
     {
       "type": 0,
-      "value": "Día laborable"
+      "value": "Día de la semana"
     }
   ],
   "/clOBU": [
     {
       "type": 0,
-      "value": "Semanalmente"
+      "value": "Semanal"
     }
   ],
   "/zFP1/": [
@@ -26,7 +26,7 @@
   "3XCLrO": [
     {
       "type": 0,
-      "value": "Al día siguiente"
+      "value": "Día siguiente"
     }
   ],
   "47FYwb": [
@@ -50,19 +50,19 @@
   "6kvuR8": [
     {
       "type": 0,
-      "value": "Agregar materia"
+      "value": "Añadir materia"
     }
   ],
   "7WNjYc": [
     {
       "type": 0,
-      "value": "Elija a un niño para ver el horario semanal."
+      "value": "Selecciona un niño para ver el horario semanal."
     }
   ],
   "9+Ddtu": [
     {
       "type": 0,
-      "value": "Próximo"
+      "value": "Siguiente"
     }
   ],
   "98J3lS": [
@@ -74,7 +74,7 @@
   "9Mt7ON": [
     {
       "type": 0,
-      "value": "Asuntos"
+      "value": "Materias"
     }
   ],
   "9XUYQt": [
@@ -92,7 +92,7 @@
   "F3Q089": [
     {
       "type": 0,
-      "value": "Calendario"
+      "value": "Horario"
     }
   ],
   "GAjQnO": [
@@ -104,7 +104,7 @@
   "GrrpMl": [
     {
       "type": 0,
-      "value": "Entrantes: "
+      "value": "Entrante: "
     },
     {
       "type": 1,
@@ -112,37 +112,37 @@
     },
     {
       "type": 0,
-      "value": " (solo ampliará su rango actual)"
+      "value": " (solo ampliará tu rango actual)"
     }
   ],
   "Humfno": [
     {
       "type": 0,
-      "value": "Fecha final"
+      "value": "Fecha de fin"
     }
   ],
   "K3r6DQ": [
     {
       "type": 0,
-      "value": "Borrar"
+      "value": "Eliminar"
     }
   ],
   "MKC+S9": [
     {
       "type": 0,
-      "value": "Instalar aplicación"
+      "value": "Instalar la aplicación"
     }
   ],
   "MZZXn3": [
     {
       "type": 0,
-      "value": "Elija uno o más niños para incluir. Solo sus asuntos usados ​​y la configuración de la aplicación están agrupados."
+      "value": "Elige uno o varios niños para incluir. Solo se incluirán sus materias utilizadas y la configuración de la aplicación."
     }
   ],
   "Ntrsoa": [
     {
       "type": 0,
-      "value": "Los horarios para niños seleccionados "
+      "value": "Los horarios de los niños seleccionados "
     },
     {
       "children": [
@@ -156,13 +156,13 @@
     },
     {
       "type": 0,
-      "value": " los existentes con el mismo nombre. Se agregarán nuevos niños."
+      "value": " a los existentes con el mismo nombre; se añadirán los niños nuevos."
     }
   ],
   "OKAfXf": [
     {
       "type": 0,
-      "value": "Compartir/exportar"
+      "value": "Compartir/Exportar"
     }
   ],
   "OKhRC6": [
@@ -180,7 +180,7 @@
   "S9KZMU": [
     {
       "type": 0,
-      "value": "Horario de programador"
+      "value": "Horas del planificador"
     }
   ],
   "SENRqu": [
@@ -192,7 +192,7 @@
   "T4PemA": [
     {
       "type": 0,
-      "value": "Visibles de lunes a viernes"
+      "value": "Días de la semana visibles"
     }
   ],
   "TkytCp": [
@@ -204,13 +204,13 @@
   "Tmtxcl": [
     {
       "type": 0,
-      "value": "Desmarque un día para esconderlo en el planificador."
+      "value": "Desmarca un día para ocultarlo en el planificador."
     }
   ],
   "UaTxmn": [
     {
       "type": 0,
-      "value": "Abriremos la hoja de acciones de su dispositivo (o copiaremos un enlace si el intercambio no está disponible)."
+      "value": "Abriremos la hoja de compartir de tu dispositivo (o copiaremos un enlace si compartir no está disponible)."
     }
   ],
   "WUV28A": [
@@ -222,25 +222,25 @@
   "Wob0BX": [
     {
       "type": 0,
-      "value": "Cambia la primera columna en el programador semanal."
+      "value": "Cambia la primera columna en el planificador semanal."
     }
   ],
   "YP/f8C": [
     {
       "type": 0,
-      "value": "Compartir / exportar"
+      "value": "Compartir / Exportar"
     }
   ],
   "YYWPaG": [
     {
       "type": 0,
-      "value": "Agregar chico"
+      "value": "Añadir niño"
     }
   ],
   "bdymGA": [
     {
       "type": 0,
-      "value": "Estos definen la ventana vertical visible en el planificador (por ejemplo, de 08:00 a 18:00). La aplicación impone que la hora de inicio debe ser anterior a la hora de finalización."
+      "value": "Esto define la ventana vertical visible en el planificador (p. ej., de 08:00 a 18:00). La app garantiza que la hora de inicio debe ser anterior a la hora de fin."
     }
   ],
   "cyR7Kh": [
@@ -252,7 +252,7 @@
   "dDDrP5": [
     {
       "type": 0,
-      "value": "Fecha de finalización: "
+      "value": "Fecha de fin: "
     },
     {
       "type": 1,
@@ -262,13 +262,13 @@
   "dKTGNH": [
     {
       "type": 0,
-      "value": "Ayuda y guía del usuario"
+      "value": "Ayuda y guía de uso"
     }
   ],
   "dLcvSS": [
     {
       "type": 0,
-      "value": "Seleccione un niño para ver el horario de este día."
+      "value": "Selecciona un niño para ver el horario de este día."
     }
   ],
   "eTShla": [
@@ -280,7 +280,7 @@
   "ejEGdx": [
     {
       "type": 0,
-      "value": "Hogar"
+      "value": "Inicio"
     }
   ],
   "gQCbLw": [
@@ -296,25 +296,25 @@
   "iMjjOH": [
     {
       "type": 0,
-      "value": "La próxima semana"
+      "value": "Semana siguiente"
     }
   ],
   "io8qrA": [
     {
       "type": 0,
-      "value": "Configurarlo"
+      "value": "Configúralo"
     }
   ],
   "jEUlFa": [
     {
       "type": 0,
-      "value": "Esta aplicación funciona fuera de línea y se puede instalar en su dispositivo. Configure asuntos y niños, luego planifique todos los días usando el planificador."
+      "value": "Esta app funciona sin conexión y puede instalarse en tu dispositivo. Configura las materias y los niños, y luego planifica cada día con el planificador."
     }
   ],
   "jo2k5w": [
     {
       "type": 0,
-      "value": "No se proporcionan horas en el enlace"
+      "value": "No se proporcionaron horas en el enlace"
     }
   ],
   "jvo0vs": [
@@ -326,13 +326,13 @@
   "kiL25m": [
     {
       "type": 0,
-      "value": "No hay niños todavía."
+      "value": "Aún no hay niños."
     }
   ],
   "m9elnf": [
     {
       "type": 0,
-      "value": "Fecha de selección"
+      "value": "Elegir fecha"
     }
   ],
   "mfuPab": [
@@ -356,13 +356,13 @@
   "oLX9FC": [
     {
       "type": 0,
-      "value": "Nombre de niño"
+      "value": "Nombre del niño"
     }
   ],
   "pQKms/": [
     {
       "type": 0,
-      "value": "Salta a hoy"
+      "value": "Ir a hoy"
     }
   ],
   "qJGVbV": [
@@ -386,19 +386,19 @@
   "tkq+Nt": [
     {
       "type": 0,
-      "value": "Consejo: si no ve el botón Instalar, es posible que su navegador ya tenga la aplicación instalada o no admite la instalación en este dispositivo."
+      "value": "Consejo: si no ves el botón de instalar, es posible que tu navegador ya tenga la app instalada o que no admita la instalación en este dispositivo."
     }
   ],
   "uBJFHJ": [
     {
       "type": 0,
-      "value": "Horario"
+      "value": "Horarios"
     }
   ],
   "uYAC8d": [
     {
       "type": 0,
-      "value": "Aplicar horarios de programador importados"
+      "value": "Aplicar horas del planificador importadas"
     }
   ],
   "udb1jF": [
@@ -410,7 +410,7 @@
   "vzrgmV": [
     {
       "type": 0,
-      "value": "Enlace de lectura…"
+      "value": "Leyendo enlace…"
     }
   ],
   "wEQDC6": [
@@ -422,13 +422,13 @@
   "wM6yen": [
     {
       "type": 0,
-      "value": "Saltar a la semana actual"
+      "value": "Ir a la semana actual"
     }
   ],
   "xXt7Sw": [
     {
       "type": 0,
-      "value": "Instalar esta aplicación"
+      "value": "Instalar esta app"
     }
   ],
   "y1Z3or": [
@@ -440,13 +440,13 @@
   "y6VttL": [
     {
       "type": 0,
-      "value": "Nada más hoy"
+      "value": "No hay más por hoy"
     }
   ],
   "ytO0XE": [
     {
       "type": 0,
-      "value": "La semana comienza en"
+      "value": "La semana empieza el"
     }
   ],
   "zWgbGg": [
