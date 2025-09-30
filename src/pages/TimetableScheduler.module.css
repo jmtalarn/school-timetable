@@ -1,10 +1,17 @@
 :root {
-	--day-min: 260px;
+	--day-min: 120px;
 }
 
 .container {
 	width: 100%;
 	max-width: 820px;
+	margin: 0 auto;
+	padding: clamp(12px, 2vw, 24px);
+}
+
+.gridContainer {
+	width: 100%;
+	max-width: 1280px;
 	margin: 0 auto;
 	padding: clamp(12px, 2vw, 24px);
 }
@@ -373,11 +380,15 @@
 	left: -44px; /* pull to the left of the block */
 	top: -12px;
 }
+
 .timeBadgeLeftBottom {
 	left: -44px;
 	bottom: -12px;
 }
-
+.columnOuter:first-child .timeBadgeLeftTop,
+.columnOuter:first-child .timeBadgeLeftBottom {
+	left: 0px;
+}
 /* (legacy overlay time badges classes retained if you need them elsewhere)
 .timeBadgeTop { top: -22px; left: 0; }
 .timeBadgeBottom { bottom: -22px; right: 0; }

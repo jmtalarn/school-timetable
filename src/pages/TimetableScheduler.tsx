@@ -507,84 +507,87 @@ export default function TimetableScheduler() {
 						})}
 					</div>
 				</DroppableDay>
-			</div>
+			</div >
 		)
 	}
 
 	return (
-		<div className={styles.container}>
-			<h2 className={styles.header}><FormattedMessage defaultMessage="Timetable" /></h2>
+		<>
+			<div className={styles.container}>
+				<h2 className={styles.header}><FormattedMessage defaultMessage="Timetable" /></h2>
 
-			<div className={styles.kidRow}>
-				<KidSelect value={selectedKidId} onChange={setSelectedKidId} kids={kids || []} />
+				<div className={styles.kidRow}>
+					<KidSelect value={selectedKidId} onChange={setSelectedKidId} kids={kids || []} />
+				</div>
 			</div>
-
-			{selectedKidId && timetableQuery.data ? (
-				<DndContext
-					sensors={sensors}
-					onDragStart={dragStart}
-					onDragOver={dragOver}
-					onDragMove={dragMove}
-					onDragEnd={dragEnd}
-					modifiers={[lockResizeToVertical]}
-				>
-					<div ref={gridRef} className={styles.gridWrapper}>
-						<div className={styles.grid}>
-							{visibleWeekdays.map(day => (
-								<div key={day}>
-									<div className={styles.columnTitle}>{weekdayLabels[day]}</div>
-									{renderColumn(day)}
-								</div>
-							))}
-						</div>
-					</div>
-
-					{/* Overlay only for MOVE (resize is live on the real block) */}
-					<DragOverlay>
-						{activeSnap && activeMeta?.type === 'move' ? (
-							<div
-								className={styles.overlayBox}
-								style={{
-									width: activeSnap.width ?? 'auto',
-									height: activeSnap.moveHeightPx ?? undefined,   // <-- NEW
-									pointerEvents: 'none',
-									position: 'relative',                           // ensure badges position correctly
-								}}
-							>
-								<Block
-									id="overlay"
-									label={activeSnap.label}
-									color={activeSnap.color}
-									top={0}
-									height={activeSnap.moveHeightPx ?? 48}
-									isDragging
-								/>
-								{/* Time badges on the LEFT while moving */}
-								{activeSnap.startLabel && (
-									<div className={`${styles.timeBadge} ${styles.timeBadgeLeftTop}`}>
-										{activeSnap.startLabel}
+			<div className={styles.gridContainer}>
+				{selectedKidId && timetableQuery.data ? (
+					<DndContext
+						sensors={sensors}
+						onDragStart={dragStart}
+						onDragOver={dragOver}
+						onDragMove={dragMove}
+						onDragEnd={dragEnd}
+						modifiers={[lockResizeToVertical]}
+					>
+						<div ref={gridRef} className={styles.gridWrapper}>
+							<div className={styles.grid}>
+								{visibleWeekdays.map(day => (
+									<div key={day} className={styles.columnOuter} >
+										<div className={styles.columnTitle}>{weekdayLabels[day]}</div>
+										{renderColumn(day)}
 									</div>
-								)}
-								{activeSnap.endLabel && (
-									<div className={`${styles.timeBadge} ${styles.timeBadgeLeftBottom}`}>
-										{activeSnap.endLabel}
-									</div>
-								)}
+								))}
 							</div>
-						) : null}
-					</DragOverlay>
-				</DndContext>
-			) : (
-				<p className={styles.hint}>Select a kid to edit the timetable.</p>
-			)}
+						</div>
 
-			<MatterPicker
-				open={pickerOpen && !!createAt}
-				matters={matters}
-				onPick={id => confirmCreate(id)}
-				onClose={() => { setPickerOpen(false); setCreateAt(null) }}
-			/>
-		</div>
+						{/* Overlay only for MOVE (resize is live on the real block) */}
+						<DragOverlay>
+							{activeSnap && activeMeta?.type === 'move' ? (
+								<div
+									className={styles.overlayBox}
+									style={{
+										width: activeSnap.width ?? 'auto',
+										height: activeSnap.moveHeightPx ?? undefined,   // <-- NEW
+										pointerEvents: 'none',
+										position: 'relative',                           // ensure badges position correctly
+									}}
+								>
+									<Block
+										id="overlay"
+										label={activeSnap.label}
+										color={activeSnap.color}
+										top={0}
+										height={activeSnap.moveHeightPx ?? 48}
+										isDragging
+									/>
+									{/* Time badges on the LEFT while moving */}
+									{activeSnap.startLabel && (
+										<div className={`${styles.timeBadge} ${styles.timeBadgeLeftTop}`}>
+											{activeSnap.startLabel}
+										</div>
+									)}
+									{activeSnap.endLabel && (
+										<div className={`${styles.timeBadge} ${styles.timeBadgeLeftBottom}`}>
+											{activeSnap.endLabel}
+										</div>
+									)}
+								</div>
+							) : null}
+						</DragOverlay>
+					</DndContext>
+				) : (
+					<p className={styles.hint}>Select a kid to edit the timetable.</p>
+				)}
+
+				<MatterPicker
+					open={pickerOpen && !!createAt}
+					matters={matters}
+					onPick={id => confirmCreate(id)}
+					onClose={() => { setPickerOpen(false); setCreateAt(null) }}
+				/>
+			</div>
+		</>
 	)
 }
 
