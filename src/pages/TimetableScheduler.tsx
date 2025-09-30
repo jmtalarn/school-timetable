@@ -2,6 +2,7 @@ import {
 	DndContext,
 	DragOverlay,
 	PointerSensor,
+	TouchSensor,
 	useDroppable,
 	useSensor,
 	useSensors,
@@ -90,7 +91,8 @@ function Block({
 						type="button"
 						aria-label="Delete block"
 						title="Delete"
-						onMouseDown={(e) => { e.stopPropagation(); e.preventDefault() }}
+						onPointerDown={(e) => { e.stopPropagation(); e.preventDefault() }}
+						onTouchStart={(e) => { e.stopPropagation(); e.preventDefault() }}
 						onClick={(e) => { e.stopPropagation(); if (onDelete) onDelete() }}
 						className={styles.deleteBtn}
 					>
@@ -126,10 +128,14 @@ export default function TimetableScheduler() {
 		() => reorderWeekdays(appCfg?.startOfWeek ?? 'mon'),
 		[appCfg?.startOfWeek]
 	)
+	const tapRef = useRef<{ x: number; y: number; moved: boolean; allowed: boolean } | null>(null)
+	const downTimeRef = useRef<number>(0)
+	const TAP_MOVE_TOLERANCE = 6 // px
+	const TAP_MAX_DURATION = 250 // ms – > this feels like a tap, longer is likely scroll/press
+	const scrollRef = useRef<{ winY: number; wrapX: number }>({ winY: 0, wrapX: 0 })
 
 	// Then apply the “hidden days” filter
 	const visibleWeekdays = useMemo(() => {
-		console.log({ orderedWeekdays, appCfg })
 		const hidden = new Set(appCfg?.hiddenWeekdays ?? [])
 		return orderedWeekdays.filter(d => !hidden.has(d))
 	}, [orderedWeekdays, appCfg?.hiddenWeekdays])
@@ -158,7 +164,10 @@ export default function TimetableScheduler() {
 	const [activeResizeBase, setActiveResizeBase] = useState<null | { day: Weekday; startMin: number; endMin: number }>(null)
 	const [activeMoveBase, setActiveMoveBase] = useState<null | { day: Weekday; startMin: number; endMin: number }>(null)
 	const [resizeOffsetRows, setResizeOffsetRows] = useState(0)
-	const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 4 } }))
+	const sensors = useSensors(
+		useSensor(PointerSensor, { activationConstraint: { delay: 140, tolerance: 6 } }),
+		useSensor(TouchSensor, { activationConstraint: { delay: 140, tolerance: 6 } }),
+	)
 
 	const gridRef = useRef<HTMLDivElement>(null)
 	const colRefs = useRef<Record<Weekday, HTMLDivElement | null>>({ mon: null, tue: null, wed: null, thu: null, fri: null, sat: null, sun: null })
@@ -174,17 +183,28 @@ export default function TimetableScheduler() {
 	}
 	const onColumnMouseLeave = () => setHoverCell(null)
 
-	const onEmptyCellClick = (day: Weekday, e: React.MouseEvent) => {
+	const onEmptyCellClick = (day: Weekday, e: React.MouseEvent | React.PointerEvent) => {
+		if (pickerOpen) return
 		const tgt = e.target as HTMLElement | null
-		if (tgt && tgt.closest('[data-block-id]')) return
+		if (
+			!tgt ||
+			tgt.closest('[data-block-id]') ||
+			tgt.closest(`.${styles.resizeHandle}`) ||
+			tgt.closest(`.${styles.blockWrap}`)
+		) return
+
 		const colEl = colRefs.current[day]
 		if (!colEl) return
 		const rect = colEl.getBoundingClientRect()
-		const y = e.clientY - rect.top
+		const clientY = 'clientY' in e ? (e as any).clientY : 0
+		const y = clientY - rect.top
 		const row = Math.max(0, Math.min(scheduler.rows, Math.round(y / ROW_HEIGHT)))
+
 		setCreateAt({ day, row })
-		setPickerOpen(true)
+		// open on next frame to avoid ghost clicks leaking through
+		requestAnimationFrame(() => setPickerOpen(true))
 	}
+
 
 	const blocksFor = (day: Weekday) => timetableQuery.data?.days[day] ?? []
 
@@ -301,7 +321,7 @@ export default function TimetableScheduler() {
 
 	// Create flow
 	const [pickerOpen, setPickerOpen] = useState(false)
-	// const openPickerAt = (loc: { day: Weekday; row: number }) => { setCreateAt(loc); setPickerOpen(true) }
+
 
 	const confirmCreate = async (matterId: string) => {
 		if (!selectedKidId || !createAt) return
@@ -323,11 +343,63 @@ export default function TimetableScheduler() {
 			<div>
 				<DroppableDay id={`col-${day}`} setRef={el => (colRefs.current[day] = el)}>
 					<div
-						onClick={e => onEmptyCellClick(day, e)}
-						onMouseMove={e => onColumnMouseMove(day, e)}
+						onPointerDown={(e) => {
+							const t = e.target as HTMLElement | null
+							const onBlockOrHandle =
+								t?.closest('[data-block-id]') ||
+								t?.closest(`.${styles.resizeHandle}`) ||
+								t?.closest(`.${styles.blockWrap}`)
+
+							tapRef.current = {
+								x: e.clientX,
+								y: e.clientY,
+								moved: false,
+								allowed: !onBlockOrHandle,
+							}
+							downTimeRef.current = performance.now()
+
+							// snapshot scroll positions (page Y + horizontal grid wrapper X)
+							scrollRef.current.winY = window.scrollY
+							scrollRef.current.wrapX = gridRef.current?.scrollLeft ?? 0
+						}}
+						onPointerMove={(e) => {
+							if (!tapRef.current) return
+							const dx = Math.abs(e.clientX - tapRef.current.x)
+							const dy = Math.abs(e.clientY - tapRef.current.y)
+							if (dx > TAP_MOVE_TOLERANCE || dy > TAP_MOVE_TOLERANCE) {
+								tapRef.current.moved = true
+							}
+						}}
+						onPointerUp={(e) => {
+							e.preventDefault() // suppress synthetic click
+
+							const duration = performance.now() - downTimeRef.current
+							const scrolled =
+								Math.abs(window.scrollY - scrollRef.current.winY) > 0 ||
+								Math.abs((gridRef.current?.scrollLeft ?? 0) - scrollRef.current.wrapX) > 0
+
+							const wasTap =
+								tapRef.current?.allowed &&
+								!tapRef.current?.moved &&
+								!scrolled &&
+								duration <= TAP_MAX_DURATION &&
+								!activeId &&              // don't create if a drag was active
+								!pickerOpen               // don't create if the picker is open
+
+							tapRef.current = null
+
+							if (!wasTap) return
+
+							// real tap → open picker
+							onEmptyCellClick(day, e)
+						}}
+						onPointerCancel={() => { tapRef.current = null }}
+						onPointerLeave={() => { tapRef.current = null }}
+						onMouseMove={(e) => onColumnMouseMove(day, e)}
 						onMouseLeave={onColumnMouseLeave}
 						className={styles.columnInner}
 						style={{ height: containerHeight }}
+
 					>
 						{/* Horizontal hour lines */}
 						{rowLabels.map((label, i) => (
@@ -455,7 +527,10 @@ function DraggableBlock({
 }: {
 	id: string; day: Weekday; label: string; start: string; end: string; color?: string; top: number; height: number; onDelete?: () => void
 }) {
-	const move = useDraggable({ id, data: { type: 'move', day, id: id.replace('blk-', '') } })
+	const move = useDraggable({
+		id,
+		data: { type: 'move', day, id: id.replace('blk-', '') },
+	})
 	const resizeStart = useDraggable({ id: `${id}-rsz-start`, data: { type: 'resize', day, id: id.replace('blk-', ''), anchor: 'start' as const } })
 	const resizeEnd = useDraggable({ id: `${id}-rsz-end`, data: { type: 'resize', day, id: id.replace('blk-', ''), anchor: 'end' as const } })
 
@@ -464,12 +539,48 @@ function DraggableBlock({
 			ref={move.setNodeRef}
 			className={styles.blockWrap}
 			style={{ top, height, transform: CSS.Translate.toString(move.transform) }}
-			{...move.listeners}
-			{...move.attributes}
+			// IMPORTANT: no move.listeners / move.attributes here
+			onMouseDown={(e) => e.stopPropagation()}
+			onTouchStart={(e) => e.stopPropagation()}
 		>
-			<div className={`${styles.resizeHandle} ${styles.resizeStart}`} ref={resizeStart.setNodeRef} {...resizeStart.listeners} {...resizeStart.attributes} />
-			<Block id={id} label={label} color={color} top={0} height={height} start={start} end={end} onDelete={onDelete} />
-			<div className={`${styles.resizeHandle} ${styles.resizeEnd}`} ref={resizeEnd.setNodeRef} {...resizeEnd.listeners} {...resizeEnd.attributes} />
+			<div
+				className={`${styles.resizeHandle} ${styles.resizeStart}`}
+				ref={resizeStart.setNodeRef}
+				{...resizeStart.listeners}
+				{...resizeStart.attributes}
+				onMouseDown={(e) => e.stopPropagation()}
+				onTouchStart={(e) => e.stopPropagation()}
+			/>
+			<Block
+				id={id}
+				label={label}
+				color={color}
+				top={0}
+				height={height}
+				start={start}
+				end={end}
+				onDelete={onDelete}
+			/>
+			<div
+				className={`${styles.resizeHandle} ${styles.resizeEnd}`}
+				ref={resizeEnd.setNodeRef}
+				{...resizeEnd.listeners}
+				{...resizeEnd.attributes}
+				onMouseDown={(e) => e.stopPropagation()}
+				onTouchStart={(e) => e.stopPropagation()}
+			/>
+
+			{/* DRAG HANDLE – attach the move listeners/attributes here */}
+			<button
+				className={styles.dragHandle}
+				aria-label="Drag"
+				{...move.listeners}
+				{...move.attributes}
+				onMouseDown={(e) => e.stopPropagation()}
+				onTouchStart={(e) => e.stopPropagation()}
+			>
+				⋮⋮
+			</button>
 		</div>
 	)
 }
