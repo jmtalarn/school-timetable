@@ -162,6 +162,9 @@
 	touch-action: none; /* route gesture to dnd-kit */
 	z-index: 12; /* beneath resize handles (20) */
 }
+.dragHandle:hover {
+	box-shadow: none;
+}
 .dragHandle:active {
 	cursor: grabbing;
 }
@@ -188,6 +191,26 @@
 	font-size: 12px;
 	min-width: 0;
 }
+
+.blockWrap .resizeHandle,
+.blockWrap .dragHandle {
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 300ms ease-in-out;
+}
+.blockWrap:hover .resizeHandle,
+.blockWrap:hover .dragHandle {
+	visibility: visible;
+	opacity: 0.8;
+}
+.blockWrap:active .resizeHandle,
+.blockWrap:active .dragHandle,
+.blockWrap:focus .resizeHandle,
+.blockWrap:focus .dragHandle {
+	visibility: visible;
+	opacity: 1;
+}
+
 .blockLabel {
 	flex: 1 1 auto;
 	min-width: 0;
@@ -242,7 +265,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	opacity: 0.85;
+	opacity: 0.65;
 	transition: opacity 120ms ease, transform 120ms ease;
 }
 .resizeHandle::before {

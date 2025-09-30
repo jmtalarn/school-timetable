@@ -605,6 +605,7 @@ function DraggableBlock({
 			style={{ top, height, transform: CSS.Translate.toString(move.transform) }}
 			onMouseDown={(e) => e.stopPropagation()}
 			onTouchStart={(e) => e.stopPropagation()}
+			tabIndex={0}
 		>
 			{/* Top/bottom resize handles (centered) */}
 			<div
