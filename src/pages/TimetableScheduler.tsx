@@ -329,7 +329,6 @@ export default function TimetableScheduler() {
 	async function dragEnd(e: DragEndEvent) {
 		const { active, delta, over } = e
 		const meta = active.data.current as any
-		const step = scheduler.cfg.stepMinutes
 
 		const resetActive = () => {
 			setActiveId(null)

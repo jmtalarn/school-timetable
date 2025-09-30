@@ -2,49 +2,49 @@
   "/IsDRs": [
     {
       "type": 0,
-      "value": "Dia de la setmana"
+      "value": "Dies laboral"
     }
   ],
   "/clOBU": [
     {
       "type": 0,
-      "value": "Setmanal"
+      "value": "Semanalment"
     }
   ],
   "/zFP1/": [
     {
       "type": 0,
-      "value": "Hora d’inici"
+      "value": "Hora d'inici"
     }
   ],
   "0dKC7W": [
     {
       "type": 0,
-      "value": "Compartint…"
+      "value": "Compartir ..."
     }
   ],
   "3XCLrO": [
     {
       "type": 0,
-      "value": "Dia següent"
+      "value": "L’endemà"
     }
   ],
   "47FYwb": [
     {
       "type": 0,
-      "value": "Cancel·la"
+      "value": "Cancel·lar"
     }
   ],
   "5jeq8P": [
     {
       "type": 0,
-      "value": "Desconegut"
+      "value": "Desconeguda"
     }
   ],
   "64RmVd": [
     {
       "type": 0,
-      "value": "Planificador"
+      "value": "Programador"
     }
   ],
   "6kvuR8": [
@@ -56,13 +56,13 @@
   "7WNjYc": [
     {
       "type": 0,
-      "value": "Tria un nen/nena per veure l’horari setmanal."
+      "value": "Trieu un nen per veure l’horari setmanal."
     }
   ],
   "9+Ddtu": [
     {
       "type": 0,
-      "value": "Següent"
+      "value": "Pròxim"
     }
   ],
   "98J3lS": [
@@ -74,7 +74,7 @@
   "9Mt7ON": [
     {
       "type": 0,
-      "value": "Matèries"
+      "value": "Qüestions"
     }
   ],
   "9XUYQt": [
@@ -104,7 +104,7 @@
   "GrrpMl": [
     {
       "type": 0,
-      "value": "Entrant: "
+      "value": "Entrants: "
     },
     {
       "type": 1,
@@ -112,43 +112,43 @@
     },
     {
       "type": 0,
-      "value": " (només eixamplarà el rang actual)"
+      "value": " (només ampliarà el vostre rang actual)"
     }
   ],
   "Humfno": [
     {
       "type": 0,
-      "value": "Data de final"
+      "value": "Data de finalització"
     }
   ],
   "K3r6DQ": [
     {
       "type": 0,
-      "value": "Suprimeix"
+      "value": "Esborrar"
     }
   ],
   "MKC+S9": [
     {
       "type": 0,
-      "value": "Instal·lar app"
+      "value": "Instal·leu l'aplicació"
     }
   ],
   "MZZXn3": [
     {
       "type": 0,
-      "value": "Tria un o més nens per incloure. Només s’empaqueten les matèries que utilitzen i la configuració de l’app."
+      "value": "Trieu un o més nens per incloure. Només s’inclouen els seus assumptes usats i la configuració de l’aplicació."
     }
   ],
   "Ntrsoa": [
     {
       "type": 0,
-      "value": "Els horaris dels nens seleccionats "
+      "value": "Els horaris per als nens seleccionats seran "
     },
     {
       "children": [
         {
           "type": 0,
-          "value": "substituiran"
+          "value": "substituïts"
         }
       ],
       "type": 8,
@@ -156,13 +156,13 @@
     },
     {
       "type": 0,
-      "value": " els existents amb el mateix nom; els nens nous s’afegiran."
+      "value": " per als existents amb el mateix nom. S’afegiran nens nous."
     }
   ],
   "OKAfXf": [
     {
       "type": 0,
-      "value": "Compartir/Exportar"
+      "value": "Compartir/exportar"
     }
   ],
   "OKhRC6": [
@@ -180,19 +180,19 @@
   "S9KZMU": [
     {
       "type": 0,
-      "value": "Hores del planificador"
+      "value": "Horari del planificador"
     }
   ],
   "SENRqu": [
     {
       "type": 0,
-      "value": "Ajuda"
+      "value": "Ajudar"
     }
   ],
   "T4PemA": [
     {
       "type": 0,
-      "value": "Dies visibles"
+      "value": "Dies laborables visibles"
     }
   ],
   "TkytCp": [
@@ -204,19 +204,19 @@
   "Tmtxcl": [
     {
       "type": 0,
-      "value": "Desmarca un dia per amagar-lo al planificador."
+      "value": "Desmarqueu un dia per ocultar -lo al planificador."
     }
   ],
   "UaTxmn": [
     {
       "type": 0,
-      "value": "Obrirem la fulla de compartició del dispositiu (o copiarem un enllaç si no està disponible)."
+      "value": "Obrirem el full de compartició del dispositiu (o copiarem un enllaç si la compartició no està disponible)."
     }
   ],
   "WUV28A": [
     {
       "type": 0,
-      "value": "Desant…"
+      "value": "Desant ..."
     }
   ],
   "Wob0BX": [
@@ -228,31 +228,31 @@
   "YP/f8C": [
     {
       "type": 0,
-      "value": "Compartir / Exportar"
+      "value": "Compartir / exportar"
     }
   ],
   "YYWPaG": [
     {
       "type": 0,
-      "value": "Afegir nen"
+      "value": "Afegiu el nen"
     }
   ],
   "bdymGA": [
     {
       "type": 0,
-      "value": "Això defineix la finestra vertical visible del planificador (p. ex., de 08:00 a 18:00). L’app exigeix que l’hora d’inici sigui anterior a la de final."
+      "value": "Aquests defineixen la finestra vertical visible del planificador (per exemple, de 08:00 a 18:00). L’aplicació fa complir que l’hora d’inici sigui anterior que l’hora de finalitzar."
     }
   ],
   "cyR7Kh": [
     {
       "type": 0,
-      "value": "Enrere"
+      "value": "Esquena"
     }
   ],
   "dDDrP5": [
     {
       "type": 0,
-      "value": "Data de final: "
+      "value": "Data de finalització: "
     },
     {
       "type": 1,
@@ -262,13 +262,13 @@
   "dKTGNH": [
     {
       "type": 0,
-      "value": "Ajuda i guia d’usuari"
+      "value": "Ajuda i guia de l'usuari"
     }
   ],
   "dLcvSS": [
     {
       "type": 0,
-      "value": "Tria un nen/nena per veure l’horari d’aquest dia."
+      "value": "Seleccioneu un nen per veure la programació d’aquest dia."
     }
   ],
   "eTShla": [
@@ -280,13 +280,13 @@
   "ejEGdx": [
     {
       "type": 0,
-      "value": "Inici"
+      "value": "Casa"
     }
   ],
   "gQCbLw": [
     {
       "type": 0,
-      "value": "Data d’inici: "
+      "value": "Data d'inici: "
     },
     {
       "type": 1,
@@ -296,7 +296,7 @@
   "iMjjOH": [
     {
       "type": 0,
-      "value": "Setmana següent"
+      "value": "La setmana que ve"
     }
   ],
   "io8qrA": [
@@ -308,19 +308,19 @@
   "jEUlFa": [
     {
       "type": 0,
-      "value": "Aquesta app funciona fora de línia i es pot instal·lar al teu dispositiu. Configura matèries i nens, i planifica cada dia amb el planificador."
+      "value": "Aquesta aplicació funciona fora de línia i es pot instal·lar al dispositiu. Configura els assumptes i els nens i, a continuació, planifiqueu cada dia mitjançant el planificador."
     }
   ],
   "jo2k5w": [
     {
       "type": 0,
-      "value": "No hi ha hores a l’enllaç"
+      "value": "No hi ha hores proporcionades a l'enllaç"
     }
   ],
   "jvo0vs": [
     {
       "type": 0,
-      "value": "Desa"
+      "value": "Desar"
     }
   ],
   "kiL25m": [
@@ -332,7 +332,7 @@
   "m9elnf": [
     {
       "type": 0,
-      "value": "Tria la data"
+      "value": "Data de selecció"
     }
   ],
   "mfuPab": [
@@ -356,19 +356,19 @@
   "oLX9FC": [
     {
       "type": 0,
-      "value": "Nom del nen/nena"
+      "value": "Nom del nen"
     }
   ],
   "pQKms/": [
     {
       "type": 0,
-      "value": "Ves a avui"
+      "value": "Saltar a avui"
     }
   ],
   "qJGVbV": [
     {
       "type": 0,
-      "value": "Color de la matèria"
+      "value": "Color de matèria"
     }
   ],
   "sd2ieZ": [
@@ -386,19 +386,19 @@
   "tkq+Nt": [
     {
       "type": 0,
-      "value": "Consell: si no veus el botó d’instal·lar, potser el navegador ja té l’app instal·lada o aquest dispositiu no admet la instal·lació."
+      "value": "Consell: si no veieu el botó d’instal·lació, el vostre navegador ja pot tenir l’aplicació instal·lada o no admet la instal·lació en aquest dispositiu."
     }
   ],
   "uBJFHJ": [
     {
       "type": 0,
-      "value": "HorarIs"
+      "value": "Horaris"
     }
   ],
   "uYAC8d": [
     {
       "type": 0,
-      "value": "Aplica les hores del planificador importades"
+      "value": "Apliqueu les hores del programador importats"
     }
   ],
   "udb1jF": [
@@ -410,43 +410,43 @@
   "vzrgmV": [
     {
       "type": 0,
-      "value": "Llegint l’enllaç…"
+      "value": "Enllaç de lectura ..."
     }
   ],
   "wEQDC6": [
     {
       "type": 0,
-      "value": "Edita"
+      "value": "Preprarar una edició"
     }
   ],
   "wM6yen": [
     {
       "type": 0,
-      "value": "Ves a la setmana actual"
+      "value": "Saltar a la setmana actual"
     }
   ],
   "xXt7Sw": [
     {
       "type": 0,
-      "value": "Instal·la aquesta app"
+      "value": "Instal·leu aquesta aplicació"
     }
   ],
   "y1Z3or": [
     {
       "type": 0,
-      "value": "Idioma"
+      "value": "Llengua"
     }
   ],
   "y6VttL": [
     {
       "type": 0,
-      "value": "No queda res més avui"
+      "value": "Res més avui"
     }
   ],
   "ytO0XE": [
     {
       "type": 0,
-      "value": "La setmana comença en"
+      "value": "La setmana comença"
     }
   ],
   "zWgbGg": [
