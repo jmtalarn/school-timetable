@@ -12,7 +12,7 @@ import {
 	type DragStartEvent,
 } from '@dnd-kit/core'
 import { CSS } from '@dnd-kit/utilities'
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import KidSelect from '../components/KidSelect'
 import { useConfig, useDeleteBlock, useKids, useMatters, useTimetable } from '../hooks/reactQueryHooks'
 import { DefaultConfig, useSchedulerLogic } from '../scheduler/logic'
@@ -73,14 +73,14 @@ function MatterPicker({
 
 // ---- Draggable block + resize handles ----
 function Block({
-	id, label, color, top, height, isDragging, onDelete,
+	id, label, color, top, height, isDragging, showHint, onDelete,
 }: {
-	id: string; label: string; color?: string; start?: string; end?: string; top: number; height: number; isDragging?: boolean; onDelete?: () => void
+	id: string; label: string; color?: string; start?: string; end?: string; top: number; height: number; isDragging?: boolean; showHint?: boolean; onDelete?: () => void
 }) {
 	return (
 		<div
 			data-block-id={id}
-			className={styles.block}
+			className={`${styles.block} ${showHint ? styles.showHint : ''}`}
 			style={{ top, height, background: color || '#e2e8f0', opacity: isDragging ? 0.5 : 1 }}
 		>
 			<div className={styles.blockHeader}>
@@ -130,8 +130,6 @@ export default function TimetableScheduler() {
 	)
 	const tapRef = useRef<{ x: number; y: number; moved: boolean; allowed: boolean } | null>(null)
 	const downTimeRef = useRef<number>(0)
-	const TAP_MOVE_TOLERANCE = 6 // px
-	const TAP_MAX_DURATION = 250 // ms – > this feels like a tap, longer is likely scroll/press
 	const scrollRef = useRef<{ winY: number; wrapX: number }>({ winY: 0, wrapX: 0 })
 
 	// Then apply the “hidden days” filter
@@ -168,9 +166,24 @@ export default function TimetableScheduler() {
 		useSensor(PointerSensor, { activationConstraint: { delay: 140, tolerance: 6 } }),
 		useSensor(TouchSensor, { activationConstraint: { delay: 140, tolerance: 6 } }),
 	)
+	// near other state at top of component
+	const [showResizeHint, setShowResizeHint] = useState(false);
 
+	useEffect(() => {
+		const KEY = 'st.seenResizeHint';
+		const seen = localStorage.getItem(KEY);
+		if (!seen) {
+			setShowResizeHint(true);
+			localStorage.setItem(KEY, '1');
+			const t = setTimeout(() => setShowResizeHint(false), 2000);
+			return () => clearTimeout(t);
+		}
+	}, []);
 	const gridRef = useRef<HTMLDivElement>(null)
 	const colRefs = useRef<Record<Weekday, HTMLDivElement | null>>({ mon: null, tue: null, wed: null, thu: null, fri: null, sat: null, sun: null })
+
+	const TAP_MOVE_TOLERANCE = 6 // px
+	const TAP_MAX_DURATION = 250 // ms – > this feels like a tap, longer is likely scroll/press
 
 	const onColumnMouseMove = (day: Weekday, e: React.MouseEvent) => {
 		const el = colRefs.current[day]
@@ -217,6 +230,9 @@ export default function TimetableScheduler() {
 		setResizeOffsetRows(0)
 
 		if (data && (data.type === 'move' || data.type === 'resize')) {
+			if ('vibrate' in navigator) {
+				try { navigator.vibrate?.(10); } catch { }
+			}
 			const b = blocksFor(data.day).find((x: any) => x.id === data.id)
 			if (b) {
 				const matter = matters?.find(m => m.id === b.matterId)
@@ -437,6 +453,7 @@ export default function TimetableScheduler() {
 									start={b.start}
 									end={b.end}
 									height={height}
+									showHint={showResizeHint}
 									onDelete={() => {
 										if (window.confirm('Delete this block?')) {
 											deleteBlock.mutate({ kidId: selectedKidId!, day, id: b.id })
@@ -523,9 +540,9 @@ export default function TimetableScheduler() {
 
 
 function DraggableBlock({
-	id, day, label, color, top, start, end, height, onDelete,
+	id, day, label, color, top, start, end, height, showHint, onDelete,
 }: {
-	id: string; day: Weekday; label: string; start: string; end: string; color?: string; top: number; height: number; onDelete?: () => void
+	id: string; day: Weekday; label: string; start: string; end: string; color?: string; top: number; height: number; showHint?: boolean; onDelete?: () => void
 }) {
 	const move = useDraggable({
 		id,
@@ -559,6 +576,7 @@ function DraggableBlock({
 				height={height}
 				start={start}
 				end={end}
+				showHint={showHint}
 				onDelete={onDelete}
 			/>
 			<div

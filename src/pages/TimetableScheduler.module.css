@@ -147,6 +147,7 @@
 	-webkit-user-drag: none;
 	-webkit-tap-highlight-color: transparent;
 }
+
 /* A proper, tappable drag handle */
 .dragHandle {
 	position: absolute;
@@ -171,6 +172,8 @@
 /* Make hit areas bigger on coarse pointers (mobile) */
 @media (pointer: coarse) {
 	.resizeHandle {
+		width: 36px;
+		/*height: 8px;*/
 		height: 18px; /* easier to grab */
 	}
 	.resizeStart {
@@ -255,6 +258,24 @@
 	z-index: 10;
 	touch-action: none;
 	-ms-touch-action: none;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0.4;
+	transition: opacity 120ms ease;
+}
+.resizeHandle::before {
+	content: "";
+	width: 28px;
+	height: 4px;
+	border-radius: 999px;
+	background: rgba(0, 0, 0, 0.45);
+}
+/* On hover/focus/active: make handles pop a bit more (desktop) */
+.block:hover .resizeHandle,
+.block:focus-within .resizeHandle {
+	opacity: 0.85;
 }
 
 .resizeStart {
@@ -360,4 +381,33 @@
 .hint {
 	font-size: 14px;
 	color: #4b5563;
+}
+
+/* First-run hint: briefly “pulse” both handles */
+@keyframes pulseHandle {
+	0% {
+		transform: translateY(0);
+		opacity: 0.4;
+	}
+	35% {
+		transform: translateY(-3px);
+		opacity: 0.9;
+	} /* nudge up (top) */
+	70% {
+		transform: translateY(3px);
+		opacity: 0.9;
+	} /* nudge down (bottom) */
+	100% {
+		transform: translateY(0);
+		opacity: 0.4;
+	}
+}
+.showHint .resizeHandle {
+	opacity: 0.9;
+}
+.showHint .resizeStart::before {
+	animation: pulseHandle 1.2s ease-in-out 2;
+}
+.showHint .resizeEnd::before {
+	animation: pulseHandle 1.2s ease-in-out 2 reverse;
 }
