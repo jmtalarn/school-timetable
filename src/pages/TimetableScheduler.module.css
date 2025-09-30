@@ -40,7 +40,7 @@
 .gridWrapper {
 	/* allow horizontal scroll when total grid width exceeds container */
 	overflow-x: auto;
-	overflow-y: visible;
+	overflow-y: hidden;
 	-webkit-overflow-scrolling: touch; /* smoother on iOS */
 	border-radius: 8px;
 	border: 1px solid #e5e7eb;
