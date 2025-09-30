@@ -6,8 +6,10 @@ import { useIntl } from 'react-intl'
  * Note: AllWeekdays is ordered Mon..Sun, so we map JS day -> AllWeekdays index.
  */
 export function reorderWeekdays(start: Weekday): Weekday[] {
+
 	// Map JS day index (0=Sun..6=Sat) to AllWeekdays index (Mon..Sun)
 	const startIdxInAll = (AllWeekdays.indexOf(start) + 7) % 7; // 0->6 (Sun), 1->0 (Mon), ..., 6->5 (Sat)
+	console.log(start, startIdxInAll, AllWeekdays)
 	return [
 		...AllWeekdays.slice(startIdxInAll),
 		...AllWeekdays.slice(0, startIdxInAll),
@@ -20,7 +22,7 @@ export const useWeekdayLabels = () => {
 	const weekdayLabels: Record<Weekday, string> = {} as any;
 
 	for (const weekday of AllWeekdays) {
-		const dayIdx = (AllWeekdays.indexOf(weekday) + 1) % 7; // AllWeekdays is Mon..Sun, JS Date is Sun..Sat
+		const dayIdx = (AllWeekdays.indexOf(weekday)); // AllWeekdays is Mon..Sun, JS Date is Sun..Sat
 		d.setUTCDate(d.getUTCDate() - d.getUTCDay() + dayIdx);
 		weekdayLabels[weekday] = d.toLocaleString(intl.locale, { weekday: 'long', timeZone: 'UTC' });
 	}

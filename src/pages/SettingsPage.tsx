@@ -105,9 +105,12 @@ export default function SettingsPage() {
 							onChange={(e) => setStartOfWeek(e.target.value as Weekday)}
 							aria-label={intl.formatMessage({ defaultMessage: "Week starts on" })}
 						>
-							{AllWeekdays.map(d => (
-								<option key={d} value={d}>{weekdayLabels[d]}</option>
-							))}
+							{AllWeekdays.map(d => {
+								console.log(d, weekdayLabels[d])
+								return (
+									<option key={d} value={d}>{weekdayLabels[d]}</option>
+								)
+							})}
 						</select>
 					</label>
 

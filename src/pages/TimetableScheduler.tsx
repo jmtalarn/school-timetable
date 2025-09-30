@@ -119,7 +119,7 @@ export default function TimetableScheduler() {
 	const { data: matters } = useMatters()
 	const { data: appCfg } = useConfig();
 	const weekdayLabels = useWeekdayLabels();
-
+	console.log('appCfg', appCfg)
 	const orderedWeekdays = useMemo(
 		() => reorderWeekdays(appCfg?.startOfWeek ?? 'mon'),
 		[appCfg?.startOfWeek]
