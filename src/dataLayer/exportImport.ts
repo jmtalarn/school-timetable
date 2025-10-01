@@ -3,7 +3,7 @@ import { type Kid, type Matter, type Timetable, type AppConfig, type Weekday, ty
 import { readDB, writeDB } from './db'
 import { ExportBundleSchema, type ExportBundle } from './schemas'
 import { fromBase64, toBase64 } from './utils'
-
+import pako from 'pako'
 // // --- helpers ---
 // function normalizeName(n: string) {
 // 	return n.trim().toLowerCase()
@@ -73,8 +73,9 @@ export function buildExportBundleForKids(kidIds: string[]): ExportBundle {
 export function encodeBundleToLinkForKids(kidIds: string[], baseUrl?: string): string {
 	const payload = buildExportBundleForKids(kidIds)
 	const encoded = toBase64(payload)
+	const compressed = pako.deflate(encoded, { to: 'string' })
 	const url = new URL(baseUrl ?? (window.location.origin + '/import'))
-	url.hash = `#data=${encoded}`
+	url.hash = `#data=${compressed}`
 	return url.toString()
 }
 
@@ -118,7 +119,7 @@ export function parseBundleFromURL(urlLike?: string):
 		const params = new URLSearchParams(hash)
 		const b64 = params.get('data')
 		if (!b64) return { ok: false, error: 'No data found in link' }
-		const json = fromBase64(b64)
+		const json = pako.inflate(fromBase64(b64));
 		const bundle = ExportBundleSchema.parse(json)
 		return { ok: true, bundle }
 	} catch (e: unknown) {
