@@ -70,30 +70,8 @@ export function buildExportBundleForKids(kidIds: string[]): ExportBundle {
 	return bundle
 }
 
-/** Legacy: export everything (kept for compatibility) */
-export function buildExportBundle(): ExportBundle {
-	const db = readDB()
-	const bundle: ExportBundle = {
-		version: 2,
-		matters: db.matters,
-		kids: db.kids,
-		timetables: db.timetables,
-		config: (db as any).config,
-	}
-	ExportBundleSchema.parse(bundle)
-	return bundle
-}
-
-// export function encodeBundleToLink(baseUrl?: string): string {
-// 	const payload = JSON.stringify(buildExportBundle())
-// 	const encoded = toBase64(payload)
-// 	const url = new URL(baseUrl ?? (window.location.origin + '/import'))
-// 	url.hash = `#data=${encoded}`
-// 	return url.toString()
-// }
-
 export function encodeBundleToLinkForKids(kidIds: string[], baseUrl?: string): string {
-	const payload = JSON.stringify(buildExportBundleForKids(kidIds))
+	const payload = buildExportBundleForKids(kidIds)
 	const encoded = toBase64(payload)
 	const url = new URL(baseUrl ?? (window.location.origin + '/import'))
 	url.hash = `#data=${encoded}`
@@ -130,155 +108,6 @@ export async function shareBundleForKids(kidIds: string[]) {
 	}
 }
 
-// --- IMPORTS (MERGE RULES) ---
-
-// type ImportResult =
-// 	| { ok: true; summary: { kidsAdded: number; mattersAdded: number; timetablesAdded: number; configMerged: boolean } }
-// 	| { ok: false; error: string }
-
-// export function tryImportFromURL(urlLike?: string): ImportResult {
-// 	try {
-// 		const url = new URL(urlLike ?? window.location.href)
-// 		const hash = url.hash.startsWith('#') ? url.hash.slice(1) : url.hash
-// 		const params = new URLSearchParams(hash)
-// 		const b64 = params.get('data')
-// 		if (!b64) return { ok: false, error: 'No data found in link' }
-
-// 		const json = fromBase64(b64)
-// 		const parsed = ExportBundleSchema.parse(JSON.parse(json))
-
-// 		let kidsAdded = 0
-// 		let mattersAdded = 0
-// 		let timetablesAdded = 0
-// 		let configMerged = false
-
-// 		writeDB(prev => {
-// 			// maps
-// 			const existingKidsById = new Map(prev.kids.map(k => [k.id, k]))
-// 			const existingMattersById = new Map(prev.matters.map(m => [m.id, m]))
-// 			const existingMattersByName = new Map(prev.matters.map(m => [normalizeName(m.name), m]))
-// 			const existingTimetablesByKid = new Map(prev.timetables.map(t => [t.kidId, t]))
-
-// 			// 1) merge CONFIG (widen)
-// 			if ((parsed as any).config) {
-// 				const curr = (prev as any).config
-// 				const incoming = ConfigSchema.parse((parsed as any).config)
-// 				if (curr) {
-// 					const next = { ...curr }
-// 					// HH:mm widen: start = min, end = max
-// 					if (compareHHMM(incoming.startHour, next.startHour) < 0) next.startHour = incoming.startHour
-// 					if (compareHHMM(incoming.endHour, next.endHour) > 0) next.endHour = incoming.endHour
-// 					// keep other fields as-is (startOfWeek, hiddenWeekdays, etc.)
-// 					prev = { ...prev, config: next }
-// 					configMerged = true
-// 				} else {
-// 					// no config yet -> set imported
-// 					prev = { ...prev, config: incoming }
-// 					configMerged = true
-// 				}
-// 			}
-
-// 			// 2) merge MATTERS by NAME (case-insensitive). Widen dates.
-// 			//    Build matterId mapping: importedId -> resolvedExistingOrNewId
-// 			const matterIdMap = new Map<string, string>()
-// 			const nextMatters: Matter[] = [...prev.matters]
-
-// 			for (const im of parsed.matters) {
-// 				const key = normalizeName(im.name)
-// 				const existing = existingMattersByName.get(key)
-// 				if (existing) {
-// 					// widen dates only
-// 					const start = existing.startDate
-// 					const end = existing.endDate
-// 					const iStart = im.startDate
-// 					const iEnd = im.endDate
-
-// 					let changed = false
-// 					if (iStart && (!start || isBeforeISO(iStart, start))) {
-// 						existing.startDate = iStart
-// 						changed = true
-// 					}
-// 					if (iEnd && (!end || isAfterISO(iEnd, end))) {
-// 						existing.endDate = iEnd
-// 						changed = true
-// 					}
-// 					if (changed) {
-// 						// replace in array
-// 						const idx = nextMatters.findIndex(m => m.id === existing.id)
-// 						if (idx >= 0) nextMatters[idx] = { ...existing }
-// 					}
-// 					matterIdMap.set(im.id, existing.id)
-// 				} else {
-// 					// add new matter (ensure id uniqueness)
-// 					let newId = im.id
-// 					if (existingMattersById.has(newId)) newId = uid('matter')
-// 					const added: Matter = { ...im, id: newId }
-// 					nextMatters.push(added)
-// 					existingMattersById.set(newId, added)
-// 					existingMattersByName.set(key, added)
-// 					matterIdMap.set(im.id, newId)
-// 					mattersAdded++
-// 				}
-// 			}
-
-// 			// 3) merge/add KIDS (never overwrite existing)
-// 			const nextKids: Kid[] = [...prev.kids]
-// 			const kidIdMap = new Map<string, string>() // importedId -> resolvedId
-// 			for (const ik of parsed.kids) {
-// 				if (existingKidsById.has(ik.id)) {
-// 					// keep existing, map to same id
-// 					kidIdMap.set(ik.id, ik.id)
-// 				} else {
-// 					let newId = ik.id
-// 					if (existingKidsById.has(newId)) newId = uid('kid')
-// 					const added: Kid = { ...ik, id: newId }
-// 					nextKids.push(added)
-// 					existingKidsById.set(newId, added)
-// 					kidIdMap.set(ik.id, newId)
-// 					kidsAdded++
-// 				}
-// 			}
-
-// 			// 4) timetables: override if kid already exists; insert if kid is new
-// 			const nextTimetables: Timetable[] = [...prev.timetables]
-// 			for (const it of parsed.timetables) {
-// 				// Resolve the kid id (works for both existing and newly-added kids)
-// 				const resolvedKidId = kidIdMap.get(it.kidId) ?? it.kidId
-
-// 				// Remap matterIds to the resolved (existing/new) matter ids
-// 				const remappedDays: Timetable['days'] = Object.fromEntries(
-// 					Object.entries(it.days).map(([day, blocks]) => {
-// 						return [
-// 							day,
-// 							blocks.map(b => ({
-// 								...b,
-// 								matterId: matterIdMap.get(b.matterId) ?? b.matterId,
-// 							})),
-// 						]
-// 					})
-// 				) as Timetable['days']
-
-// 				const remapped: Timetable = { ...it, kidId: resolvedKidId, days: remappedDays }
-
-// 				// If the kid already has a timetable, REPLACE it; otherwise ADD it
-// 				const existingIdx = nextTimetables.findIndex(t => t.kidId === resolvedKidId)
-// 				if (existingIdx >= 0) {
-// 					nextTimetables[existingIdx] = remapped
-// 				} else {
-// 					nextTimetables.push(remapped)
-// 				}
-
-// 				timetablesAdded++ // counts both replacements and new inserts
-// 			}
-
-// 			return { ...prev, matters: nextMatters, kids: nextKids, timetables: nextTimetables }
-// 		})
-
-// 		return { ok: true, summary: { kidsAdded, mattersAdded, timetablesAdded, configMerged } }
-// 	} catch (e: unknown) {
-// 		return { ok: false, error: e instanceof Error ? e.message : 'Import failed' }
-// 	}
-// }
 // ---------- NEW: read bundle without applying ----------
 export function parseBundleFromURL(urlLike?: string):
 	| { ok: true; bundle: ExportBundle }
@@ -290,7 +119,7 @@ export function parseBundleFromURL(urlLike?: string):
 		const b64 = params.get('data')
 		if (!b64) return { ok: false, error: 'No data found in link' }
 		const json = fromBase64(b64)
-		const bundle = ExportBundleSchema.parse(JSON.parse(json))
+		const bundle = ExportBundleSchema.parse(json)
 		return { ok: true, bundle }
 	} catch (e: unknown) {
 		return { ok: false, error: e instanceof Error ? e.message : 'Invalid import link' }

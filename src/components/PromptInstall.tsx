@@ -13,8 +13,8 @@ type Props = {
 }
 
 export default function PromptInstallCard({
-	title = 'Install this app',
-	description = 'This app works offline and can be installed on your device. Configure matters and kids, then plan each day using the scheduler.',
+	title,
+	description,
 	hideWhenUnavailable = false,
 	className = '',
 }: Props) {

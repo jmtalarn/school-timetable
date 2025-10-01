@@ -1,4 +1,5 @@
 // src/dataLayer/utils.ts
+import { decodeBase64UrlJSON, encodeJSONToBase64Url } from '../utils/base64'
 import { type TimeBlock } from './schemas'
 import { type Weekday } from './schemas'
 
@@ -38,9 +39,10 @@ export function emptyWeek(): Record<Weekday, TimeBlock[]> {
 }
 
 // Base64 helpers that work with UTF-8 safely:
-export function toBase64(str: string) {
-    return btoa(unescape(encodeURIComponent(str)))
+export function toBase64(obj: unknown) {
+    return encodeJSONToBase64Url(obj)
+    // return btoa(unescape(encodeURIComponent(str)))
 }
 export function fromBase64(b64: string) {
-    return decodeURIComponent(escape(atob(b64)))
+    return decodeBase64UrlJSON(b64)
 }
