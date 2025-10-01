@@ -15,11 +15,13 @@
 		"i18n:compile": "formatjs compile-folder src/i18n/messages src/i18n/compiled --format simple --ast ",
 		"i18n:translate": "MT_PROVIDER=google node scripts/i18n-translate.mjs es ca",
 		"i18n:all": "npm run i18n:extract && npm run i18n:translate && npm run i18n:compile",
-		"i18n:lint": "formatjs lint 'src/**/*.{ts,tsx}' --ignore='**/*.d.ts' --ignore='**/*.test.{ts,tsx}'"
+		"i18n:lint": "formatjs lint 'src/**/*.{ts,tsx}' --ignore='**/*.d.ts' --ignore='**/*.test.{ts,tsx}'",
+		"netlify:dev": "netlify dev"
 	},
 	"dependencies": {
 		"@dnd-kit/core": "^6.3.1",
 		"@dnd-kit/utilities": "^3.2.2",
+		"@netlify/blobs": "^10.0.11",
 		"@tanstack/react-query": "^5.90.1",
 		"boring-avatars": "^2.0.2",
 		"pako": "^2.1.0",
@@ -37,8 +39,10 @@
 	"devDependencies": {
 		"@eslint/js": "^9.36.0",
 		"@formatjs/cli": "^6.7.2",
+		"@netlify/functions": "^4.2.6",
 		"@testing-library/react": "^16.3.0",
 		"@types/node": "^24.5.2",
+		"@types/pako": "^2.0.4",
 		"@types/react": "^19.1.13",
 		"@types/react-dom": "^19.1.9",
 		"@vitalets/google-translate-api": "^9.2.1",
@@ -51,6 +55,7 @@
 		"eslint-plugin-react-refresh": "^0.4.20",
 		"globals": "^16.4.0",
 		"jsdom": "^27.0.0",
+		"netlify-cli": "^23.9.0",
 		"ts-prune": "^0.10.3",
 		"typescript": "~5.8.3",
 		"typescript-eslint": "^8.44.0",

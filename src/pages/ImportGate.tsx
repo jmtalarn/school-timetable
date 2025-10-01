@@ -1,5 +1,6 @@
+// filepath: src/pages/ImportGate.tsx
 import { useEffect, useMemo, useState } from 'react'
-import { parseBundleFromURL, importBundleWithOptions } from '../dataLayer/exportImport'
+import { importBundleWithOptions } from '../dataLayer/exportImport'
 import type { ExportBundle } from '../dataLayer/schemas'
 import styles from './ImportGate.module.css'
 import { useNavigate } from 'react-router-dom'
@@ -17,16 +18,37 @@ export default function ImportGate() {
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		const res = parseBundleFromURL()
-		if (!res.ok) {
-			setError(res.error)
-			setStatus('error')
-			return
-		}
-		setBundle(res.bundle)
-		// Preselect all kids in the bundle
-		setSelectedKidIds(res.bundle.kids.map(k => k.id))
-		setStatus('ready')
+		let alive = true
+			; (async () => {
+				setStatus('loading')
+
+				const key = getKeyFromHash()
+				if (!key) {
+					if (alive) {
+						setError('Missing key in URL')
+						setStatus('error')
+					}
+					return
+				}
+
+				try {
+					const res = await fetch('/.netlify/functions/bundles?id=' + encodeURIComponent(key))
+					if (!res.ok) {
+						const msg = await readErr(res)
+						throw new Error(msg || `Fetch failed (${res.status})`)
+					}
+					const b = (await res.json()) as ExportBundle
+					if (!alive) return
+					setBundle(b)
+					setSelectedKidIds(b.kids.map(k => k.id)) // preselect all
+					setStatus('ready')
+				} catch (e: any) {
+					if (!alive) return
+					setError(e?.message || 'Invalid import link')
+					setStatus('error')
+				}
+			})()
+		return () => { alive = false }
 	}, [])
 
 	const toggleKid = (id: string) => {
@@ -36,7 +58,7 @@ export default function ImportGate() {
 	}
 
 	const canImport = useMemo(() => {
-		return status === 'ready' && bundle && selectedKidIds.length > 0
+		return status === 'ready' && bundle !== null && selectedKidIds.length > 0
 	}, [status, bundle, selectedKidIds])
 
 	const incomingHoursText = useMemo(() => {
@@ -53,7 +75,6 @@ export default function ImportGate() {
 				applyConfig,
 			})
 			setStatus('done')
-			// optional: toast / message could use `report`
 			setTimeout(() => navigate('/timetable-scheduler'), 400)
 		} catch (e: unknown) {
 			setError(e instanceof Error ? e.message : 'Import failed')
@@ -62,7 +83,13 @@ export default function ImportGate() {
 	}
 
 	if (status === 'loading') {
-		return <div className={styles.page}><div className={styles.card}><FormattedMessage defaultMessage="Reading link…" /></div></div>
+		return (
+			<div className={styles.page}>
+				<div className={styles.card}>
+					<FormattedMessage defaultMessage="Reading link…" />
+				</div>
+			</div>
+		)
 	}
 
 	if (status === 'error') {
@@ -71,7 +98,9 @@ export default function ImportGate() {
 				<div className={styles.card}>
 					<h2 className={styles.title}><FormattedMessage defaultMessage="Import data" /></h2>
 					<p className={styles.error}>{error}</p>
-					<div className={styles.rowEnd}><button className="btn" onClick={() => navigate('/')}><FormattedMessage defaultMessage="Back" /></button></div>
+					<div className={styles.rowEnd}>
+						<button className="btn" onClick={() => navigate('/')}><FormattedMessage defaultMessage="Back" /></button>
+					</div>
 				</div>
 			</div>
 		)
@@ -114,10 +143,18 @@ export default function ImportGate() {
 							onChange={(e) => setApplyConfig(e.target.checked)}
 						/>
 						<div>
-							<div className={styles.configTitle}><FormattedMessage defaultMessage="Apply imported scheduler hours" /></div>
+							<div className={styles.configTitle}>
+								<FormattedMessage defaultMessage="Apply imported scheduler hours" />
+							</div>
 							<div className={styles.muted}>
-								{incomingHoursText ?
-									<FormattedMessage defaultMessage={`Incoming: {incomingHoursText} (will only widen your current range)`} values={{ incomingHoursText }} /> : <FormattedMessage defaultMessage='No hours provided in link' />}
+								{incomingHoursText ? (
+									<FormattedMessage
+										defaultMessage="Incoming: {incomingHoursText} (will only widen your current range)"
+										values={{ incomingHoursText }}
+									/>
+								) : (
+									<FormattedMessage defaultMessage="No hours provided in link" />
+								)}
 							</div>
 						</div>
 					</label>
@@ -132,4 +169,22 @@ export default function ImportGate() {
 			</div>
 		</div>
 	)
+}
+
+function getKeyFromHash(): string | null {
+	// Expecting /import#key=XXXXX
+	const hash = window.location.hash.startsWith('#')
+		? window.location.hash.slice(1)
+		: window.location.hash
+	const params = new URLSearchParams(hash)
+	return params.get('key')
+}
+
+async function readErr(res: Response): Promise<string | null> {
+	try {
+		const j = await res.json()
+		return (j && (j.error || j.message)) || null
+	} catch {
+		return null
+	}
 }

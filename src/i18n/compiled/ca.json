@@ -14,7 +14,7 @@
   "/zFP1/": [
     {
       "type": 0,
-      "value": "Hora d’inici"
+      "value": "Hora d'inici"
     }
   ],
   "0dKC7W": [
@@ -35,6 +35,12 @@
       "value": "Cancel·la"
     }
   ],
+  "518mQx": [
+    {
+      "type": 0,
+      "value": "Enllaç de compartició copiat al porta-retalls."
+    }
+  ],
   "5jeq8P": [
     {
       "type": 0,
@@ -50,13 +56,13 @@
   "6kvuR8": [
     {
       "type": 0,
-      "value": "Afegir assignatura"
+      "value": "Afegir matèria"
     }
   ],
   "7WNjYc": [
     {
       "type": 0,
-      "value": "Selecciona un nen per veure l’horari setmanal."
+      "value": "Tria un nen per veure l'horari setmanal."
     }
   ],
   "9+Ddtu": [
@@ -74,13 +80,13 @@
   "9Mt7ON": [
     {
       "type": 0,
-      "value": "Assignatures"
+      "value": "Matèries"
     }
   ],
   "9XUYQt": [
     {
       "type": 0,
-      "value": "Importar"
+      "value": "Importa"
     }
   ],
   "D3idYv": [
@@ -112,31 +118,31 @@
     },
     {
       "type": 0,
-      "value": " (només ampliarà el teu interval actual)"
+      "value": " (només ampliarà el teu rang actual)"
     }
   ],
   "Humfno": [
     {
       "type": 0,
-      "value": "Data de finalització"
+      "value": "Data de fi"
     }
   ],
   "K3r6DQ": [
     {
       "type": 0,
-      "value": "Suprimeix"
+      "value": "Eliminar"
     }
   ],
   "MKC+S9": [
     {
       "type": 0,
-      "value": "Instal·lar l’aplicació"
+      "value": "Instal·lar l'aplicació"
     }
   ],
   "MZZXn3": [
     {
       "type": 0,
-      "value": "Tria un o més nens per incloure. Només s’inclouran les assignatures que utilitzen i la configuració de l’aplicació."
+      "value": "Tria un o més nens per incloure. Només s'inclouran les seves matèries utilitzades i la configuració de l'aplicació."
     }
   ],
   "Ntrsoa": [
@@ -156,7 +162,7 @@
     },
     {
       "type": 0,
-      "value": " els existents amb el mateix nom; s’afegiran els nens nous."
+      "value": " els existents amb el mateix nom; s'afegiran els nens nous."
     }
   ],
   "OKAfXf": [
@@ -204,13 +210,13 @@
   "Tmtxcl": [
     {
       "type": 0,
-      "value": "Desmarca un dia per ocultar-lo al planificador."
+      "value": "Desmarca un dia per amagar-lo al planificador."
     }
   ],
   "UaTxmn": [
     {
       "type": 0,
-      "value": "Obrirem la fulla de compartició del teu dispositiu (o copiarem un enllaç si la compartició no està disponible)."
+      "value": "Obrirem el full de compartició del teu dispositiu (o copiarem un enllaç si no està disponible)."
     }
   ],
   "WUV28A": [
@@ -222,7 +228,7 @@
   "Wob0BX": [
     {
       "type": 0,
-      "value": "Canvia la primera columna al planificador setmanal."
+      "value": "Canvia la primera columna del planificador setmanal."
     }
   ],
   "YP/f8C": [
@@ -234,13 +240,13 @@
   "YYWPaG": [
     {
       "type": 0,
-      "value": "Afegir nen"
+      "value": "Afegeix nen"
     }
   ],
   "bdymGA": [
     {
       "type": 0,
-      "value": "Això defineix la finestra vertical visible al planificador (p. ex., de 08:00 a 18:00). L’aplicació garanteix que l’hora d’inici ha de ser anterior a l’hora de finalització."
+      "value": "Aquests valors defineixen la finestra vertical visible al planificador (p. ex., de 08:00 a 18:00). L'aplicació exigeix que l'hora d'inici sigui anterior a l'hora de fi."
     }
   ],
   "cyR7Kh": [
@@ -252,7 +258,7 @@
   "dDDrP5": [
     {
       "type": 0,
-      "value": "Data de finalització: "
+      "value": "Data de fi: "
     },
     {
       "type": 1,
@@ -262,19 +268,19 @@
   "dKTGNH": [
     {
       "type": 0,
-      "value": "Ajuda i guia d’ús"
+      "value": "Ajuda i guia d'usuari"
     }
   ],
   "dLcvSS": [
     {
       "type": 0,
-      "value": "Selecciona un nen per veure l’horari d’aquest dia."
+      "value": "Selecciona un nen per veure l'horari d'aquest dia."
     }
   ],
   "eTShla": [
     {
       "type": 0,
-      "value": "Nom de l’assignatura"
+      "value": "Nom de la matèria"
     }
   ],
   "ejEGdx": [
@@ -286,7 +292,7 @@
   "gQCbLw": [
     {
       "type": 0,
-      "value": "Data d’inici: "
+      "value": "Data d'inici: "
     },
     {
       "type": 1,
@@ -308,13 +314,13 @@
   "jEUlFa": [
     {
       "type": 0,
-      "value": "Aquesta app funciona sense connexió i es pot instal·lar al teu dispositiu. Configura les assignatures i els nens i després planifica cada dia amb el planificador."
+      "value": "Aquesta aplicació funciona sense connexió i es pot instal·lar al teu dispositiu. Configura les matèries i els nens, i després planifica cada dia amb el planificador."
     }
   ],
   "jo2k5w": [
     {
       "type": 0,
-      "value": "No s’han proporcionat hores a l’enllaç"
+      "value": "No hi ha hores a l'enllaç"
     }
   ],
   "jvo0vs": [
@@ -332,7 +338,7 @@
   "m9elnf": [
     {
       "type": 0,
-      "value": "Tria la data"
+      "value": "Tria data"
     }
   ],
   "mfuPab": [
@@ -344,7 +350,7 @@
   "n5QvJy": [
     {
       "type": 0,
-      "value": "Data d’inici"
+      "value": "Data d'inici"
     }
   ],
   "nav.menu": [
@@ -368,7 +374,7 @@
   "qJGVbV": [
     {
       "type": 0,
-      "value": "Color de l’assignatura"
+      "value": "Color de la matèria"
     }
   ],
   "sd2ieZ": [
@@ -386,7 +392,7 @@
   "tkq+Nt": [
     {
       "type": 0,
-      "value": "Consell: si no veus el botó d’instal·lar, és possible que el navegador ja tingui l’app instal·lada o que no admeti la instal·lació en aquest dispositiu."
+      "value": "Consell: Si no veus el botó d'instal·lar, pot ser que el navegador ja tingui l'app instal·lada o que aquest dispositiu no admeti la instal·lació."
     }
   ],
   "uBJFHJ": [
@@ -398,7 +404,7 @@
   "uYAC8d": [
     {
       "type": 0,
-      "value": "Aplicar les hores del planificador importades"
+      "value": "Aplicar les hores importades del planificador"
     }
   ],
   "udb1jF": [
@@ -410,7 +416,7 @@
   "vzrgmV": [
     {
       "type": 0,
-      "value": "Llegint l’enllaç…"
+      "value": "Llegint l'enllaç…"
     }
   ],
   "wEQDC6": [
@@ -428,7 +434,7 @@
   "xXt7Sw": [
     {
       "type": 0,
-      "value": "Instal·lar aquesta app"
+      "value": "Instal·lar aquesta aplicació"
     }
   ],
   "y1Z3or": [
@@ -440,7 +446,7 @@
   "y6VttL": [
     {
       "type": 0,
-      "value": "No hi ha res més per avui"
+      "value": "Avui ja no hi ha més"
     }
   ],
   "ytO0XE": [

@@ -35,6 +35,12 @@
       "value": "Cancelar"
     }
   ],
+  "518mQx": [
+    {
+      "type": 0,
+      "value": "Enlace para compartir copiado al portapapeles."
+    }
+  ],
   "5jeq8P": [
     {
       "type": 0,
@@ -56,7 +62,7 @@
   "7WNjYc": [
     {
       "type": 0,
-      "value": "Selecciona un niño para ver el horario semanal."
+      "value": "Elige un niño para ver el horario semanal."
     }
   ],
   "9+Ddtu": [
@@ -130,13 +136,13 @@
   "MKC+S9": [
     {
       "type": 0,
-      "value": "Instalar la aplicación"
+      "value": "Instalar aplicación"
     }
   ],
   "MZZXn3": [
     {
       "type": 0,
-      "value": "Elige uno o varios niños para incluir. Solo se incluirán sus materias utilizadas y la configuración de la aplicación."
+      "value": "Elige uno o varios niños para incluir. Solo se incluirán sus materias usadas y la configuración de la aplicación."
     }
   ],
   "Ntrsoa": [
@@ -210,7 +216,7 @@
   "UaTxmn": [
     {
       "type": 0,
-      "value": "Abriremos la hoja de compartir de tu dispositivo (o copiaremos un enlace si compartir no está disponible)."
+      "value": "Abriremos la hoja para compartir de tu dispositivo (o copiaremos un enlace si no está disponible)."
     }
   ],
   "WUV28A": [
@@ -240,7 +246,7 @@
   "bdymGA": [
     {
       "type": 0,
-      "value": "Esto define la ventana vertical visible en el planificador (p. ej., de 08:00 a 18:00). La app garantiza que la hora de inicio debe ser anterior a la hora de fin."
+      "value": "Estos valores definen la ventana vertical visible en el planificador (p. ej., de 08:00 a 18:00). La aplicación exige que la hora de inicio sea anterior a la hora de fin."
     }
   ],
   "cyR7Kh": [
@@ -262,7 +268,7 @@
   "dKTGNH": [
     {
       "type": 0,
-      "value": "Ayuda y guía de uso"
+      "value": "Ayuda y guía de usuario"
     }
   ],
   "dLcvSS": [
@@ -308,13 +314,13 @@
   "jEUlFa": [
     {
       "type": 0,
-      "value": "Esta app funciona sin conexión y puede instalarse en tu dispositivo. Configura las materias y los niños, y luego planifica cada día con el planificador."
+      "value": "Esta aplicación funciona sin conexión y puede instalarse en tu dispositivo. Configura las materias y los niños, luego planifica cada día con el planificador."
     }
   ],
   "jo2k5w": [
     {
       "type": 0,
-      "value": "No se proporcionaron horas en el enlace"
+      "value": "No hay horas en el enlace"
     }
   ],
   "jvo0vs": [
@@ -386,7 +392,7 @@
   "tkq+Nt": [
     {
       "type": 0,
-      "value": "Consejo: si no ves el botón de instalar, es posible que tu navegador ya tenga la app instalada o que no admita la instalación en este dispositivo."
+      "value": "Consejo: Si no ves el botón de instalar, puede que tu navegador ya tenga la app instalada o que este dispositivo no admita la instalación."
     }
   ],
   "uBJFHJ": [
@@ -398,7 +404,7 @@
   "uYAC8d": [
     {
       "type": 0,
-      "value": "Aplicar horas del planificador importadas"
+      "value": "Aplicar las horas importadas del planificador"
     }
   ],
   "udb1jF": [
@@ -428,7 +434,7 @@
   "xXt7Sw": [
     {
       "type": 0,
-      "value": "Instalar esta app"
+      "value": "Instalar esta aplicación"
     }
   ],
   "y1Z3or": [
@@ -440,7 +446,7 @@
   "y6VttL": [
     {
       "type": 0,
-      "value": "No hay más por hoy"
+      "value": "No hay más hoy"
     }
   ],
   "ytO0XE": [
