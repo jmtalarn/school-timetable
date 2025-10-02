@@ -15,9 +15,9 @@
 
 ## Inicio rápido
 
-1.  Ve a [Asignaturas](/matters) y crea tus materias/actividades. Ponles un nombre, un color y (opcionalmente) un rango de fechas durante el cual estarán activas.
-2.  Ve a [Niños](/kids) y añade a cada niño (la app genera un avatar automáticamente).
-3.  Abre el [Planificador](/timetable-scheduler), elige un niño y haz clic en celdas vacías de la cuadrícula para añadir asignaturas. Arrastra para mover; arrastra las barras finas de arriba o abajo para redimensionar.
+1.  Ve a [Asignaturas](/settings/matters) y crea tus materias/actividades. Ponles un nombre, un color y (opcionalmente) un rango de fechas durante el cual estarán activas.
+2.  Ve a [Niños](/settings/kids) y añade a cada niño (la app genera un avatar automáticamente).
+3.  Abre el [Planificador](/settings/timetable-scheduler), elige un niño y haz clic en celdas vacías de la cuadrícula para añadir asignaturas. Arrastra para mover; arrastra las barras finas de arriba o abajo para redimensionar.
 4.  Ajusta tu semana en [Ajustes](/settings) (horas de inicio/fin, días visibles/ocultos, día de inicio de semana).
 5.  Usa [Hoy](/today) para ver el día de un vistazo (o el resumen Ahora/Siguiente en Inicio).
 

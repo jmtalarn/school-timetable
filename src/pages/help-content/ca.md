@@ -15,9 +15,9 @@
 
 ## Com començar ràpidament
 
-1.  Ves a [Matèries](/matters) i crea els teus temes/activitats. Dona’ls un nom, un color i (opcionalment) un rang de dates durant el qual estiguin actius.
-2.  Ves a [Nens](/kids), afegeix cada infant (l’app genera un avatar automàticament).
-3.  Obre el [Planificador](/timetable-scheduler), tria un infant i fes clic a les cel·les buides per afegir-hi matèries. Arrossega per moure; arrossega les barres fines de dalt o baix per redimensionar.
+1.  Ves a [Matèries](/settings/matters) i crea els teus temes/activitats. Dona’ls un nom, un color i (opcionalment) un rang de dates durant el qual estiguin actius.
+2.  Ves a [Nens](/settings/kids), afegeix cada infant (l’app genera un avatar automàticament).
+3.  Obre el [Planificador](/settings/timetable-scheduler), tria un infant i fes clic a les cel·les buides per afegir-hi matèries. Arrossega per moure; arrossega les barres fines de dalt o baix per redimensionar.
 4.  Ajusta la teva setmana a [Configuració](/settings) (hores d’inici/final, dies amagats, inici de setmana).
 5.  Usa [Avui](/today) per veure un resum del dia (o la vista Ara/Següent a l’inici).
 

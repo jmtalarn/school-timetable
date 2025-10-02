@@ -15,9 +15,9 @@
 
 ## Quick start
 
-1.  Go to [Matters](/matters) and create your subjects/activities. Give them a name, a color, and (optionally) a date range during which they’re active.
-2.  Go to [Kids](/kids), add each kid (the app generates an avatar automatically).
-3.  Open the [Scheduler](/timetable-scheduler), pick a kid, then click on empty grid cells to add matters. Drag to move; drag the thin bars at the top or bottom to resize.
+1.  Go to [Matters](/settings/matters) and create your subjects/activities. Give them a name, a color, and (optionally) a date range during which they’re active.
+2.  Go to [Kids](/settings/kids), add each kid (the app generates an avatar automatically).
+3.  Open the [Scheduler](/settings/timetable-scheduler), pick a kid, then click on empty grid cells to add matters. Drag to move; drag the thin bars at the top or bottom to resize.
 4.  Tune your week in [Settings](/settings) (start/end hours, hidden weekdays, start of week).
 5.  Use [Today](/today) to see a day-at-a-glance (or the Now/Next summary on Home).
 
