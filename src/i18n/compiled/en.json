@@ -151,24 +151,10 @@
       "value": "Choose one or more kids to include. Only their used matters and the app config are bundled."
     }
   ],
-  "Ntrsoa": [
+  "NIrAsK": [
     {
       "type": 0,
-      "value": "Timetables for selected kids will "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": "replace"
-        }
-      ],
-      "type": 8,
-      "value": "strong"
-    },
-    {
-      "type": 0,
-      "value": " existing ones with the same name; new kids will be added."
+      "value": "Timetables for selected kids will replace existing ones with the same name; new kids will be added."
     }
   ],
   "OKAfXf": [

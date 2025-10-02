@@ -131,7 +131,7 @@ export default function ImportGate() {
 						})}
 					</ul>
 					<p className={styles.muted}>
-						<FormattedMessage defaultMessage="Timetables for selected kids will <strong>replace</strong> existing ones with the same name; new kids will be added." />
+						<FormattedMessage defaultMessage="Timetables for selected kids will replace existing ones with the same name; new kids will be added." />
 					</p>
 				</section>
 

@@ -151,24 +151,10 @@
       "value": "Elige uno o varios niños para incluir. Solo se incluirán sus materias usadas y la configuración de la aplicación."
     }
   ],
-  "Ntrsoa": [
+  "NIrAsK": [
     {
       "type": 0,
-      "value": "Los horarios de los niños seleccionados "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": "reemplazarán"
-        }
-      ],
-      "type": 8,
-      "value": "strong"
-    },
-    {
-      "type": 0,
-      "value": " a los existentes con el mismo nombre; se añadirán los niños nuevos."
+      "value": "Los horarios de los niños seleccionados reemplazarán a los existentes con el mismo nombre; se añadirán los niños nuevos."
     }
   ],
   "OKAfXf": [

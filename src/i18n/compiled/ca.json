@@ -151,24 +151,10 @@
       "value": "Tria un o més nens per incloure. Només s'inclouran les seves matèries utilitzades i la configuració de l'aplicació."
     }
   ],
-  "Ntrsoa": [
+  "NIrAsK": [
     {
       "type": 0,
-      "value": "Els horaris dels nens seleccionats "
-    },
-    {
-      "children": [
-        {
-          "type": 0,
-          "value": "substituiran"
-        }
-      ],
-      "type": 8,
-      "value": "strong"
-    },
-    {
-      "type": 0,
-      "value": " els existents amb el mateix nom; s'afegiran els nens nous."
+      "value": "Els horaris dels nens seleccionats substituiran els existents amb el mateix nom. S'afegiran els nens nous."
     }
   ],
   "OKAfXf": [
