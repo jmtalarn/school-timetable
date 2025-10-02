@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import IntlAppProvider from './i18n/IntlAppProvider'
 import MattersPage from './pages/MattersPage'
@@ -15,6 +15,7 @@ import logoSvg from '/school-timetable-logo.svg'
 import styles from './App.module.css'
 import PromptInstall from './components/PromptInstall'
 import Navigation from './components/Navigation'
+import SettingsHub from './pages/SettingsHub'
 
 /** Create the client once (avoids re-creating on rerenders/HMR) */
 const queryClient = new QueryClient()
@@ -48,10 +49,19 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/today" element={<Today />} />
                 <Route path="/week" element={<Week />} />
-                <Route path="/matters" element={<MattersPage />} />
+                {/* <Route path="/matters" element={<MattersPage />} />
                 <Route path="/kids" element={<KidsPage />} />
-                <Route path="/timetable-scheduler" element={<TimetableScheduler />} />
-                <Route path="/settings" element={<SettingsPage />} />
+                <Route path="/timetable-scheduler" element={<TimetableScheduler />} /> */}
+                {/* <Route path="/settings" element={<SettingsPage />} /> */}
+                <Route path="/settings" element={<SettingsHub />}>
+                  {/* Default to General when hitting /settings */}
+                  <Route index element={<Navigate to="general" replace />} />
+                  <Route path="general" element={<SettingsPage />} />
+                  <Route path="kids" element={<KidsPage />} />
+                  <Route path="matters" element={<MattersPage />} />
+                  <Route path="scheduler" element={<TimetableScheduler />} />
+                </Route>
+
                 <Route path="/import" element={<ImportGate />} />
                 <Route path="/help" element={<HelpPage />} />
               </Routes>

@@ -513,7 +513,7 @@ export default function TimetableScheduler() {
 	return (
 		<>
 			<div className={styles.container}>
-				<h2 className={styles.header}><FormattedMessage defaultMessage="Timetable" /></h2>
+				<h2 className={styles.header}><FormattedMessage defaultMessage="Scheduler" /></h2>
 
 				<div className={styles.kidRow}>
 					<KidSelect value={selectedKidId} onChange={setSelectedKidId} kids={kids || []} />

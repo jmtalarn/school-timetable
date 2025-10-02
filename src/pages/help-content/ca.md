@@ -2,16 +2,16 @@
 
 1.  [Com començar ràpidament](#com-començar-ràpidament)
 2.  [Conceptes bàsics](#conceptes-bàsics)
-3.  [Planificador](#planificador)
-4.  [Nens](#nens)
-5.  [Matèries](#matèries)
-6.  [Avui i Ara/Següent](#avui-i-arasegüent)
-7.  [Configuració](#configuració)
-8.  [Compartir / Exportar i Importar](#compartir--exportar-i-importar)
-9.  [Instal·lació i mode fora de línia](#installació-i-mode-fora-de-línia)
-10. [PMF i Resolució de problemes](#pmf-i-resolució-de-problemes)
-11. [Dades i Privadesa](#dades-i-privadesa)
-12. [Contacte](#contacte)
+3.  [Avui i Ara/Següent](#avui-i-arasegüent)
+4.  [Configuració](#configuració)
+    -   [Planificador](#planificador)
+    -   [Nens](#nens)
+    -   [Matèries](#matèries)
+5.  [Compartir / Exportar i Importar](#compartir--exportar-i-importar)
+6.  [Instal·lació i mode fora de línia](#installació-i-mode-fora-de-línia)
+7.  [PMF i Resolució de problemes](#pmf-i-resolució-de-problemes)
+8.  [Dades i Privadesa](#dades-i-privadesa)
+9.  [Contacte](#contacte)
 
 ## Com començar ràpidament
 
@@ -35,31 +35,6 @@ Temes/activitats amb un color i opcionalment dates d’activitat (inici/final). 
 
 Ajustos globals: hores visibles, dies amagats i dia d’inici de la setmana. Això defineix la graella del planificador.
 
-## Planificador
-
-El planificador mostra una graella setmanal. Les columnes són els dies de la setmana (respectant els dies amagats i l’inici de setmana escollit). Les files són franges horàries (increments de 5 minuts). L’interval vertical visible es controla des de Configuració.
-
--   **Afegir un bloc:** fes clic en una cel·la buida → selecciona una matèria al popup.
--   **Moure:** arrossega el bloc a qualsevol lloc, fins i tot entre dies.
--   **Redimensionar:** arrossega la nansa fina a dalt o baix. Els blocs s’ajusten a increments de 5 minuts.
--   **Eliminar:** fes clic a la icona 🗑️ d’un bloc i confirma.
--   **Ressaltat al passar-hi el cursor:** la fila sota el cursor es ressalta subtilment per facilitar l’arrossegament.
--   **Dates de la matèria:** només es considera “activa” entre les dates d’inici i final; això afecta les vistes Avui/Ara.
-
-Consell: si no veus les franges del matí/vespre que esperaves, amplia l’interval visible a [Configuració](/settings).
-
-## Nens
-
--   **Afegir / editar / eliminar** nens a [Nens](/kids).
--   Els avatars es generen automàticament; el selector mostra avatars i noms — fes clic a un per seleccionar-lo.
--   Els horaris són per infant. Canvia d’infant amb el selector d’avatars a la part superior del Planificador.
-
-## Matèries
-
--   Crea/edita matèries a [Matèries](/matters).
--   L’**interval de dates** (inici/final) és opcional i controla quan la matèria es considera activa.
--   El color s’utilitza per donar estil als blocs; mantén una paleta consistent per llegibilitat.
-
 ## Avui i Ara/Següent
 
 La vista [Avui](/today) mostra un sol dia amb un marcador en temps real de “l’hora actual”. La targeta de cada infant també mostra **Ara** (amb una barra de progrés) i la **Següent** matèria — només si aquestes matèries estan dins del seu rang de dates.
@@ -74,6 +49,31 @@ La vista [Avui](/today) mostra un sol dia amb un marcador en temps real de “l�
 -   **Inici de setmana:** tria quin dia comença la setmana; el planificador reordena les columnes en conseqüència.
 
 L’app valida les hores perquè l’hora de final sigui sempre després de l’hora d’inici.
+
+### Nens
+
+-   **Afegir / editar / eliminar** nens a [Nens](/kids).
+-   Els avatars es generen automàticament; el selector mostra avatars i noms — fes clic a un per seleccionar-lo.
+-   Els horaris són per infant. Canvia d’infant amb el selector d’avatars a la part superior del Planificador.
+
+### Matèries
+
+-   Crea/edita matèries a [Matèries](/matters).
+-   L’**interval de dates** (inici/final) és opcional i controla quan la matèria es considera activa.
+-   El color s’utilitza per donar estil als blocs; mantén una paleta consistent per llegibilitat.
+
+### Planificador
+
+El planificador mostra una graella setmanal. Les columnes són els dies de la setmana (respectant els dies amagats i l’inici de setmana escollit). Les files són franges horàries (increments de 5 minuts). L’interval vertical visible es controla des de Configuració.
+
+-   **Afegir un bloc:** fes clic en una cel·la buida → selecciona una matèria al popup.
+-   **Moure:** arrossega el bloc a qualsevol lloc, fins i tot entre dies.
+-   **Redimensionar:** arrossega la nansa fina a dalt o baix. Els blocs s’ajusten a increments de 5 minuts.
+-   **Eliminar:** fes clic a la icona 🗑️ d’un bloc i confirma.
+-   **Ressaltat al passar-hi el cursor:** la fila sota el cursor es ressalta subtilment per facilitar l’arrossegament.
+-   **Dates de la matèria:** només es considera “activa” entre les dates d’inici i final; això afecta les vistes Avui/Ara.
+
+Consell: si no veus les franges del matí/vespre que esperaves, amplia l’interval visible a [Configuració](/settings).
 
 ## Compartir / Exportar i Importar
 

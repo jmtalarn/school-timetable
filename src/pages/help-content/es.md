@@ -2,16 +2,16 @@
 
 1.  [Inicio rápido](#quickstart)
 2.  [Conceptos clave](#conceptos-clave)
-3.  [Planificador](#planificador)
-4.  [Niños](#niños)
-5.  [Asignaturas](#asignaturas)
-6.  [Hoy y Ahora/Siguiente](#hoy-y-ahorasiguiente)
-7.  [Ajustes](#ajustes)
-8.  [Compartir / Exportar e Importar](#compartir--exportar-e-importar)
-9.  [Instalación y modo sin conexión](#instalación-y-modo-sin-conexión)
-10. [FAQ y resolución de problemas](#faq-y-resolución-de-problemas)
-11. [Datos y privacidad](#datos-y-privacidad)
-12. [Contacto](#contacto)
+3.  [Hoy y Ahora/Siguiente](#hoy-y-ahorasiguiente)
+4.  [Ajustes](#ajustes)
+    -   [Niños](#niños)
+    -   [Asignaturas](#asignaturas)
+    -   [Planificador](#planificador)
+5.  [Compartir / Exportar e Importar](#compartir--exportar-e-importar)
+6.  [Instalación y modo sin conexión](#instalación-y-modo-sin-conexión)
+7.  [FAQ y resolución de problemas](#faq-y-resolución-de-problemas)
+8.  [Datos y privacidad](#datos-y-privacidad)
+9.  [Contacto](#contacto)
 
 ## Inicio rápido
 
@@ -35,31 +35,6 @@ Materias/actividades con un color y fechas activas opcionales (inicio/fin). Los 
 
 Ajustes globales: horas visibles, días de la semana ocultos y día de inicio de la semana. Esto da forma a la cuadrícula del planificador.
 
-## Planificador
-
-El planificador muestra una cuadrícula semanal. Las columnas son los días de la semana (respetando los días ocultos y el inicio de semana elegido). Las filas son franjas horarias (pasos de 5 minutos). El rango vertical visible se controla desde Ajustes.
-
--   **Añadir un bloque:** haz clic en una celda vacía → elige una asignatura en la ventana emergente.
--   **Mover:** arrastra el bloque a cualquier lugar, incluso a otros días.
--   **Redimensionar:** arrastra el asa fina superior o inferior. Los bloques se ajustan a incrementos de 5 minutos.
--   **Eliminar:** pulsa el icono 🗑️ del bloque y confirma.
--   **Resaltado al pasar el cursor:** la fila bajo el cursor se resalta suavemente para facilitar el arrastre.
--   **Fechas de asignatura:** una asignatura solo se considera “en curso” entre sus fechas de inicio y fin; eso afecta a las vistas de Hoy/Ahora.
-
-Consejo: si no ves las franjas de mañana/tarde que esperas, amplía el rango visible en [Ajustes](/settings).
-
-## Niños
-
--   **Añadir / editar / eliminar** niños en [Niños](/kids).
--   Los avatares se generan automáticamente; el selector muestra avatar y nombre—haz clic para seleccionar.
--   Los horarios son por niño. Cambia de niño con el selector de avatares en la parte superior del Planificador.
-
-## Asignaturas
-
--   Crea/edita asignaturas en [Asignaturas](/matters).
--   El **rango de fechas** (Inicio/Fin) opcional controla cuándo se considera activa la asignatura.
--   El color se usa para estilizar los bloques; mantén una paleta coherente para facilitar la lectura.
-
 ## Hoy y Ahora/Siguiente
 
 La vista [Hoy](/today) muestra un único día con un marcador de “hora actual”. La tarjeta de cada niño también muestra la asignatura **Ahora** (con barra de progreso) y la **Siguiente**, solo si están dentro de sus rangos de fechas.
@@ -74,6 +49,31 @@ La vista [Hoy](/today) muestra un único día con un marcador de “hora actual�
 -   **Inicio de semana:** elige con qué día comienza tu semana; el planificador reordena las columnas en consecuencia.
 
 La app valida las horas para que la de fin siempre sea posterior a la de inicio.
+
+### Niños
+
+-   **Añadir / editar / eliminar** niños en [Niños](/kids).
+-   Los avatares se generan automáticamente; el selector muestra avatar y nombre—haz clic para seleccionar.
+-   Los horarios son por niño. Cambia de niño con el selector de avatares en la parte superior del Planificador.
+
+### Asignaturas
+
+-   Crea/edita asignaturas en [Asignaturas](/matters).
+-   El **rango de fechas** (Inicio/Fin) opcional controla cuándo se considera activa la asignatura.
+-   El color se usa para estilizar los bloques; mantén una paleta coherente para facilitar la lectura.
+
+## Planificador
+
+El planificador muestra una cuadrícula semanal. Las columnas son los días de la semana (respetando los días ocultos y el inicio de semana elegido). Las filas son franjas horarias (pasos de 5 minutos). El rango vertical visible se controla desde Ajustes.
+
+-   **Añadir un bloque:** haz clic en una celda vacía → elige una asignatura en la ventana emergente.
+-   **Mover:** arrastra el bloque a cualquier lugar, incluso a otros días.
+-   **Redimensionar:** arrastra el asa fina superior o inferior. Los bloques se ajustan a incrementos de 5 minutos.
+-   **Eliminar:** pulsa el icono 🗑️ del bloque y confirma.
+-   **Resaltado al pasar el cursor:** la fila bajo el cursor se resalta suavemente para facilitar el arrastre.
+-   **Fechas de asignatura:** una asignatura solo se considera “en curso” entre sus fechas de inicio y fin; eso afecta a las vistas de Hoy/Ahora.
+
+Consejo: si no ves las franjas de mañana/tarde que esperas, amplía el rango visible en [Ajustes](/settings).
 
 ## Compartir / Exportar e Importar
 

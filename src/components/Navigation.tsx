@@ -29,9 +29,9 @@ export default function Navigation() {
 			{ to: '/', end: true, id: 'home.nav', defaultMessage: intl.formatMessage({ defaultMessage: 'Home' }) },
 			{ to: '/today', end: true, id: 'zWgbGg', defaultMessage: intl.formatMessage({ defaultMessage: 'Today' }) },
 			{ to: '/week', end: true, id: '/clOBU', defaultMessage: intl.formatMessage({ defaultMessage: 'Weekly' }) },
-			{ to: '/kids', id: 'mfuPab', defaultMessage: intl.formatMessage({ defaultMessage: 'Kids' }) },
-			{ to: '/matters', id: '9Mt7ON', defaultMessage: intl.formatMessage({ defaultMessage: 'Matters' }) },
-			{ to: '/timetable-scheduler', id: '64RmVd', defaultMessage: intl.formatMessage({ defaultMessage: 'Scheduler' }) },
+			// { to: '/kids', id: 'mfuPab', defaultMessage: intl.formatMessage({ defaultMessage: 'Kids' }) },
+			// { to: '/matters', id: '9Mt7ON', defaultMessage: intl.formatMessage({ defaultMessage: 'Matters' }) },
+			// { to: '/timetable-scheduler', id: '64RmVd', defaultMessage: intl.formatMessage({ defaultMessage: 'Scheduler' }) },
 			{ to: '/settings', id: 'D3idYv', defaultMessage: intl.formatMessage({ defaultMessage: 'Settings' }) },
 			{ to: '/help', id: 'SENRqu', defaultMessage: intl.formatMessage({ defaultMessage: 'Help' }) },
 		]

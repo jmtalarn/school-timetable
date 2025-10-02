@@ -8,7 +8,7 @@ import { useConfig } from '../hooks/reactQueryHooks'
 import styles from './HelpPage.module.css'
 
 // Vite will bundle these; we load raw markdown strings on demand
-const HELP_FILES = import.meta.glob('./help-content/*.md', { as: 'raw', eager: false })
+const HELP_FILES = import.meta.glob('./help-content/*.md', { query: '?raw', import: 'default', eager: false })
 
 function useLocale(): string {
 	const { data: cfg } = useConfig()

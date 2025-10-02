@@ -32,17 +32,17 @@ export default function Home() {
 				<h2 className={styles.lead}><FormattedMessage defaultMessage="Configure it" /></h2>
 
 				<nav className={styles.grid} aria-label="App sections">
-					<Link to="/kids#" className={styles.tile} title={intl.formatMessage({ defaultMessage: "Kids" })}>
+					<Link to="/settings/kids#" className={styles.tile} title={intl.formatMessage({ defaultMessage: "Kids" })}>
 						<span className={styles.icon} aria-hidden>👧</span>
 						<span className={styles.label}><FormattedMessage defaultMessage="Kids" /></span>
 					</Link>
 
-					<Link to="/matters#" className={styles.tile} title={intl.formatMessage({ defaultMessage: "Matters" })}>
+					<Link to="/settings/matters#" className={styles.tile} title={intl.formatMessage({ defaultMessage: "Matters" })}>
 						<span className={styles.icon} aria-hidden>📚</span>
 						<span className={styles.label}><FormattedMessage defaultMessage="Matters" /></span>
 					</Link>
 
-					<Link to="/timetable-scheduler#" className={styles.tile} title={intl.formatMessage({ defaultMessage: "Scheduler" })}>
+					<Link to="/settings/timetable-scheduler#" className={styles.tile} title={intl.formatMessage({ defaultMessage: "Scheduler" })}>
 						<span className={styles.icon} aria-hidden>📅</span>
 						<span className={styles.label}><FormattedMessage defaultMessage="Scheduler" /></span>
 					</Link>

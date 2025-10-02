@@ -49,7 +49,7 @@ export default function SettingsPage() {
 
 	return (
 		<div className={styles.container}>
-			<h2 className={styles.title}><FormattedMessage defaultMessage="Settings" /></h2>
+			<h2 className={styles.title}><FormattedMessage defaultMessage="General" /></h2>
 
 			<form
 				className={styles.form}
