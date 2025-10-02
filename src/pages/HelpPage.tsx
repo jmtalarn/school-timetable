@@ -40,7 +40,7 @@ export default function HelpPage() {
 					if (HELP_FILES[key]) {
 						try {
 							const text = await HELP_FILES[key]() // load markdown string
-							if (!cancelled) setMd(text)
+							if (!cancelled) setMd(text as string)
 							return
 						} catch (e) {
 							// try next candidate
