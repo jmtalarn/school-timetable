@@ -112,7 +112,16 @@ També pots enganxar un enllaç amb `#data=…` a la barra d’adreces; la porta
 
 ## Dades i Privadesa
 
-Totes les dades (nens, matèries, horaris, configuració) es guarden a l’emmagatzematge local del teu navegador. No s’envia res a un servidor tret que comparteixis explícitament un enllaç d’exportació amb algú.
+-   **Local primer.** Totes les teves dades del dia a dia (nens, matèries, horaris, configuració) es desen a l’emmagatzematge local del navegador.
+-   **Res no s’envia si no ho comparteixes.** En prémer **Compartir / Exportar**, l’app crea un **paquet temporal** que només inclou:
+    -   els nens seleccionats i els seus horaris,
+    -   les matèries que fan servir aquests horaris,
+    -   i (opcinalment) les hores del planificador.
+-   **Com funciona la compartició.** Aquest paquet es desa de manera privada al **magatzem Netlify Blobs** de l’app i rebràs un enllaç curt amb un ID aleatori. L’enllaç **no conté dades personals**, només l’ID.
+-   **Qui hi pot accedir.** Qualsevol amb l’enllaç pot descarregar el paquet i importar-lo a l’app. El paquet no s’indexa ni es mostra públicament.
+-   **Caducitat automàtica.** Els paquets compartits **caduquen automàticament al cap de 30 dies** i s’eliminen de manera permanent. Si algú obre un enllaç caducat, veurà un error i no s’importarà res.
+-   **Revocar un enllaç.** No hi ha sistema de comptes, per tant no pots “revocar” un enllaç concret després de compartir-lo. Si necessites eliminar-ho abans, espera la caducitat automàtica o genera un enllaç nou.
+-   **Funciona fora de línia.** Fora de compartir/importar, l’app funciona completament fora de línia.
 
 ## Contacte
 

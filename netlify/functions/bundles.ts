@@ -62,8 +62,8 @@ export default async function handler(request: Request): Promise<Response> {
 				contentType: 'application/json',
 				metadata: {
 					createdAt: new Date().toISOString(),
+					expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000 * 3).toISOString(), // 30d * 3
 					version: String(bundle.version ?? ''),
-					type: 'timetable-bundle',
 				},
 			})
 			return json(200, { id })
@@ -73,9 +73,15 @@ export default async function handler(request: Request): Promise<Response> {
 			const url = new URL(request.url)
 			const id = url.searchParams.get('id')
 			if (!id) return json(400, { error: 'Missing ?id' })
-
-			const bundle = await store.get(KEY_PREFIX + id, { type: 'json' })
+			const key = KEY_PREFIX + id
+			const bundle = await store.get(key, { type: 'json' })
 			if (!bundle) return json(404, { error: 'Not found' })
+
+			const exp = bundle.metadata?.expiresAt && new Date(bundle.metadata.expiresAt as string)
+			if (exp && !Number.isNaN(+exp) && Date.now() > +exp) {
+				await store.delete(key)
+				return json(404, { error: 'Expired' })
+			}
 			return json(200, bundle)
 		}
 
