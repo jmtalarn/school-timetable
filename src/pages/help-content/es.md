@@ -121,7 +121,7 @@ También puedes pegar un enlace con `#data=…` en la barra de direcciones; la p
     -   y (opcionalmente) las horas del planificador.
 -   **Cómo funciona el intercambio.** Ese paquete se guarda de forma privada en el **almacenamiento Netlify Blobs** de la app y recibes un enlace corto con un ID aleatorio. El enlace **no contiene datos personales**, solo el ID.
 -   **Quién puede acceder.** Cualquiera con el enlace puede descargar ese paquete e importarlo en la app. El paquete no está indexado ni listado públicamente.
--   **Caducidad automática.** Los paquetes compartidos **caducan automáticamente a los 30 días** y se eliminan de forma permanente. Si alguien abre un enlace caducado, verá un error y no se importará nada.
+-   **Caducidad automática.** Los paquetes compartidos **caducan automáticamente a los 90 días** y se eliminan de forma permanente. Si alguien abre un enlace caducado, verá un error y no se importará nada.
 -   **Revocar un enlace.** No hay sistema de cuentas, así que no puedes “revocar” un enlace concreto tras compartirlo. Si necesitas una eliminación anticipada, espera a la caducidad automática o genera un enlace nuevo.
 -   **Funciona sin conexión.** Fuera de compartir/importar, la app funciona completamente sin conexión.
 

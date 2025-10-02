@@ -123,7 +123,7 @@ You can also paste a link with `#data=…` into the address bar; the app’s imp
     -   and (optionally) the scheduler hours.
 -   **How sharing works.** That bundle is stored privately in our app’s **Netlify Blobs** store and you get a short link with a random ID. The link contains **no personal data**—just the ID.
 -   **Who can access it.** Anyone with the link can download that bundle and import it in the app. The bundle is not indexed or listed publicly.
--   **Automatic expiry.** Shared bundles **auto-expire after 30 days** and are permanently deleted. If someone opens an expired link, they’ll see an error and nothing is imported.
+-   **Automatic expiry.** Shared bundles **auto-expire after 90 days** and are permanently deleted. If someone opens an expired link, they’ll see an error and nothing is imported.
 -   **Revoking a share.** There’s no account system, so you can’t “revoke” a specific link after sharing. If you need early deletion, wait for the auto-expiry or generate a new share link.
 -   **Offline friendly.** Outside of sharing/importing, the app works fully offline.
 

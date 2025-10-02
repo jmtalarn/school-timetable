@@ -119,7 +119,7 @@ També pots enganxar un enllaç amb `#data=…` a la barra d’adreces; la porta
     -   i (opcinalment) les hores del planificador.
 -   **Com funciona la compartició.** Aquest paquet es desa de manera privada al **magatzem Netlify Blobs** de l’app i rebràs un enllaç curt amb un ID aleatori. L’enllaç **no conté dades personals**, només l’ID.
 -   **Qui hi pot accedir.** Qualsevol amb l’enllaç pot descarregar el paquet i importar-lo a l’app. El paquet no s’indexa ni es mostra públicament.
--   **Caducitat automàtica.** Els paquets compartits **caduquen automàticament al cap de 30 dies** i s’eliminen de manera permanent. Si algú obre un enllaç caducat, veurà un error i no s’importarà res.
+-   **Caducitat automàtica.** Els paquets compartits **caduquen automàticament al cap de 90 dies** i s’eliminen de manera permanent. Si algú obre un enllaç caducat, veurà un error i no s’importarà res.
 -   **Revocar un enllaç.** No hi ha sistema de comptes, per tant no pots “revocar” un enllaç concret després de compartir-lo. Si necessites eliminar-ho abans, espera la caducitat automàtica o genera un enllaç nou.
 -   **Funciona fora de línia.** Fora de compartir/importar, l’app funciona completament fora de línia.
 
